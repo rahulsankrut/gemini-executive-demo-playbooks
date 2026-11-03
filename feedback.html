@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Team Feedback Report — Executive Storybooks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #F6EFE2;
+      --card: #FFFDF8;
+      --border: #D9CEBA;
+      --ink: #231F1D;
+      --ink-soft: #574F49;
+      --terracotta: #C85A32;
+      --forest: #2D6A4F;
+      --cobalt: #2B4C7E;
+      --font-serif: "Fraunces", Georgia, serif;
+      --font-sans: "Plus Jakarta Sans", -apple-system, sans-serif;
+      --font-mono: "IBM Plex Mono", monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 36px 24px 72px;
+    }
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      background: #231F1D;
+      color: #FFFDF8;
+      padding: 22px 28px;
+      border-radius: 18px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+    }
+    .topbar h1 {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 800;
+    }
+    .topbar h1 em {
+      color: #E8B86D;
+      font-style: italic;
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .btn {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 9px 15px;
+      border-radius: 99px;
+      border: 1.5px solid #594A41;
+      background: #332B27;
+      color: #FFFDF8;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.16s, border-color 0.16s;
+    }
+    .btn:hover { background: var(--terracotta); border-color: var(--terracotta); }
+    .btn.primary { background: #E8B86D; border-color: #E8B86D; color: #1F1A17; }
+    .btn.primary:hover { background: #F2C983; }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+    }
+    .kpi {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: 0 3px 0 #E4DAC7;
+    }
+    .kpi-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .kpi-val {
+      font-family: var(--font-serif);
+      font-size: 34px;
+      font-weight: 800;
+      margin-top: 4px;
+      color: var(--ink);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      padding: 14px 18px;
+      border-radius: 14px;
+    }
+    .filters select {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border);
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .feed-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .feed-item {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-left: 6px solid var(--cobalt);
+      border-radius: 14px;
+      padding: 18px 22px;
+      box-shadow: 0 3px 0 #E4DAC7;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .feed-item.edit-item { border-left-color: var(--terracotta); }
+    .feed-item.resolved { opacity: 0.65; border-left-color: var(--forest); }
+
+    .feed-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+    .pill {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .pill.comment { background: #E7EEF8; color: var(--cobalt); }
+    .pill.edit { background: #FDECE5; color: var(--terracotta); }
+    .pill.loc { background: #EFE7D6; color: var(--ink); }
+
+    .diff-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 720px) { .diff-grid { grid-template-columns: 1fr; } }
+
+    .diff-before {
+      background: #FEF3F2;
+      border: 1px solid #FECDCA;
+      border-radius: 10px;
+      padding: 11px 13px;
+      font-size: 14px;
+      line-height: 1.45;
+      color: #7A271A;
+    }
+    .diff-after {
+      background: #ECFDF3;
+      border: 1px solid #ABEFC6;
+      border-radius: 10px;
+      padding: 11px 13px;
+      font-size: 14px;
+      line-height: 1.45;
+      color: #065F46;
+    }
+    .diff-lbl {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      opacity: 0.85;
+    }
+    .comment-body {
+      font-size: 15.5px;
+      line-height: 1.5;
+      color: var(--ink);
+      white-space: pre-wrap;
+    }
+    .replies {
+      margin-left: 16px;
+      padding-left: 14px;
+      border-left: 2px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 14px;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 48px 24px;
+      background: var(--card);
+      border: 1.5px dashed var(--border);
+      border-radius: 16px;
+      color: var(--ink-soft);
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div>
+        <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;color:#E8B86D;margin-bottom:4px;">FOR WORKSHOP LEADS &amp; REVIEWERS</div>
+        <h1>Team Feedback &amp; <em>Edit Log</em></h1>
+      </div>
+      <div class="btn-row">
+        <a class="btn" href="/">← Back to Storybooks</a>
+        <button class="btn" id="btnRefresh">↻ Refresh</button>
+        <button class="btn" id="btnDownloadJson">⬇️ Export JSON</button>
+        <button class="btn primary" id="btnCopyMd">📋 Copy Markdown Summary</button>
+      </div>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-label">Total Feedback Items</div><div class="kpi-val" id="kpiTotal">0</div></div>
+      <div class="kpi"><div class="kpi-label">Open Comments</div><div class="kpi-val" id="kpiComments">0</div></div>
+      <div class="kpi"><div class="kpi-label">Tracked Text Edits</div><div class="kpi-val" id="kpiEdits">0</div></div>
+      <div class="kpi"><div class="kpi-label">Active Reviewers</div><div class="kpi-val" id="kpiReviewers">0</div></div>
+    </div>
+
+    <div class="filters">
+      <strong style="font-family:var(--font-mono);font-size:12px;">FILTER:</strong>
+      <select id="filterType">
+        <option value="all">All Activity (Comments + Edits)</option>
+        <option value="comment">Comments Only</option>
+        <option value="edit">Inline Text Edits Only</option>
+      </select>
+      <select id="filterEditScope" title="Filter inline edits to only elements that actually changed">
+        <option value="changed" selected>Inline Edits: Changed Only ✓</option>
+        <option value="all_history">Inline Edits: Include Reverted History</option>
+      </select>
+      <select id="filterBook">
+        <option value="all">All Books &amp; Rack</option>
+        <option value="-1">3-Book Rack Covers</option>
+        <option value="0">Book 01 · Gemini Enterprise App</option>
+        <option value="1">Book 02 · Gemini Agent</option>
+        <option value="2">Book 03 · Antigravity</option>
+      </select>
+      <select id="filterAuthor">
+        <option value="all">All Reviewers</option>
+      </select>
+    </div>
+
+    <div class="feed-list" id="feedList">
+      <div class="empty-state">Loading live team feedback…</div>
+    </div>
+  </div>
+
+  <script>
+    let rawData = { comments: [], edit_log: [] };
+
+    function esc(s) {
+      return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function fmtTime(iso) {
+      if (!iso) return '';
+      try {
+        return new Date(iso).toLocaleString();
+      } catch (_) {
+        return iso;
+      }
+    }
+
+    async function loadFeedback() {
+      const res = await fetch('/api/feedback');
+      if (res.status === 401) {
+        window.location.href = '/?next=/feedback';
+        return;
+      }
+      rawData = await res.json();
+      populateAuthorFilter();
+      render();
+    }
+
+    function normWs(s) {
+      return String(s || '').replace(/\s+/g, ' ').trim();
+    }
+
+    function isActivelyChangedEdit(e) {
+      if (!e || e.currentlyChanged === false) return false;
+      const b = normWs(e.beforeText);
+      const a = normWs(e.afterText);
+      return Boolean(b && a && b !== a);
+    }
+
+    function getUnifiedItems(onlyChangedEdits = true) {
+      const comments = (rawData.comments || []).map((c) => ({
+        ...c,
+        itemType: 'comment',
+        ts: c.createdAt || ''
+      }));
+      const editSource = onlyChangedEdits
+        ? (rawData.edit_log || []).filter(isActivelyChangedEdit)
+        : (rawData.edit_log || []).filter((e) => normWs(e.beforeText) !== normWs(e.afterText));
+      const edits = editSource.map((e) => ({
+        ...e,
+        itemType: 'edit',
+        ts: e.updatedAt || ''
+      }));
+      return [...comments, ...edits].sort((a, b) => String(b.ts).localeCompare(String(a.ts)));
+    }
+
+    function populateAuthorFilter() {
+      const sel = document.getElementById('filterAuthor');
+      const prev = sel.value;
+      const authors = new Set();
+      getUnifiedItems(true).forEach((it) => { if (it.authorFull) authors.add(it.authorFull); });
+      sel.innerHTML = '<option value="all">All Reviewers</option>' +
+        Array.from(authors).sort().map((a) => `<option value="${esc(a)}">${esc(a)}</option>`).join('');
+      if ([...authors].includes(prev)) sel.value = prev;
+    }
+
+    function render() {
+      const onlyChanged = document.getElementById('filterEditScope').value === 'changed';
+      const items = getUnifiedItems(onlyChanged);
+      const openComments = (rawData.comments || []).filter((c) => !c.resolved).length;
+      const editsCount = items.filter((i) => i.itemType === 'edit').length;
+      const reviewersCount = new Set(items.map((i) => i.authorFull).filter(Boolean)).size;
+
+      document.getElementById('kpiTotal').textContent = items.length;
+      document.getElementById('kpiComments').textContent = openComments;
+      document.getElementById('kpiEdits').textContent = editsCount;
+      document.getElementById('kpiReviewers').textContent = reviewersCount;
+
+      const fType = document.getElementById('filterType').value;
+      const fBook = document.getElementById('filterBook').value;
+      const fAuthor = document.getElementById('filterAuthor').value;
+
+      const filtered = items.filter((it) => {
+        if (fType !== 'all' && it.itemType !== fType) return false;
+        if (fBook !== 'all' && String(it.bookIdx ?? -1) !== fBook) return false;
+        if (fAuthor !== 'all' && it.authorFull !== fAuthor) return false;
+        return true;
+      });
+
+      const listEl = document.getElementById('feedList');
+      if (!filtered.length) {
+        listEl.innerHTML = '<div class="empty-state">No feedback or edits match the current filter yet. Share the Storybook URL + password with the team to start collecting input!</div>';
+        return;
+      }
+
+      listEl.innerHTML = filtered.map((it) => {
+        const loc = it.bookIdx === -1 || it.bookIdx === null || it.bookIdx === undefined
+          ? '3-Book Rack Covers'
+          : `${it.bookTitle || ('Book 0' + (Number(it.bookIdx) + 1))} · ${it.slideTitle || ('Spread ' + (Number(it.slideIdx) + 1))}`;
+        const jumpHref = (it.bookIdx !== undefined && it.bookIdx !== null && it.bookIdx >= 0)
+          ? `/?book=${it.bookIdx}&slide=${it.slideIdx || 0}`
+          : `/`;
+
+        if (it.itemType === 'comment') {
+          const repliesHtml = (it.replies || []).length
+            ? `<div class="replies">${it.replies.map((r) => `<div><strong>${esc(r.authorFull)}:</strong> ${esc(r.text)} <span style="opacity:0.65;font-size:12px;">(${esc(fmtTime(r.createdAt))})</span></div>`).join('')}</div>`
+            : '';
+          return `
+            <div class="feed-item ${it.resolved ? 'resolved' : ''}">
+              <div class="feed-meta">
+                <div>
+                  <span class="pill comment">${it.resolved ? '✓ RESOLVED COMMENT' : '💬 COMMENT'}</span>
+                  <span class="pill loc">${esc(loc)}</span>
+                  <strong style="color:var(--ink);margin-left:6px;">${esc(it.authorFull)}</strong>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <span>${esc(fmtTime(it.createdAt))}</span>
+                  <a class="btn" style="padding:4px 10px;font-size:11px;" href="${jumpHref}">Open Page ↷</a>
+                </div>
+              </div>
+              <div class="comment-body">${esc(it.text)}</div>
+              ${repliesHtml}
+            </div>`;
+        } else {
+          return `
+            <div class="feed-item edit-item">
+              <div class="feed-meta">
+                <div>
+                  <span class="pill edit">✏️ INLINE EDIT</span>
+                  <span class="pill loc">${esc(loc)}</span>
+                  <strong style="color:var(--ink);margin-left:6px;">${esc(it.authorFull)}</strong>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <span>${esc(fmtTime(it.updatedAt))}</span>
+                  <a class="btn" style="padding:4px 10px;font-size:11px;" href="${jumpHref}">Open Page ↷</a>
+                </div>
+              </div>
+              <div class="diff-grid">
+                <div class="diff-before">
+                  <div class="diff-lbl">Before</div>
+                  <div>${esc(it.beforeText || '(empty)')}</div>
+                </div>
+                <div class="diff-after">
+                  <div class="diff-lbl">After (Live Now)</div>
+                  <div>${esc(it.afterText || '(empty)')}</div>
+                </div>
+              </div>
+            </div>`;
+        }
+      }).join('');
+    }
+
+    function toMarkdownReport() {
+      const onlyChanged = document.getElementById('filterEditScope').value === 'changed';
+      const items = getUnifiedItems(onlyChanged);
+      const lines = [
+        '# Gemini Executive Storybooks — Team Feedback & Edit Report',
+        `Generated: ${new Date().toISOString()}`,
+        `Total items: ${items.length}`,
+        ''
+      ];
+      items.forEach((it, idx) => {
+        const loc = (it.bookIdx === -1 || it.bookIdx === null || it.bookIdx === undefined)
+          ? '3-Book Rack Covers'
+          : `${it.bookTitle || ('Book 0' + (Number(it.bookIdx) + 1))} — ${it.slideTitle || ('Spread ' + (Number(it.slideIdx) + 1))}`;
+        if (it.itemType === 'comment') {
+          lines.push(`### ${idx + 1}. [COMMENT${it.resolved ? ' - RESOLVED' : ''}] ${loc}`);
+          lines.push(`- **Reviewer:** ${it.authorFull} (${it.createdAt})`);
+          lines.push(`- **Comment:** ${it.text}`);
+          (it.replies || []).forEach((r) => {
+            lines.push(`  - *Reply by ${r.authorFull}:* ${r.text}`);
+          });
+          lines.push('');
+        } else {
+          lines.push(`### ${idx + 1}. [INLINE EDIT] ${loc} (\`${it.editKey}\`)`);
+          lines.push(`- **Editor:** ${it.authorFull} (${it.updatedAt})`);
+          lines.push(`- **Before:** ${it.beforeText}`);
+          lines.push(`- **After:** ${it.afterText}`);
+          lines.push('');
+        }
+      });
+      return lines.join('\n');
+    }
+
+    ['filterType', 'filterEditScope', 'filterBook', 'filterAuthor'].forEach((id) => {
+      document.getElementById(id).addEventListener('change', render);
+    });
+    document.getElementById('btnRefresh').addEventListener('click', loadFeedback);
+    document.getElementById('btnCopyMd').addEventListener('click', async (e) => {
+      await navigator.clipboard.writeText(toMarkdownReport());
+      const btn = e.currentTarget;
+      const orig = btn.textContent;
+      btn.textContent = '✓ Copied Markdown!';
+      setTimeout(() => { btn.textContent = orig; }, 1800);
+    });
+    document.getElementById('btnDownloadJson').addEventListener('click', () => {
+      const blob = new Blob([JSON.stringify(rawData, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `Executive_Storybook_Feedback_${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+    });
+
+    loadFeedback();
+  </script>
+</body>
+</html>
