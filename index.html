@@ -1424,6 +1424,53 @@
       color: var(--cobalt);
     }
 
+    .card-btn-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .open-ge-btn {
+      background: var(--forest);
+      border: 1px solid var(--forest);
+      border-radius: 99px;
+      padding: 4px 11px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: #FFFDF8;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.18s, border-color 0.18s, transform 0.18s;
+    }
+
+    .open-ge-btn:hover {
+      background: #21523C;
+      border-color: #21523C;
+      transform: translateY(-1px);
+    }
+
+    .level-card.accent-cobalt .open-ge-btn {
+      background: var(--cobalt);
+      border-color: var(--cobalt);
+    }
+
+    .level-card.accent-cobalt .open-ge-btn:hover {
+      background: #1E3860;
+      border-color: #1E3860;
+    }
+
+    .level-card.accent-terra .open-ge-btn {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+    }
+
+    .level-card.accent-terra .open-ge-btn:hover {
+      background: #A94622;
+      border-color: #A94622;
+    }
+
     .copy-prompt-btn {
       background: var(--paper-warm);
       border: 1px solid var(--paper-border);
@@ -2280,7 +2327,10 @@
                   <div class="level-card reveal d2" style="padding:16px 18px;">
                     <div class="level-top">
                       <span class="level-pill">🌐 LIVE WEB SEARCH · SUPPLIER SIGNAL SCAN</span>
-                      <button class="copy-prompt-btn" data-copy="Search the last 90 days of public earnings calls, SEC filings, and FAA Airworthiness Directives covering Howmet Aerospace, Spirit AeroSystems, Honeywell Aerospace, and Safran. Return a compact 4-row table (Entity | Recent Bottleneck or Directive | Lead-Time / Conformity Risk | Cited Source) plus a 2-bullet BLUF for Cymbal Aerospace Procurement. Keep the entire response under 180 words.">📋 Copy Prompt</button>
+                      <div class="card-btn-group">
+                        <button type="button" class="open-ge-btn" data-open-ge="home" title="Open Gemini Enterprise with this prompt prefilled">Open in GE ↗</button>
+                        <button class="copy-prompt-btn" data-copy="Search the last 90 days of public earnings calls, SEC filings, and FAA Airworthiness Directives covering Howmet Aerospace, Spirit AeroSystems, Honeywell Aerospace, and Safran. Return a compact 4-row table (Entity | Recent Bottleneck or Directive | Lead-Time / Conformity Risk | Cited Source) plus a 2-bullet BLUF for Cymbal Aerospace Procurement. Keep the entire response under 180 words.">📋 Copy Prompt</button>
+                      </div>
                     </div>
                     <h3 class="card-heading" style="font-size:20px;" data-editable>90-Day Aerospace Supplier Signal Scan</h3>
                     <div class="prompt-quote" data-editable>
@@ -2291,7 +2341,10 @@
                   <div class="level-card accent-terra reveal d3" style="padding:16px 18px;">
                     <div class="level-top">
                       <span class="level-pill terra">🏢 ENTERPRISE SEARCH → 📝 CANVAS</span>
-                      <button class="copy-prompt-btn" data-copy="Search across my Outlook emails, SharePoint sites, and OneDrive trackers from the past 14 days for 'AI SteerCo' and supplier conformity gates. Flag any contradictions between email reality and green spreadsheet trackers with inline citations—then open Canvas to draft a 1-page Executive Action Memo.">📋 Copy Prompt</button>
+                      <div class="card-btn-group">
+                        <button type="button" class="open-ge-btn" data-open-ge="home" title="Open Gemini Enterprise with this prompt prefilled">Open in GE ↗</button>
+                        <button class="copy-prompt-btn" data-copy="Search across my Outlook emails, SharePoint sites, and OneDrive trackers from the past 14 days for 'AI SteerCo' and supplier conformity gates. Flag any contradictions between email reality and green spreadsheet trackers with inline citations—then open Canvas to draft a 1-page Executive Action Memo.">📋 Copy Prompt</button>
+                      </div>
                     </div>
                     <h3 class="card-heading" style="font-size:20px;" data-editable>Cross-Silo M365 Audit → <em>Canvas Memo</em></h3>
                     <div class="prompt-quote" data-editable>
@@ -2363,7 +2416,10 @@
                   <div class="level-card reveal d2" style="padding:16px 18px;">
                     <div class="level-top">
                       <span class="level-pill">🧠 PERSONALIZATION &amp; MEMORY</span>
-                      <button class="copy-prompt-btn" data-copy="Remember that in all briefings I want Bottom Line Up Front (BLUF) in 3 crisp bullets, every recommendation must name a single owner and target date, and safety or compliance risks must always appear first.">📋 Copy Prompt</button>
+                      <div class="card-btn-group">
+                        <button type="button" class="open-ge-btn" data-open-ge="home" title="Open Gemini Enterprise with this prompt prefilled">Open in GE ↗</button>
+                        <button class="copy-prompt-btn" data-copy="Remember that in all briefings I want Bottom Line Up Front (BLUF) in 3 crisp bullets, every recommendation must name a single owner and target date, and safety or compliance risks must always appear first.">📋 Copy Prompt</button>
+                      </div>
                     </div>
                     <h3 class="card-heading" style="font-size:20px;" data-editable>Save Your Executive BLUF Standard</h3>
                     <div class="prompt-quote" data-editable>
@@ -2374,7 +2430,10 @@
                   <div class="level-card accent-cobalt reveal d3" style="padding:16px 18px;">
                     <div class="level-top">
                       <span class="level-pill cobalt">🔭 DEEP RESEARCH AGENT</span>
-                      <button class="copy-prompt-btn" data-copy="Research Tier-2 aerospace titanium forging and avionics microelectronics bottlenecks over the next 18 months. Combine our SharePoint supplier risk briefs with public FAA/EASA directives and earnings filings into an executive report covering top 4 bottlenecks, qualification constraints, and 5 supplier audit questions.">📋 Copy Prompt</button>
+                      <div class="card-btn-group">
+                        <button type="button" class="open-ge-btn" data-open-ge="agent" data-ge-agent="deep_research" title="Open Deep Research in Gemini Enterprise with this prompt prefilled">Open in GE ↗</button>
+                        <button class="copy-prompt-btn" data-copy="Research Tier-2 aerospace titanium forging and avionics microelectronics bottlenecks over the next 18 months. Combine our SharePoint supplier risk briefs with public FAA/EASA directives and earnings filings into an executive report covering top 4 bottlenecks, qualification constraints, and 5 supplier audit questions.">📋 Copy Prompt</button>
+                      </div>
                     </div>
                     <h3 class="card-heading" style="font-size:20px;" data-editable>18-Month Sub-Tier Supply Horizon</h3>
                     <div class="prompt-quote" data-editable>
@@ -2624,7 +2683,10 @@
                   <div class="level-card reveal d2" style="padding:12px 15px;">
                     <div class="level-top" style="margin-bottom:4px;">
                       <span class="level-pill">👥 ADK AGENT · ASK HR</span>
-                      <button class="copy-prompt-btn" data-copy="@Ask HR What are our policy rules and manager approval steps for an international engineering rotational assignment, and which relocation benefits apply to L5+ leads?">📋 Copy</button>
+                      <div class="card-btn-group">
+                        <button type="button" class="open-ge-btn" data-open-ge="agent" data-ge-agent="ask_hr" title="Open Ask HR in Gemini Enterprise with this prompt prefilled">Open in GE ↗</button>
+                        <button class="copy-prompt-btn" data-copy="@Ask HR What are our policy rules and manager approval steps for an international engineering rotational assignment, and which relocation benefits apply to L5+ leads?">📋 Copy</button>
+                      </div>
                     </div>
                     <div class="prompt-quote" style="font-size:13.5px;padding:8px 11px;" data-editable>
                       &ldquo;@Ask HR What are our policy rules and manager approval steps for an international engineering rotational assignment, and which relocation benefits apply to L5+ leads?&rdquo;
@@ -2634,7 +2696,10 @@
                   <div class="level-card accent-cobalt reveal d3" style="padding:12px 15px;">
                     <div class="level-top" style="margin-bottom:4px;">
                       <span class="level-pill cobalt">🧊 ADK AGENT · 3D RENDERING</span>
-                      <button class="copy-prompt-btn" data-copy="@3D Rendering Show me an interactive 3D CAD model of avionics housing assembly AV-7840.">📋 Copy</button>
+                      <div class="card-btn-group">
+                        <button type="button" class="open-ge-btn" data-open-ge="agent" data-ge-agent="render_3d" title="Open 3D Rendering agent in Gemini Enterprise with this prompt prefilled">Open in GE ↗</button>
+                        <button class="copy-prompt-btn" data-copy="@3D Rendering Show me an interactive 3D CAD model of avionics housing assembly AV-7840.">📋 Copy</button>
+                      </div>
                     </div>
                     <div class="prompt-quote" style="font-size:13.5px;padding:8px 11px;" data-editable>
                       &ldquo;@3D Rendering Show me an interactive 3D CAD model of avionics housing assembly AV-7840.&rdquo;
@@ -2644,7 +2709,10 @@
                   <div class="level-card accent-terra reveal d4" style="padding:12px 15px;">
                     <div class="level-top" style="margin-bottom:4px;">
                       <span class="level-pill terra">🔌 3P AGENTS · WORKDAY + SAP + SNOW</span>
-                      <button class="copy-prompt-btn" data-copy="Check @Workday for open quality-inspector requisitions in Charleston, query @SAP for blocked purchase orders on part family AV-7840, and ask @ServiceNow for any P1 receiving-system incidents—then summarize blockers.">📋 Copy</button>
+                      <div class="card-btn-group">
+                        <button type="button" class="open-ge-btn" data-open-ge="mcp-fanout" data-ge-agent="erp_3p" title="Open Gemini Enterprise with this prompt prefilled">Open in GE ↗</button>
+                        <button class="copy-prompt-btn" data-copy="Check @Workday for open quality-inspector requisitions in Charleston, query @SAP for blocked purchase orders on part family AV-7840, and ask @ServiceNow for any P1 receiving-system incidents—then summarize blockers.">📋 Copy</button>
+                      </div>
                     </div>
                     <div class="prompt-quote" style="font-size:13.5px;padding:8px 11px;" data-editable>
                       &ldquo;Check @Workday for open quality-inspector requisitions in Charleston, query @SAP for blocked purchase orders on part family AV-7840, and ask @ServiceNow for any P1 receiving-system incidents—then summarize blockers.&rdquo;
@@ -4016,6 +4084,42 @@
       '.chapter-tab',
       '.choice-jump span'
     ].join(', ');
+    const GE_BASE_URL = 'https://vertexaisearch.cloud.google.com/home/cid/5ec1bcef-cb99-4c40-949d-0cd4d97ec5a0';
+    const GE_AGENT_IDS = {
+      deep_research: 'deep_research',
+      render_3d: '6912093416584951042',
+      ask_hr: '', // Populate agent resource ID once Ask HR is deployed; falls back to Default Assistant ?q=
+      erp_3p: ''  // Optional: set if routing to a single dedicated 3P agent instead of Default Assistant ?q=
+    };
+
+    function buildGeDeepLink(rawPrompt, mode, agentKey) {
+      let cleaned = String(rawPrompt || '')
+        .trim()
+        .replace(/^[“"‘']+|[”"’']+$/g, '')
+        .trim();
+
+      if (mode === 'agent') {
+        cleaned = cleaned
+          .replace(/^@(?:3D\s*Rendering|3D\s*Render|Ask\s*HR)\b[:\s-]*/i, '')
+          .trim();
+        const agentId = agentKey ? GE_AGENT_IDS[agentKey] : '';
+        if (agentId) {
+          return `${GE_BASE_URL}/r/agent/${encodeURIComponent(agentId)}/session/-?q=${encodeURIComponent(cleaned)}`;
+        }
+      } else if (mode === 'mcp-fanout') {
+        cleaned = cleaned
+          .replace(/^@(?:Workday|SAP|ServiceNow|SNOW)\b[:\s-]*/i, '')
+          .replace(/@(Workday|SAP|ServiceNow|SNOW)\b/gi, '$1')
+          .trim();
+        const agentId = agentKey ? GE_AGENT_IDS[agentKey] : '';
+        if (agentId) {
+          return `${GE_BASE_URL}/r/agent/${encodeURIComponent(agentId)}/session/-?q=${encodeURIComponent(cleaned)}`;
+        }
+      }
+
+      return `${GE_BASE_URL}?q=${encodeURIComponent(cleaned)}`;
+    }
+
     const channel = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel('agy-vp-storybook') : null;
 
     class StorybookRackApp {
@@ -4629,6 +4733,20 @@
         });
 
         document.addEventListener('click', async (e) => {
+          const openGeBtn = e.target.closest('[data-open-ge]');
+          if (openGeBtn) {
+            if (this.isEditing) return;
+            const card = openGeBtn.closest('.level-card');
+            const liveQuote = card ? card.querySelector('.prompt-quote') : null;
+            const fallbackCopy = card ? card.querySelector('[data-copy]')?.getAttribute('data-copy') : '';
+            const rawText = liveQuote ? liveQuote.innerText : fallbackCopy;
+            const mode = openGeBtn.getAttribute('data-open-ge') || 'home';
+            const agentKey = openGeBtn.getAttribute('data-ge-agent') || '';
+            const targetUrl = buildGeDeepLink(rawText, mode, agentKey);
+            window.open(targetUrl, '_blank', 'noopener,noreferrer');
+            return;
+          }
+
           const copyBtn = e.target.closest('[data-copy]');
           if (copyBtn) {
             const card = copyBtn.closest('.level-card');
