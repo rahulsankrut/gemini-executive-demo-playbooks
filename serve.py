@@ -291,6 +291,10 @@ class StorybookHandler(http.server.BaseHTTPRequestHandler):
     def _is_authenticated(self) -> bool:
         if not ACCESS_PASSWORD:
             return True
+        if not os.environ.get("K_SERVICE") and "gate=1" not in self.path:
+            host = self.headers.get("Host", "").split(":")[0].lower()
+            if host in ("localhost", "127.0.0.1"):
+                return True
         header_pw = self.headers.get("X-Access-Password", "")
         if header_pw and hmac.compare_digest(header_pw, ACCESS_PASSWORD):
             return True

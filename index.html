@@ -2124,7 +2124,7 @@
                 <p class="cover-sub" data-editable>Your dedicated platform to orchestrate parallel agents — Vibe Coding, Plugins &amp; Spec to Ship.</p>
               </div>
               <div class="cover-cta">
-                <span data-editable>7 CHAPTERS</span>
+                <span data-editable>4 CHAPTERS</span>
                 <span>OPEN BOOK →</span>
               </div>
             </div>
@@ -3293,12 +3293,9 @@
         <div class="book-instance active-book" data-book-id="2">
           <nav class="chapter-tabs" aria-label="Book 3 Chapters">
             <button class="chapter-tab active" style="background:var(--tab-0);" data-goto="0">01 · OVERVIEW</button>
-            <button class="chapter-tab" style="background:var(--tab-1);" data-goto="1">02 · START</button>
-            <button class="chapter-tab" style="background:var(--tab-2);" data-goto="2">03 · S-VIBE</button>
-            <button class="chapter-tab" style="background:var(--tab-3);" data-goto="3">04 · S-SPEC</button>
-            <button class="chapter-tab sub-tab" style="background:var(--tab-3);" data-goto="4">↳ WHAT IS V1</button>
-            <button class="chapter-tab" style="background:var(--tab-4);" data-goto="5">06 · V2 VIBE</button>
-            <button class="chapter-tab" style="background:var(--tab-5);" data-goto="6">07 · V2 SPEC</button>
+            <button class="chapter-tab" style="background:var(--tab-1);" data-goto="1">02 · BUILD OPTIONS</button>
+            <button class="chapter-tab" style="background:var(--tab-2);" data-goto="2">03 · FROM SCRATCH</button>
+            <button class="chapter-tab" style="background:var(--tab-4);" data-goto="3">04 · V1 → V2</button>
           </nav>
 
           <!-- =================================================
@@ -3386,220 +3383,191 @@
 
                 <div class="page-footer">
                   <span>MACOS · WINDOWS · LINUX · GOOGLEBOOK</span>
-                  <button class="turn-corner-btn" data-next="1">Start Hands-On Build ↷</button>
+                  <button class="turn-corner-btn" data-next="1">Select What to Build ↷</button>
                 </div>
               </div>
             </div>
           </section>
 
           <!-- =================================================
-               SPREAD 1: STEP 1 WHAT TO BUILD -> STEP 2 EXPERIENCE
+               SPREAD 1: SELECT WHAT TO BUILD (SCRATCH OR V1 -> V2)
+               Right Page starts with "What Is a Plugin?" (Option 1)
+               or "What Is in the V1 Version?" (Option 2)
                ================================================= -->
-          <section class="slide" data-idx="1" data-title="Book 03 · Select What to Build & Build Experience"
-            data-notes="<strong>Facilitator Cue:</strong> Have VPs click <strong>Step 1 (Left Page)</strong> first (<em>Something from Scratch</em> or <em>Something from V1 → V2</em>—or click the nested <strong>What is in the V1 Version?</strong> sub-tab), then pick <strong>Step 2 (Right Page)</strong> (<em>Vibe Coding</em> or <em>Spec-Driven</em>)!">
+          <section class="slide" data-idx="1" data-title="Book 03 · Select What to Build"
+            data-notes="<strong>Facilitator Cue:</strong> Customers choose between <strong>1. Build from Scratch</strong> (starts on the right page by explaining <em>What Is a Plugin?</em>, then opens <em>Spec to Ship</em> + briefs) or <strong>2. Build from V1 → V2</strong> (starts on the right page by explaining <em>What Is in the V1 Version?</em>, then opens <em>V1 → V2 Vibe Coding</em> + prompts)!">
             <div class="spread">
-              <!-- Left Page (First Page): Select What to Build (Scratch on top!) -->
+              <!-- Left Page: Customer Chooses Build from Scratch OR Build from V1 -> V2 -->
               <div class="book-page page-left">
                 <div class="page-header">
                   <span>BOOK 03 · HANDS-ON BUILD STUDIO</span>
-                  <span>PAGE 03 · STEP 01</span>
+                  <span>PAGE 03</span>
                 </div>
 
                 <div style="display:flex;flex-direction:column;gap:16px;margin:auto 0;">
-                  <span class="chapter-badge plum reveal d1">FIRST · SELECT WHAT TO BUILD</span>
+                  <span class="chapter-badge plum reveal d1">CHOOSE YOUR BUILD OPTION</span>
                   <h1 class="book-title reveal d2" data-editable>Select What to <em>Build</em></h1>
                   <p class="story-lead reveal d3" data-editable>
-                    Click your build option below—then pick your Build Experience on the right page:
+                    Select one of the two build options below to get started:
                   </p>
 
                   <div style="display:flex;flex-direction:column;gap:14px;" class="reveal d4">
-                    <button type="button" class="choice-card selected-build" data-select-build="scratch" style="padding:18px 22px;gap:8px;">
-                      <span class="chapter-badge plum">BUILD OPTION 1 · BLANK CANVAS</span>
-                      <h3 class="card-heading" data-editable>Something from <em>Scratch</em></h3>
+                    <button type="button" class="choice-card" data-select-build="scratch" style="padding:20px 22px;gap:8px;">
+                      <span class="chapter-badge plum">OPTION 01 · BLANK CANVAS</span>
+                      <h3 class="card-heading" data-editable>Build from <em>Scratch</em></h3>
                       <p style="font-size:15px;color:var(--ink-soft);line-height:1.42;" data-editable>
-                        Start from zero and create a brand-new executive tool, simulator, or workflow.
+                        Start from zero and create a brand-new executive app, deal-brief generator, or scenario studio.
                       </p>
-                      <div class="choice-jump"><span id="lblSelectScratch">✓ SELECTED — PICK EXPERIENCE ON RIGHT →</span><span>TABS 03–04</span></div>
+                      <div class="choice-jump"><span id="lblSelectScratch">CLICK TO SELECT BUILD FROM SCRATCH</span><span>TAB 03</span></div>
                     </button>
 
-                    <div class="choice-card" role="button" tabindex="0" data-select-build="v1v2" style="padding:18px 22px;gap:8px;">
-                      <span class="chapter-badge">BUILD OPTION 2 · PRE-BUILT PLATFORM ★</span>
-                      <h3 class="card-heading" data-editable>Something from <em>V1 → V2</em></h3>
+                    <button type="button" class="choice-card" data-select-build="v1v2" style="padding:20px 22px;gap:8px;">
+                      <span class="chapter-badge">OPTION 02 · PRE-BUILT PLATFORM ★</span>
+                      <h3 class="card-heading" data-editable>Build from <em>V1 → V2</em></h3>
                       <p style="font-size:15px;color:var(--ink-soft);line-height:1.42;" data-editable>
-                        Evolve our live <strong>V1 Marketing Platform</strong> into <strong>V2 version</strong>.
+                        Take our live <strong>V1 Marketing Platform</strong> and evolve it into a <strong>V2 launch studio</strong>.
                       </p>
-
-                      <!-- Sub-Section / Sub-Tab to "What is in the V1 Version?" -->
-                      <button type="button" class="v1-subtab-btn" data-open-v1-overview="1">
-                        <span class="v1-subtab-left">
-                          <span class="v1-subtab-tag">↳ SUB-TAB</span>
-                          <span class="v1-subtab-title" data-editable>What is in the V1 Version?</span>
-                        </span>
-                        <span class="v1-subtab-action">OPEN V1 ↷</span>
-                      </button>
-
-                      <div class="choice-jump"><span id="lblSelectV2">CLICK TO SELECT V1 → V2</span><span>TABS 06–07</span></div>
-                    </div>
+                      <div class="choice-jump"><span id="lblSelectV2">CLICK TO SELECT BUILD FROM V1 → V2</span><span>TAB 04</span></div>
+                    </button>
                   </div>
                 </div>
 
                 <div class="page-footer">
                   <button class="turn-corner-btn" data-jump="0" style="background:transparent;">← Overview</button>
-                  <button class="turn-corner-btn" data-open-v1-overview="1" style="background:transparent;">What is V1? ↷</button>
+                  <span>CLICK AN OPTION ABOVE</span>
                 </div>
               </div>
 
               <div></div>
 
-              <!-- Right Page (Second Page): Select the Build Experience (Dynamic Targets!) -->
+              <!-- Right Page: Dynamic Starting Explanation (Option 1 = What Is a Plugin? | Option 2 = What Is in the V1 Version?) -->
               <div class="book-page page-right">
                 <div class="page-header">
-                  <span>SECOND · SELECT THE BUILD EXPERIENCE</span>
-                  <span>PAGE 04 · STEP 02</span>
+                  <span id="startRightHeaderLabel">SELECT AN OPTION ON THE LEFT</span>
+                  <span>PAGE 04 · STEP 01</span>
                 </div>
 
-                <div style="display:flex;flex-direction:column;gap:20px;margin:auto 0;">
-                  <span class="chapter-badge cobalt reveal d1" id="expContextBadge">FOR: SOMETHING FROM SCRATCH</span>
-                  <h1 class="book-title reveal d2" data-editable>Select the <em>Experience</em></h1>
-                  <p class="story-lead reveal d3" id="expContextLead" data-editable>
-                    Open tailored prompts &amp; steps for <strong>Something from Scratch</strong>:
-                  </p>
+                <div id="experienceCardsWrap" style="display:flex;flex-direction:column;margin:auto 0;border-radius:14px;">
+                  <!-- EMPTY STATE: SHOWN BEFORE ANY OPTION IS SELECTED -->
+                  <div id="startPanelNone" style="display:flex;flex-direction:column;gap:14px;padding:38px 28px;border:1.5px dashed var(--paper-border);border-radius:14px;background:var(--paper-warm);text-align:center;align-items:center;justify-content:center;">
+                    <span class="chapter-badge reveal d1">👈 SELECT AN OPTION ON THE LEFT PAGE</span>
+                    <h2 class="chapter-title reveal d2" style="font-size:34px;" data-editable>Choose Your <em>Build Path</em></h2>
+                    <p style="font-size:15.5px;color:var(--ink-soft);line-height:1.48;max-width:440px;" class="reveal d3" data-editable>
+                      Click <strong>Build from Scratch</strong> or <strong>Build from V1 → V2</strong> on the left page to load Step 01 here.
+                    </p>
+                  </div>
 
-                  <div id="experienceCardsWrap" style="display:flex;flex-direction:column;gap:16px;" class="reveal d4">
-                    <button class="choice-card" id="cardExpVibe" data-jump="2">
-                      <span class="chapter-badge forest">EXPERIENCE A · FREE-FLOW CHAT</span>
-                      <h3 class="card-heading" data-editable>Vibe Coding</h3>
-                      <p style="font-size:15.5px;color:var(--ink-soft);line-height:1.45;" data-editable>
-                        Chat freely in plain English, use power commands (<span class="cmd-pill">/grill-me</span>, <span class="cmd-pill">/teamwork</span>, <span class="cmd-pill">/browser</span>), and iterate live.
-                      </p>
-                      <div class="choice-jump"><span id="lblExpVibeTarget">OPEN SCRATCH · VIBE CODING</span><span>OPEN ↷</span></div>
-                    </button>
+                  <!-- PANEL 1: SHOWN WHEN "BUILD FROM SCRATCH" IS SELECTED -->
+                  <div id="startPanelScratch" style="display:none;flex-direction:column;gap:13px;">
+                    <span class="chapter-badge cobalt reveal d1">HOW WE BUILD FROM SCRATCH · GUIDED BY A PLUGIN</span>
+                    <h2 class="chapter-title reveal d2" style="font-size:33px;line-height:1.12;" data-editable>From Blank Page to Shipped App — With a <em>Plugin</em></h2>
+                    <p style="font-size:15px;color:var(--ink-soft);line-height:1.44;" class="reveal d2" data-editable>
+                      Instead of staring at a blank chat prompt, you&rsquo;ll build using the <strong>Spec to Ship Plugin</strong> in your right-hand panel—turning a 2-sentence idea into a spec, tested code, and a live URL.
+                    </p>
 
-                    <button class="choice-card featured" id="cardExpSpec" data-jump="3">
-                      <span class="chapter-badge">EXPERIENCE B · SPEC TO SHIP PLUGIN ★</span>
-                      <h3 class="card-heading" data-editable>Spec-Driven Development</h3>
-                      <p style="font-size:15.5px;color:var(--ink-soft);line-height:1.45;" data-editable>
-                        Learn how Plugins work and follow <strong>Spec to Ship</strong>&rsquo;s 8-step runway with tailored briefs.
-                      </p>
-                      <div class="choice-jump"><span id="lblExpSpecTarget">OPEN SCRATCH · SPEC-DRIVEN</span><span>OPEN ↷</span></div>
-                    </button>
+                    <div class="feature-stack reveal d3" style="gap:8px;">
+                      <div class="feature-row" style="grid-template-columns:168px 1fr;padding:10px 14px;">
+                        <div><span class="cmd-pill">🧠 Skills vs. Plugins</span></div>
+                        <div style="font-size:14px;line-height:1.36;" data-editable><em>Skills &amp; tools</em> extend the <strong>model</strong>; a <strong>Plugin</strong> extends the <strong>entire workspace</strong> (UI + Skills + Rules).</div>
+                      </div>
+                      <div class="feature-row" style="grid-template-columns:168px 1fr;padding:10px 14px;">
+                        <div><span class="cmd-pill">🎛️ Visual Sidecar UI</span></div>
+                        <div style="font-size:14px;line-height:1.36;" data-editable>Adds the interactive <strong>Spec to Ship</strong> board in your right pane so you click through stages instead of memorizing commands.</div>
+                      </div>
+                      <div class="feature-row" style="grid-template-columns:168px 1fr;padding:10px 14px;">
+                        <div><span class="cmd-pill">📏 Built-In Guardrails</span></div>
+                        <div style="font-size:14px;line-height:1.36;" data-editable>Automatically enforces your org&rsquo;s approved stack, auth checks, and browser QA on every new app.</div>
+                      </div>
+                    </div>
+
+                    <div class="hero-return-box reveal d4" style="padding:12px 15px;gap:7px;">
+                      <div class="hero-return-eyebrow">NEXT · BUILD FROM SCRATCH WITH OUR SPEC TO SHIP PLUGIN</div>
+                      <button type="button" class="hero-return-exp-btn" data-jump="2" style="padding:11px 15px;">
+                        <span class="hero-return-main" data-editable>Continue to Build from Scratch →</span>
+                        <span class="hero-return-sub" data-editable>Open the 8-step Spec to Ship runway &amp; copyable + App briefs</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- PANEL 2: SHOWN WHEN "BUILD FROM V1 -> V2" IS SELECTED -->
+                  <div id="startPanelV1V2" style="display:none;flex-direction:column;gap:12px;">
+                    <span class="chapter-badge forest reveal d1">START HERE · LIVE V1 BASELINE</span>
+                    <h2 class="chapter-title reveal d2" style="font-size:38px;" data-editable>What Is in the <em>V1 Version?</em></h2>
+                    <p style="font-size:15px;color:var(--ink-soft);line-height:1.42;" class="reveal d2" data-editable>
+                      Our live <strong>Marketing Platform</strong> already turns a raw campaign idea into a finished ad across four stages:
+                    </p>
+
+                    <div class="pipeline-flow reveal d3" style="gap:7px;">
+                      <div class="pipe-stage" style="grid-template-columns:38px 152px 1fr;padding:9px 14px;">
+                        <span class="runway-num">01</span>
+                        <strong style="font-family:var(--font-serif);font-size:17.5px;" data-editable>Idea</strong>
+                        <span style="font-size:13.5px;color:var(--ink-soft);" data-editable>Campaign hook, audience &amp; product angle</span>
+                      </div>
+                      <div class="pipe-stage" style="grid-template-columns:38px 152px 1fr;padding:9px 14px;border-left-color:var(--forest);">
+                        <span class="runway-num" style="color:var(--forest);">02</span>
+                        <strong style="font-family:var(--font-serif);font-size:17.5px;" data-editable>Story</strong>
+                        <span style="font-size:13.5px;color:var(--ink-soft);" data-editable>Narrative arc &amp; executive script</span>
+                      </div>
+                      <div class="pipe-stage" style="grid-template-columns:38px 152px 1fr;padding:9px 14px;border-left-color:var(--cobalt);">
+                        <span class="runway-num" style="color:var(--cobalt);">03</span>
+                        <strong style="font-family:var(--font-serif);font-size:17.5px;" data-editable>Scene Creation</strong>
+                        <span style="font-size:13.5px;color:var(--ink-soft);" data-editable>Visual scenes, shots &amp; storyboard frames</span>
+                      </div>
+                      <div class="pipe-stage" style="grid-template-columns:38px 152px 1fr;padding:9px 14px;border-left-color:var(--plum);">
+                        <span class="runway-num" style="color:var(--plum);">04</span>
+                        <strong style="font-family:var(--font-serif);font-size:17.5px;" data-editable>Ad Generation</strong>
+                        <span style="font-size:13.5px;color:var(--ink-soft);" data-editable>Finished multimodal ad creative</span>
+                      </div>
+                    </div>
+
+                    <a class="v1-live-link-card reveal d3" href="https://cymbal-aerospace-marketing-studio-552994256750.us-central1.run.app" target="_blank" rel="noopener noreferrer" style="padding:11px 15px;">
+                      <div style="display:flex;flex-direction:column;gap:2px;min-width:0;">
+                        <div style="display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10.5px;font-weight:700;letter-spacing:0.1em;color:var(--forest);">
+                          <span class="v1-live-dot"></span>
+                          <span data-editable>PUBLIC V1 VERSION · LIVE ON CLOUD RUN</span>
+                        </div>
+                        <div style="font-family:var(--font-serif);font-size:18px;font-weight:700;color:var(--ink);" data-editable>
+                          Cymbal Aerospace Marketing Studio (V1)
+                        </div>
+                      </div>
+                      <span class="v1-live-open-pill">OPEN V1 ↗</span>
+                    </a>
+
+                    <div class="hero-return-box reveal d4" style="padding:11px 15px;gap:6px;">
+                      <div class="hero-return-eyebrow">NEXT · EVOLVE V1 INTO V2</div>
+                      <button type="button" class="hero-return-exp-btn" data-jump="3" style="padding:10px 15px;">
+                        <span class="hero-return-main" data-editable>Continue to Build V1 → V2 →</span>
+                        <span class="hero-return-sub" data-editable>Open V1 → V2 Vibe Coding commands &amp; copyable prompts</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
 
                 <div class="page-footer">
-                  <span>TAILORED PROMPTS IN EACH PATH</span>
-                  <button class="turn-corner-btn" id="btnStartFooterNext" data-jump="2">Scratch · Vibe ↷</button>
+                  <span id="startRightFooterHint">SELECT AN OPTION ON THE LEFT TO BEGIN</span>
+                  <button class="turn-corner-btn" id="btnStartFooterNext" data-jump="2" style="display:none;">Build from Scratch ↷</button>
                 </div>
               </div>
             </div>
           </section>
 
           <!-- =================================================
-               SPREAD 2: FROM SCRATCH -> VIBE CODING + PROMPTS
+               SPREAD 2: OPTION 1 — BUILD FROM SCRATCH (SPEC TO SHIP PLUGIN + BRIEFS)
                ================================================= -->
-          <section class="slide" data-idx="2" data-title="From Scratch · Vibe Coding"
-            data-notes="<strong>From Scratch — Vibe Coding:</strong> Left page shows Antigravity&rsquo;s power slash commands; right page gives greenfield Vibe Coding prompts (including <code>/grill-me</code> and <code>/browser</code>) ready to paste into chat.">
+          <section class="slide" data-idx="2" data-title="Build from Scratch · Spec to Ship Plugin"
+            data-notes="<strong>Build from Scratch (+ Plugin):</strong> Left page walks through all 8 steps of the <strong>Spec to Ship</strong> plugin; right page gives 2-sentence product briefs tailored for clicking <code>+ App</code> in Spec to Ship!">
             <div class="spread">
               <div class="book-page page-left">
                 <div class="page-header">
-                  <span>FROM SCRATCH · VIBE CODING</span>
-                  <span>PAGE 05</span>
+                  <span>OPTION 01 · BUILD FROM SCRATCH</span>
+                  <span>PAGE 05 · STEP 02</span>
                 </div>
 
                 <div style="display:flex;flex-direction:column;gap:14px;margin:auto 0;">
-                  <span class="chapter-badge forest reveal d1">SOMETHING FROM SCRATCH · VIBE CODING</span>
-                  <h2 class="chapter-title reveal d2" style="font-size:38px;" data-editable>Vibe Code <em>from Scratch</em></h2>
-                  <p style="font-size:16px;color:var(--ink-soft);line-height:1.45;" class="reveal d2" data-editable>
-                    Open a fresh folder &amp; chat. Consider dropping these power commands as you riff:
-                  </p>
-
-                  <div class="feature-stack reveal d3" style="gap:9px;">
-                    <div class="feature-row" style="padding:11px 15px;">
-                      <div><span class="cmd-pill">/grill-me</span></div>
-                      <div style="font-size:14.5px;" data-editable><strong>AI Interviews You</strong> — asks 3–4 smart choices before building.</div>
-                    </div>
-                    <div class="feature-row" style="padding:11px 15px;">
-                      <div><span class="cmd-pill">/teamwork</span></div>
-                      <div style="font-size:14.5px;" data-editable><strong>Multi-Agent Team</strong> — parallel subagents + reviewer.</div>
-                    </div>
-                    <div class="feature-row" style="padding:11px 15px;">
-                      <div><span class="cmd-pill">/browser</span></div>
-                      <div style="font-size:14.5px;" data-editable><strong>Live Browser Agent</strong> — opens Chrome &amp; tests your new UI.</div>
-                    </div>
-                    <div class="feature-row" style="padding:11px 15px;">
-                      <div><span class="cmd-pill">/goal</span></div>
-                      <div style="font-size:14.5px;" data-editable><strong>Autonomous Loop</strong> — keeps iterating until completely done.</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="page-footer">
-                  <button class="turn-corner-btn" data-jump="1" style="background:transparent;">← Back to Start</button>
-                  <button class="turn-corner-btn" data-jump="3" style="background:transparent;">Switch to Scratch · Spec-Driven ↷</button>
-                </div>
-              </div>
-
-              <div></div>
-
-              <div class="book-page page-right">
-                <div class="page-header">
-                  <span>FROM SCRATCH · VIBE CODING PROMPTS</span>
-                  <span>PAGE 06</span>
-                </div>
-
-                <div style="display:flex;flex-direction:column;gap:18px;margin:auto 0;">
-                  <p style="font-size:15.5px;color:var(--ink-soft);" class="reveal d1" data-editable>
-                    Copy a <strong>From-Scratch Vibe Prompt</strong> straight into chat (or invent your own):
-                  </p>
-
-                  <div class="level-card reveal d2" style="padding:18px 20px;">
-                    <div class="level-top">
-                      <span class="level-pill">🟢 NOVICE VIBE · ~10 MIN</span>
-                      <button class="copy-prompt-btn" data-copy="Build a sleek interactive planner for a 2-day executive offsite with a drag-and-drop agenda, live budget slider, and a one-click shareable summary card, then open it with /browser.">📋 Copy Prompt</button>
-                    </div>
-                    <h3 class="card-heading" style="font-size:21px;" data-editable>Executive Offsite Planner</h3>
-                    <div class="prompt-quote" data-editable>
-                      &ldquo;Build a sleek interactive planner for a 2-day executive offsite with a drag-and-drop agenda, live budget slider, and a one-click shareable summary card, then open it with /browser.&rdquo;
-                    </div>
-                  </div>
-
-                  <div class="level-card accent-terra reveal d3" style="padding:18px 20px;">
-                    <div class="level-top">
-                      <span class="level-pill terra">🚀 PRO VIBE · /GRILL-ME + /TEAMWORK</span>
-                      <button class="copy-prompt-btn" data-copy="/grill-me I want to build an interactive Executive War-Game Simulator where I enter a pricing or product move, AI simulates 3 rival counter-moves, and scores revenue risk live. Ask me 4 quick design questions, then build it with /teamwork and test in /browser.">📋 Copy Prompt</button>
-                    </div>
-                    <h3 class="card-heading" style="font-size:21px;" data-editable>Live Competitor <em>War-Game Simulator</em></h3>
-                    <div class="prompt-quote" data-editable>
-                      &ldquo;/grill-me I want to build an interactive Executive War-Game Simulator where I enter a pricing or product move, AI simulates 3 rival counter-moves, and scores revenue risk live. Ask me 4 quick design questions, then build it with /teamwork and test in /browser.&rdquo;
-                    </div>
-                  </div>
-                </div>
-
-                <div class="page-footer">
-                  <span>PASTE DIRECTLY INTO CHAT</span>
-                  <button class="turn-corner-btn" data-next="1">Scratch · Spec-Driven ↷</button>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- =================================================
-               SPREAD 3: FROM SCRATCH -> SPEC-DRIVEN + BRIEFS
-               ================================================= -->
-          <section class="slide" data-idx="3" data-title="From Scratch · Spec-Driven (Spec to Ship)"
-            data-notes="<strong>From Scratch — Spec-Driven:</strong> Left page introduces Plugins + all 8 steps of <strong>Spec to Ship</strong>; right page gives clean 2-sentence product briefs tailored for clicking <code>+ App</code> in Spec to Ship!">
-            <div class="spread">
-              <div class="book-page page-left">
-                <div class="page-header">
-                  <span>FROM SCRATCH · SPEC-DRIVEN</span>
-                  <span>PAGE 07</span>
-                </div>
-
-                <div style="display:flex;flex-direction:column;gap:14px;margin:auto 0;">
-                  <span class="chapter-badge cobalt reveal d1">INTRODUCING PLUGINS · FROM SCRATCH</span>
-                  <h2 class="chapter-title reveal d2" style="font-size:36px;" data-editable>Plugins &amp; <em>Spec to Ship</em></h2>
+                  <span class="chapter-badge cobalt reveal d1">BUILD FROM SCRATCH · SPEC TO SHIP PLUGIN</span>
+                  <h2 class="chapter-title reveal d2" style="font-size:36px;" data-editable>The <em>Spec to Ship</em> Runway</h2>
                   <p style="font-size:15.5px;color:var(--ink-soft);line-height:1.45;" class="reveal d2" data-editable>
-                    <strong>Skills vs. Plugins:</strong> <em>Skills &amp; tools</em> extend the <strong>model</strong>; <em>Plugins</em> extend the <strong>entire harness</strong> (UI Sidecar + Skills + Rules + Hooks). <strong>Spec to Ship</strong> runs 8 steps:
+                    Open the <strong>Spec to Ship</strong> plugin in the right pane to turn a 2-sentence brief into a deployed app across 8 steps:
                   </p>
 
                   <div class="runway-grid reveal d3" style="gap:8px;">
@@ -3621,8 +3589,8 @@
                 </div>
 
                 <div class="page-footer">
-                  <button class="turn-corner-btn" data-jump="2" style="background:transparent;">← Scratch · Vibe</button>
-                  <button class="turn-corner-btn" data-jump="1" style="background:transparent;">⌂ Start</button>
+                  <button class="turn-corner-btn" data-back-to-experience="scratch" style="background:transparent;">← What Is a Plugin?</button>
+                  <button class="turn-corner-btn" data-back-to-experience="v1v2" style="background:transparent;">Switch to V1 → V2 ↷</button>
                 </div>
               </div>
 
@@ -3630,8 +3598,8 @@
 
               <div class="book-page page-right">
                 <div class="page-header">
-                  <span>FROM SCRATCH · SPEC-DRIVEN BRIEFS (+ APP)</span>
-                  <span>PAGE 08</span>
+                  <span>BUILD FROM SCRATCH · PRODUCT BRIEFS (+ APP)</span>
+                  <span>PAGE 06</span>
                 </div>
 
                 <div style="display:flex;flex-direction:column;gap:18px;margin:auto 0;">
@@ -3641,7 +3609,7 @@
 
                   <div class="level-card reveal d2" style="padding:18px 20px;">
                     <div class="level-top">
-                      <span class="level-pill">🟢 NOVICE SPEC BRIEF · + APP</span>
+                      <span class="level-pill">🟢 NOVICE BRIEF · + APP</span>
                       <button class="copy-prompt-btn" data-copy="We need a Customer Deal-Prep web app for account executives. Entering a client company and meeting objective should generate a structured 1-page executive brief with talking points, stakeholder priorities, and risks.">📋 Copy Brief</button>
                     </div>
                     <h3 class="card-heading" style="font-size:21px;" data-editable>Customer Deal-Brief Generator</h3>
@@ -3652,7 +3620,7 @@
 
                   <div class="level-card accent-cobalt reveal d3" style="padding:18px 20px;">
                     <div class="level-top">
-                      <span class="level-pill cobalt">🚀 PRO SPEC BRIEF · + APP</span>
+                      <span class="level-pill cobalt">🚀 PRO BRIEF · + APP</span>
                       <button class="copy-prompt-btn" data-copy="We need an interactive Boardroom Scenario Studio for quarterly planning. Leaders adjust pricing, hiring, and launch-date sliders to compare live financial projections alongside an AI-authored executive board narrative.">📋 Copy Brief</button>
                     </div>
                     <h3 class="card-heading" style="font-size:21px;" data-editable>Boardroom <em>Scenario Studio</em></h3>
@@ -3664,131 +3632,26 @@
 
                 <div class="page-footer">
                   <span>PASTE INTO SPEC TO SHIP (+ APP)</span>
-                  <button class="turn-corner-btn" data-next="1">Explore V1 → V2 ↷</button>
+                  <button class="turn-corner-btn" data-back-rack="1">📚 Close Book → Home Rack</button>
                 </div>
               </div>
             </div>
           </section>
 
           <!-- =================================================
-               SPREAD 4: SUB-TAB — WHAT IS IN THE V1 VERSION?
+               SPREAD 3: OPTION 2 — BUILD FROM V1 -> V2 (VIBE CODING + V2 PROMPTS)
                ================================================= -->
-          <section class="slide" data-idx="4" data-title="What is in the V1 Version? · Marketing Platform"
-            data-notes="<strong>V1 Version Description:</strong> Walk through the 4 stages already live in V1 (<code>Idea → Story → Scene Creation → Ad Generation</code>), then click the prominent <strong>← Back to Select the Experience to Build</strong> button on the right page to return to Step 02 with <em>Something from V1 → V2</em> pre-selected!">
+          <section class="slide" data-idx="3" data-title="Build from V1 → V2 · Vibe Coding"
+            data-notes="<strong>Build from V1 → V2 (Vibe Coding):</strong> Tailored specifically for chatting on top of the existing <code>Idea → Story → Scene Creation → Ad Generation</code> Marketing Platform codebase!">
             <div class="spread">
               <div class="book-page page-left">
                 <div class="page-header">
-                  <span>SUB-TAB · V1 MARKETING PLATFORM</span>
-                  <span>PAGE 09</span>
-                </div>
-
-                <div style="display:flex;flex-direction:column;gap:16px;margin:auto 0;">
-                  <span class="chapter-badge reveal d1">↳ SUB-TAB · WHAT IS IN THE V1 VERSION?</span>
-                  <h2 class="chapter-title reveal d2" style="font-size:40px;" data-editable>What is in the <em>V1 Version?</em></h2>
-                  <p style="font-size:16.5px;color:var(--ink-soft);line-height:1.45;" class="reveal d2" data-editable>
-                    Our pre-built <strong>Marketing Platform</strong> already turns a raw campaign idea into a finished ad across four stages:
-                  </p>
-
-                  <div class="pipeline-flow reveal d3">
-                    <div class="pipe-stage">
-                      <span class="runway-num">01</span>
-                      <strong style="font-family:var(--font-serif);font-size:20px;" data-editable>Idea</strong>
-                      <span style="font-size:15px;color:var(--ink-soft);" data-editable>Campaign hook, audience &amp; product angle</span>
-                    </div>
-                    <div class="pipe-arrow">↓</div>
-                    <div class="pipe-stage">
-                      <span class="runway-num" style="color:var(--forest);">02</span>
-                      <strong style="font-family:var(--font-serif);font-size:20px;" data-editable>Story</strong>
-                      <span style="font-size:15px;color:var(--ink-soft);" data-editable>Narrative arc &amp; script</span>
-                    </div>
-                    <div class="pipe-arrow">↓</div>
-                    <div class="pipe-stage">
-                      <span class="runway-num" style="color:var(--cobalt);">03</span>
-                      <strong style="font-family:var(--font-serif);font-size:20px;" data-editable>Scene Creation</strong>
-                      <span style="font-size:15px;color:var(--ink-soft);" data-editable>Visual scenes, shots &amp; storyboard frames</span>
-                    </div>
-                    <div class="pipe-arrow">↓</div>
-                    <div class="pipe-stage">
-                      <span class="runway-num" style="color:var(--plum);">04</span>
-                      <strong style="font-family:var(--font-serif);font-size:20px;" data-editable>Ad Generation</strong>
-                      <span style="font-size:15px;color:var(--ink-soft);" data-editable>Finished multimodal ad creative</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="page-footer">
-                  <button class="turn-corner-btn" data-back-to-experience="v1v2" style="background:transparent;">← Back to Select Experience</button>
-                  <a class="turn-corner-btn" href="https://cymbal-aerospace-marketing-studio-552994256750.us-central1.run.app" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:var(--forest);border-color:rgba(45,106,79,0.35);background:var(--forest-soft);">🌐 Open Public V1 ↗</a>
-                </div>
-              </div>
-
-              <div></div>
-
-              <div class="book-page page-right">
-                <div class="page-header">
-                  <span>V1 PUBLIC APP → YOUR V2 CHALLENGE</span>
-                  <span>PAGE 10</span>
-                </div>
-
-                <div style="display:flex;flex-direction:column;gap:18px;margin:auto 0;">
-                  <span class="chapter-badge forest reveal d1">TRY LIVE V1 · THEN PICK YOUR EXPERIENCE</span>
-                  <h2 class="chapter-title reveal d2" style="font-size:38px;" data-editable>Explore <em>V1</em> &amp; Build <em>V2</em></h2>
-
-                  <!-- Clickable Public V1 Version Card -->
-                  <a class="v1-live-link-card reveal d3" href="https://cymbal-aerospace-marketing-studio-552994256750.us-central1.run.app" target="_blank" rel="noopener noreferrer">
-                    <div style="display:flex;flex-direction:column;gap:4px;min-width:0;">
-                      <div style="display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:0.1em;color:var(--forest);">
-                        <span class="v1-live-dot"></span>
-                        <span data-editable>PUBLIC V1 VERSION · LIVE ON CLOUD RUN</span>
-                      </div>
-                      <div style="font-family:var(--font-serif);font-size:20px;font-weight:700;color:var(--ink);" data-editable>
-                        Cymbal Aerospace Marketing Studio (V1)
-                      </div>
-                      <div class="v1-live-url" data-editable>https://cymbal-aerospace-marketing-studio-552994256750.us-central1.run.app</div>
-                    </div>
-                    <span class="v1-live-open-pill">OPEN V1 ↗</span>
-                  </a>
-
-                  <div class="feature-row reveal d3" style="grid-template-columns:138px 1fr;padding:13px 18px;border-left-color:var(--terracotta);">
-                    <div><span class="cmd-pill" style="background:var(--terracotta-soft);color:var(--terracotta);border-color:rgba(200,90,50,0.3);">✨ YOUR V2</span></div>
-                    <div style="font-size:15px;line-height:1.45;" data-editable>Add buyer personas, brand compliance gates, or multi-channel launch kits.</div>
-                  </div>
-
-                  <!-- Prominent Primary CTA back to Select the Experience -->
-                  <div class="hero-return-box reveal d4">
-                    <div class="hero-return-eyebrow">NEXT STEP · CHOOSE VIBE CODING OR SPEC-DRIVEN</div>
-                    <button type="button" class="hero-return-exp-btn" data-back-to-experience="v1v2">
-                      <span class="hero-return-main" data-editable>← Back to Select the Experience to Build</span>
-                      <span class="hero-return-sub" data-editable>Pre-selects &ldquo;Something from V1 → V2&rdquo; on Step 02</span>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="page-footer">
-                  <span>OR JUMP DIRECTLY:</span>
-                  <div style="display:flex;gap:8px;">
-                    <button class="turn-corner-btn" data-jump="5" style="background:transparent;">V2 · Vibe ↷</button>
-                    <button class="turn-corner-btn" data-jump="6" style="background:transparent;">V2 · Spec ↷</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- =================================================
-               SPREAD 5: V1 -> V2 · VIBE CODING + V2 PROMPTS
-               ================================================= -->
-          <section class="slide" data-idx="5" data-title="V1 → V2 · Vibe Coding"
-            data-notes="<strong>V1 → V2 — Vibe Coding:</strong> Tailored specifically for chatting on top of the existing <code>Idea → Story → Scene Creation → Ad Generation</code> codebase!">
-            <div class="spread">
-              <div class="book-page page-left">
-                <div class="page-header">
-                  <span>V1 → V2 · VIBE CODING</span>
-                  <span>PAGE 11</span>
+                  <span>OPTION 02 · BUILD FROM V1 → V2</span>
+                  <span>PAGE 07 · STEP 02</span>
                 </div>
 
                 <div style="display:flex;flex-direction:column;gap:14px;margin:auto 0;">
-                  <span class="chapter-badge forest reveal d1">V1 → V2 · VIBE CODING</span>
+                  <span class="chapter-badge forest reveal d1">BUILD FROM V1 → V2 · VIBE CODING</span>
                   <h2 class="chapter-title reveal d2" style="font-size:38px;" data-editable>Vibe Code <em>Marketing V2</em></h2>
                   <p style="font-size:16px;color:var(--ink-soft);line-height:1.45;" class="reveal d2" data-editable>
                     Open chat in the <strong>Marketing Platform</strong> project and combine natural language with these commands:
@@ -3815,8 +3678,8 @@
                 </div>
 
                 <div class="page-footer">
-                  <button class="turn-corner-btn" data-back-to-experience="v1v2" style="background:transparent;">← Select Experience</button>
-                  <button class="turn-corner-btn" data-jump="6" style="background:transparent;">Switch to V2 · Spec-Driven ↷</button>
+                  <button class="turn-corner-btn" data-back-to-experience="v1v2" style="background:transparent;">← What Is V1?</button>
+                  <a class="turn-corner-btn" href="https://cymbal-aerospace-marketing-studio-552994256750.us-central1.run.app" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:var(--forest);border-color:rgba(45,106,79,0.35);background:var(--forest-soft);">🌐 Open Public V1 ↗</a>
                 </div>
               </div>
 
@@ -3824,8 +3687,8 @@
 
               <div class="book-page page-right">
                 <div class="page-header">
-                  <span>V1 → V2 · VIBE CODING PROMPTS</span>
-                  <span>PAGE 12</span>
+                  <span>BUILD FROM V1 → V2 · VIBE CODING PROMPTS</span>
+                  <span>PAGE 08</span>
                 </div>
 
                 <div style="display:flex;flex-direction:column;gap:18px;margin:auto 0;">
@@ -3852,93 +3715,6 @@
                     <h3 class="card-heading" style="font-size:21px;" data-editable>Multi-Channel <em>Ad Remix Studio</em></h3>
                     <div class="prompt-quote" data-editable>
                       &ldquo;/teamwork Upgrade our Idea → Story → Scene → Ad pipeline so Ad Generation produces a full Multi-Channel Launch Kit (LinkedIn carousel, YouTube 15s storyboard, and Airshow keynote slide) with audience resonance scores, then verify live in /browser.&rdquo;
-                    </div>
-                  </div>
-                </div>
-
-                <div class="page-footer">
-                  <span>PASTE INTO MARKETING PLATFORM CHAT</span>
-                  <button class="turn-corner-btn" data-next="1">V2 · Spec-Driven ↷</button>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- =================================================
-               SPREAD 6: V1 -> V2 · SPEC-DRIVEN + V2 BRIEFS
-               ================================================= -->
-          <section class="slide" data-idx="6" data-title="V1 → V2 · Spec-Driven (Spec to Ship)"
-            data-notes="<strong>V1 → V2 — Spec-Driven:</strong> Left page introduces Plugins + all 8 steps of <strong>Spec to Ship</strong> wired to <code>+ New Feature</code>; right page gives tailored 2-sentence V2 feature briefs!">
-            <div class="spread">
-              <div class="book-page page-left">
-                <div class="page-header">
-                  <span>V1 → V2 · SPEC-DRIVEN</span>
-                  <span>PAGE 13</span>
-                </div>
-
-                <div style="display:flex;flex-direction:column;gap:14px;margin:auto 0;">
-                  <span class="chapter-badge cobalt reveal d1">INTRODUCING PLUGINS · V1 → V2</span>
-                  <h2 class="chapter-title reveal d2" style="font-size:36px;" data-editable>Plugins &amp; <em>Spec to Ship</em></h2>
-                  <p style="font-size:15.5px;color:var(--ink-soft);line-height:1.45;" class="reveal d2" data-editable>
-                    <strong>Skills vs. Plugins:</strong> <em>Skills &amp; tools</em> extend the <strong>model</strong>; <em>Plugins</em> extend the <strong>entire harness</strong> (UI Sidecar + Skills + Rules + Hooks) as you ship V2 across 8 steps:
-                  </p>
-
-                  <div class="runway-grid reveal d3" style="gap:8px;">
-                    <div class="runway-step" style="padding:9px 12px;"><span class="runway-num">01</span><div style="font-size:13.5px;" data-editable><strong>Brief</strong> (+ New Feature)</div></div>
-                    <div class="runway-step" style="padding:9px 12px;"><span class="runway-num">02</span><div style="font-size:13.5px;" data-editable><strong>Discovery</strong> (/grill-me)</div></div>
-                    <div class="runway-step" style="padding:9px 12px;"><span class="runway-num">03</span><div style="font-size:13.5px;" data-editable><strong>Spec</strong> (/plan)</div></div>
-                    <div class="runway-step" style="padding:9px 12px;"><span class="runway-num">04</span><div style="font-size:13.5px;" data-editable><strong>Tasks</strong> (cap at 2–3)</div></div>
-                    <div class="runway-step" style="padding:9px 12px;"><span class="runway-num">05</span><div style="font-size:13.5px;" data-editable><strong>Build</strong> (/goal · /teamwork)</div></div>
-                    <div class="runway-step" style="padding:9px 12px;"><span class="runway-num">06</span><div style="font-size:13.5px;" data-editable><strong>Browser QA</strong> (/browser)</div></div>
-                    <div class="runway-step" style="padding:9px 12px;"><span class="runway-num">07</span><div style="font-size:13.5px;" data-editable><strong>Learnings</strong> (/learn)</div></div>
-                    <div class="runway-step" style="padding:9px 12px;"><span class="runway-num">08</span><div style="font-size:13.5px;" data-editable><strong>Cloud Deploy</strong> (URL)</div></div>
-                  </div>
-
-                  <div class="sticky-callout reveal d4" style="padding:11px 15px;border-left-color:var(--terracotta);background:#FFF5EB;">
-                    <div style="font-size:14.5px;color:var(--ink);" data-editable>
-                      <strong>Let&rsquo;s Get Started (V1 → V2):</strong> Open <strong>Spec to Ship</strong> (right pane) → click <span class="cmd-pill">+ New Feature</span> → paste a V2 brief from the right page → <strong>Start Feature &amp; /grill-me ⚡</strong>.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="page-footer">
-                  <button class="turn-corner-btn" data-jump="5" style="background:transparent;">← V2 · Vibe</button>
-                  <button class="turn-corner-btn" data-back-to-experience="v1v2" style="background:transparent;">← Select Experience</button>
-                </div>
-              </div>
-
-              <div></div>
-
-              <div class="book-page page-right">
-                <div class="page-header">
-                  <span>V1 → V2 · SPEC-DRIVEN BRIEFS (+ NEW FEATURE)</span>
-                  <span>PAGE 14</span>
-                </div>
-
-                <div style="display:flex;flex-direction:column;gap:18px;margin:auto 0;">
-                  <p style="font-size:15.5px;color:var(--ink-soft);" class="reveal d1" data-editable>
-                    Copy a 2-sentence V2 feature brief into <strong>Spec to Ship (<span class="cmd-pill">+ New Feature</span>)</strong>:
-                  </p>
-
-                  <div class="level-card reveal d2" style="padding:18px 20px;">
-                    <div class="level-top">
-                      <span class="level-pill">🟢 NOVICE V2 BRIEF · + NEW FEATURE</span>
-                      <button class="copy-prompt-btn" data-copy="Add an AI Brand & Compliance Gate between Scene Creation and Ad Generation in our Marketing Platform. Every campaign should be scored against brand tone, visual rules, and claim safety before executive sign-off.">📋 Copy Brief</button>
-                    </div>
-                    <h3 class="card-heading" style="font-size:21px;" data-editable>Brand Guardrails &amp; Executive Gate</h3>
-                    <div class="prompt-quote" data-editable>
-                      &ldquo;Add an AI Brand &amp; Compliance Gate between Scene Creation and Ad Generation in our Marketing Platform. Every campaign should be scored against brand tone, visual rules, and claim safety before executive sign-off.&rdquo;
-                    </div>
-                  </div>
-
-                  <div class="level-card accent-cobalt reveal d3" style="padding:18px 20px;">
-                    <div class="level-top">
-                      <span class="level-pill cobalt">🚀 PRO V2 BRIEF · + NEW FEATURE</span>
-                      <button class="copy-prompt-btn" data-copy="Evolve our Idea → Story → Scene → Ad pipeline into a Global Campaign Localization Studio. Marketers select target regions and buyer personas to adapt approved stories, cultural visuals, and localized ad variants side by side.">📋 Copy Brief</button>
-                    </div>
-                    <h3 class="card-heading" style="font-size:21px;" data-editable>Global Persona &amp; <em>Localization Studio (V2)</em></h3>
-                    <div class="prompt-quote" data-editable>
-                      &ldquo;Evolve our Idea → Story → Scene → Ad pipeline into a Global Campaign Localization Studio. Marketers select target regions and buyer personas to adapt approved stories, cultural visuals, and localized ad variants side by side.&rdquo;
                     </div>
                   </div>
                 </div>
@@ -4143,6 +3919,7 @@
         this.bookEls = Array.from(document.querySelectorAll('.book-instance'));
         this.activeBookIdx = null; // null = on the 3-book rack!
         this.currentSlideIdx = 0;
+        this.selectedBuildMode = null;
         this.isEditing = false;
         this.drawerOpen = false;
         this.activeFbTab = 'page';
@@ -4197,6 +3974,9 @@
 
       openBook(bookIdx, slideIdx = 0, broadcast = true) {
         this.activeBookIdx = bookIdx;
+        if (bookIdx === 2 && slideIdx === 0) {
+          this.selectBuildMode(null, false);
+        }
         this.bookEls.forEach((b, i) => b.classList.toggle('active-book', i === bookIdx));
         this.rackView.classList.add('hidden-rack');
         this.readerView.classList.add('open-reader');
@@ -4226,6 +4006,11 @@
         const target = Math.max(0, Math.min(idx, slides.length - 1));
         this.currentSlideIdx = target;
 
+        if (this.activeBookIdx === 2) {
+          if (this.currentSlideIdx === 2) this.selectBuildMode('scratch', false);
+          else if (this.currentSlideIdx === 3) this.selectBuildMode('v1v2', false);
+        }
+
         slides.forEach((s, i) => {
           const active = i === this.currentSlideIdx;
           s.classList.remove('flipping-next', 'flipping-prev');
@@ -4243,7 +4028,9 @@
         this.counterEl.textContent = `BOOK 0${this.activeBookIdx + 1} · ${pad(this.currentSlideIdx + 1)} / ${pad(slides.length)}`;
         const nextBtn = document.getElementById('btnNext');
         if (nextBtn) {
-          const isLastSlide = this.currentSlideIdx === slides.length - 1;
+          const isLastSlide = (this.activeBookIdx === 2)
+            ? (this.currentSlideIdx === 2 || this.currentSlideIdx === 3)
+            : (this.currentSlideIdx === slides.length - 1);
           nextBtn.textContent = isLastSlide ? '📚 HOME RACK ↵' : 'NEXT →';
           nextBtn.title = isLastSlide ? 'End of Book — Return to Home Rack (→)' : 'Next Page (→)';
         }
@@ -4258,6 +4045,34 @@
       go(delta) {
         if (this.activeBookIdx === null) return;
         const slides = this.getActiveBookSlides();
+
+        if (this.activeBookIdx === 2) {
+          if (delta > 0) {
+            if (this.currentSlideIdx === 0) {
+              this.showSlide(1, true, 1);
+              return;
+            }
+            if (this.currentSlideIdx === 1) {
+              this.showSlide(this.selectedBuildMode === 'v1v2' ? 3 : 2, true, 1);
+              return;
+            }
+            if (this.currentSlideIdx === 2 || this.currentSlideIdx === 3) {
+              this.closeToRack(true);
+              return;
+            }
+          } else if (delta < 0) {
+            if (this.currentSlideIdx === 2 || this.currentSlideIdx === 3) {
+              this.showSlide(1, true, -1);
+              return;
+            }
+            if (this.currentSlideIdx === 1) {
+              this.showSlide(0, true, -1);
+              return;
+            }
+            return;
+          }
+        }
+
         const nextIdx = this.currentSlideIdx + delta;
         if (nextIdx < 0) return;
         if (nextIdx >= slides.length) {
@@ -4286,12 +4101,10 @@
 
       indexEditableNodes() {
         const DYNAMIC_UI_IDS = new Set([
-          'expContextBadge',
-          'expContextLead',
+          'startRightHeaderLabel',
+          'startRightFooterHint',
           'lblSelectScratch',
-          'lblSelectV2',
-          'lblExpVibeTarget',
-          'lblExpSpecTarget'
+          'lblSelectV2'
         ]);
         const scopeCounts = {};
         const nodes = Array.from(document.querySelectorAll(EDITABLE_SELECTOR));
@@ -4650,34 +4463,42 @@
       }
 
       selectBuildMode(mode, pulseExperience = false) {
+        const isNone = !mode;
         const isScratch = mode === 'scratch';
+        const isV1V2 = mode === 'v1v2';
+        this.selectedBuildMode = isScratch ? 'scratch' : (isV1V2 ? 'v1v2' : null);
         document.querySelectorAll('[data-select-build]').forEach((b) => {
-          b.classList.toggle('selected-build', b.getAttribute('data-select-build') === mode);
+          b.classList.toggle('selected-build', b.getAttribute('data-select-build') === this.selectedBuildMode);
         });
-        const badge = document.getElementById('expContextBadge');
-        const lead = document.getElementById('expContextLead');
-        const vibeCard = document.getElementById('cardExpVibe');
-        const specCard = document.getElementById('cardExpSpec');
+        const panelNone = document.getElementById('startPanelNone');
+        const panelScratch = document.getElementById('startPanelScratch');
+        const panelV1V2 = document.getElementById('startPanelV1V2');
+        const hdrLabel = document.getElementById('startRightHeaderLabel');
+        const ftrHint = document.getElementById('startRightFooterHint');
         const lblS = document.getElementById('lblSelectScratch');
         const lblV2 = document.getElementById('lblSelectV2');
-        const lblVibeT = document.getElementById('lblExpVibeTarget');
-        const lblSpecT = document.getElementById('lblExpSpecTarget');
         const footerNext = document.getElementById('btnStartFooterNext');
         const expWrap = document.getElementById('experienceCardsWrap');
 
-        if (badge) badge.textContent = isScratch ? 'FOR: SOMETHING FROM SCRATCH' : 'FOR: SOMETHING FROM V1 → V2';
-        if (lead) lead.innerHTML = isScratch
-          ? 'Open tailored prompts &amp; steps for <strong>Something from Scratch</strong>:'
-          : 'Open tailored prompts &amp; steps for <strong>Something from V1 → V2</strong> (<span class="cmd-pill" data-open-v1-overview="1" style="cursor:pointer;">What is in V1? ↷</span> · <a class="cmd-pill" href="https://cymbal-aerospace-marketing-studio-552994256750.us-central1.run.app" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:var(--forest);border-color:rgba(45,106,79,0.35);">Public V1 ↗</a>):';
-        if (vibeCard) vibeCard.setAttribute('data-jump', isScratch ? '2' : '5');
-        if (specCard) specCard.setAttribute('data-jump', isScratch ? '3' : '6');
-        if (lblS) lblS.textContent = isScratch ? '✓ SELECTED — PICK EXPERIENCE ON RIGHT →' : 'CLICK TO SELECT FROM SCRATCH';
-        if (lblV2) lblV2.textContent = !isScratch ? '✓ SELECTED — PICK EXPERIENCE ON RIGHT →' : 'CLICK TO SELECT V1 → V2';
-        if (lblVibeT) lblVibeT.textContent = isScratch ? 'OPEN SCRATCH · VIBE CODING' : 'OPEN V1 → V2 · VIBE CODING';
-        if (lblSpecT) lblSpecT.textContent = isScratch ? 'OPEN SCRATCH · SPEC-DRIVEN' : 'OPEN V1 → V2 · SPEC-DRIVEN';
+        if (panelNone) panelNone.style.display = isNone ? 'flex' : 'none';
+        if (panelScratch) panelScratch.style.display = isScratch ? 'flex' : 'none';
+        if (panelV1V2) panelV1V2.style.display = isV1V2 ? 'flex' : 'none';
+        if (hdrLabel) {
+          hdrLabel.textContent = isNone
+            ? 'SELECT AN OPTION ON THE LEFT'
+            : (isScratch ? 'OPTION 01 · BUILD FROM SCRATCH' : 'OPTION 02 · BUILD FROM V1 → V2');
+        }
+        if (ftrHint) {
+          ftrHint.textContent = isNone
+            ? 'SELECT AN OPTION ON THE LEFT TO BEGIN'
+            : (isScratch ? 'STEP 01 · BUILD FROM SCRATCH' : 'STEP 01 · BUILD FROM V1 → V2');
+        }
+        if (lblS) lblS.textContent = isScratch ? '✓ SELECTED — SEE HOW WE BUILD WITH A PLUGIN ON RIGHT →' : 'CLICK TO SELECT BUILD FROM SCRATCH';
+        if (lblV2) lblV2.textContent = isV1V2 ? '✓ SELECTED — START WITH WHAT IS V1 ON RIGHT →' : 'CLICK TO SELECT BUILD FROM V1 → V2';
         if (footerNext) {
-          footerNext.setAttribute('data-jump', isScratch ? '2' : '5');
-          footerNext.textContent = isScratch ? 'Scratch · Vibe ↷' : 'V2 · Vibe ↷';
+          footerNext.style.display = isNone ? 'none' : '';
+          footerNext.setAttribute('data-jump', isScratch ? '2' : '3');
+          footerNext.textContent = isScratch ? 'Build from Scratch ↷' : 'Build V1 → V2 ↷';
         }
         if (pulseExperience && expWrap) {
           expWrap.classList.remove('experience-pulse');
