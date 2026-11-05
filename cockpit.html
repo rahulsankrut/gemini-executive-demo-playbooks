@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boeing Executive Demo — Rahul's Admin & Concept Storyboard Cockpit</title>
+  <style>
+    :root {
+      color-scheme: light;
+    }
+    html, body {
+      background-color: #faf8f5 !important;
+      color: #1e293b !important;
+      font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    [data-pending-state="processing"] {
+      opacity: 0.65 !important;
+      pointer-events: none;
+      position: relative;
+      outline: 2px dashed #d97706;
+    }
+    .tab-btn {
+      background: #ffffff !important;
+      color: #475569 !important;
+      border-color: #cbd5e1 !important;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+    .tab-btn:hover {
+      background: #f1f5f9 !important;
+      color: #1e293b !important;
+    }
+    .tab-btn.active {
+      background: linear-gradient(135deg, #e0e7ff 0%, #ede9fe 100%) !important;
+      color: #312e81 !important;
+      border-color: #818cf8 !important;
+      box-shadow: 0 3px 10px rgba(99, 102, 241, 0.16);
+      font-weight: 700 !important;
+    }
+    .sb-pill {
+      background: #ffffff !important;
+      color: #475569 !important;
+      border-color: #cbd5e1 !important;
+    }
+    .sb-pill:hover {
+      background: #f8fafc !important;
+      border-color: #94a3b8 !important;
+    }
+    .sb-pill.active {
+      background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%) !important;
+      color: #1e3a8a !important;
+      border-color: #60a5fa !important;
+      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.18);
+      font-weight: 700 !important;
+    }
+    .frame-btn {
+      background-color: #ffffff !important;
+      color: #475569 !important;
+      border-color: #cbd5e1 !important;
+    }
+    .frame-btn:hover {
+      background-color: #f1f5f9 !important;
+    }
+    .frame-btn.active {
+      background: linear-gradient(135deg, #dcfce7 0%, #d1fae5 100%) !important;
+      color: #065f46 !important;
+      border-color: #34d399 !important;
+      font-weight: 700 !important;
+      box-shadow: 0 2px 6px rgba(16, 185, 129, 0.15);
+    }
+    .prompt-box {
+      font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      background-color: #f8fafc !important;
+      color: #1e293b !important;
+      border-color: #cbd5e1 !important;
+    }
+    code {
+      background-color: rgba(99, 102, 241, 0.08);
+      padding: 1px 4px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+  </style>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <script src="/preload.js"></script>
+</head>
+<body class="min-h-screen pb-28 text-slate-800 selection:bg-blue-600 selection:text-slate-900">
+
+  <!-- TOP EXECUTIVE HEADER -->
+  <header id="cockpit-header" class="sticky top-0 z-30 border-b border-indigo-200 bg-gradient-to-r from-indigo-50/95 via-sky-50/95 to-purple-50/95 backdrop-blur-md px-4 py-3 shadow-sm">
+    <div class="flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2.5">
+        <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-100 to-sky-200 border border-indigo-300 font-bold text-indigo-900 shadow-sm">
+          ✈️
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-sm font-bold tracking-tight text-slate-900">BOEING EXEC DEMO COCKPIT</h1>
+            <span class="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold text-emerald-800 border border-emerald-300">
+              <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              5/5 M365 · 3/3 CLM · SERVERS UP
+            </span>
+          </div>
+          <p class="text-[11px] text-slate-600">
+            Admin: <code class="text-indigo-900">rahul@boeingmsdemo.onmicrosoft.com</code> · GCP: <code class="text-indigo-900">explore-ai-16f45b99</code>
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-1.5">
+        <button onclick="openClmWorkbench()"
+           class="inline-flex items-center gap-1 rounded-lg bg-emerald-100 border border-emerald-300 px-2.5 py-1.5 text-[11px] font-semibold text-emerald-900 hover:bg-emerald-500/25 transition">
+          ⚖️ CLM Workbench ↗
+        </button>
+        <a href="http://localhost:8847" target="_blank"
+           class="inline-flex items-center gap-1 rounded-lg bg-amber-100 border border-amber-300 px-2.5 py-1.5 text-[11px] font-semibold text-amber-900 hover:bg-amber-500/25 transition">
+          📖 Storybook (:8847) ↗
+        </a>
+        <a href="https://vertexaisearch.cloud.google.com/home/cid/5ec1bcef-cb99-4c40-949d-0cd4d97ec5a0" target="_blank"
+           class="inline-flex items-center gap-1 rounded-lg bg-sky-100 border border-sky-300 px-2.5 py-1.5 text-[11px] font-semibold text-indigo-900 hover:bg-blue-500/25 transition">
+          ✨ Gemini Agent ↗
+        </a>
+      </div>
+    </div>
+
+    <!-- COMPACT 6-TAB NAVIGATION -->
+    <nav class="mt-3 grid grid-cols-6 gap-1">
+      <button onclick="switchTab('preflight')" id="tab-btn-preflight"
+              class="tab-btn rounded-lg border border-slate-200 bg-white px-1.5 py-1.5 text-[11px] font-semibold text-slate-700 transition truncate">
+        🛡️ Monitor
+      </button>
+      <button onclick="switchTab('storyboards')" id="tab-btn-storyboards"
+              class="tab-btn active rounded-lg border border-slate-200 bg-white px-1.5 py-1.5 text-[11px] font-semibold text-slate-700 transition truncate">
+        🎬 Storyboards 12
+      </button>
+      <button onclick="switchTab('book1')" id="tab-btn-book1"
+              class="tab-btn rounded-lg border border-slate-200 bg-white px-1.5 py-1.5 text-[11px] font-semibold text-slate-700 transition truncate">
+        📘 Book 01
+      </button>
+      <button onclick="switchTab('book2')" id="tab-btn-book2"
+              class="tab-btn rounded-lg border border-slate-200 bg-white px-1.5 py-1.5 text-[11px] font-semibold text-slate-700 transition truncate">
+        🤖 Book 02
+      </button>
+      <button onclick="switchTab('book3')" id="tab-btn-book3"
+              class="tab-btn rounded-lg border border-slate-200 bg-white px-1.5 py-1.5 text-[11px] font-semibold text-slate-700 transition truncate">
+        🚀 Book 03
+      </button>
+      <button onclick="switchTab('laptops')" id="tab-btn-laptops"
+              class="tab-btn rounded-lg border border-slate-200 bg-white px-1.5 py-1.5 text-[11px] font-semibold text-slate-700 transition truncate">
+        💻 Laptops
+      </button>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="px-4 py-4 space-y-4">
+
+    <!-- ================================================================== -->
+    <!-- TAB: STORYBOARDS (12 MULTI-FRAME VISUAL CONCEPT STORYBOARDS)       -->
+    <!-- ================================================================== -->
+    <section id="tab-storyboards" class="space-y-3.5">
+
+      <!-- STORYBOARD STUDIO SELECTOR & PRESENTER HEADER -->
+      <div class="rounded-xl border border-sky-200 bg-gradient-to-r from-sky-50 via-indigo-50/60 to-purple-50 p-3 shadow-lg">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="rounded bg-sky-100 border border-sky-400/40 px-2 py-0.5 text-[10px] font-bold uppercase text-sky-900">Executive Concept Studio</span>
+              <h2 class="text-xs font-bold text-slate-900">12 Interactive Multi-Frame Storyboards (Domain Gaps + Playbook Architecture)</h2>
+            </div>
+            <p class="mt-0.5 text-[11px] text-slate-700">
+              Select any concept below, then step through <strong>Frame 1 → Frame 2 → Frame 3</strong> (or use keyboard <code>←</code> / <code>→</code>) to present the visual storyboard live.
+            </p>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <button onclick="prevStoryboard()" class="rounded-lg border border-slate-200 bg-indigo-50 hover:bg-indigo-100 px-2.5 py-1 text-[11px] font-semibold text-slate-700 transition">◀ Concept</button>
+            <span id="sb-counter" class="text-[11px] font-mono font-bold text-sky-900 px-1.5">01 / 12</span>
+            <button onclick="nextStoryboard()" class="rounded-lg border border-slate-200 bg-indigo-50 hover:bg-indigo-100 px-2.5 py-1 text-[11px] font-semibold text-slate-700 transition">Concept ▶</button>
+          </div>
+        </div>
+
+        <!-- 12 STORYBOARD SELECTOR GRID -->
+        <div class="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+          <button onclick="selectStoryboard(0)" id="sb-pill-0" class="sb-pill active text-left rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-[10px] font-semibold text-slate-700 transition truncate">
+            01 · Aerospace CLM Process & Stack
+          </button>
+          <button onclick="selectStoryboard(1)" id="sb-pill-1" class="sb-pill text-left rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-[10px] font-semibold text-slate-700 transition truncate">
+            02 · 3-Deal CLM "Cooking Show"
+          </button>
+          <button onclick="selectStoryboard(2)" id="sb-pill-2" class="sb-pill text-left rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-[10px] font-semibold text-slate-700 transition truncate">
+            03 · Cross-Clause Conflict Engine
+          </button>
+          <button onclick="selectStoryboard(3)" id="sb-pill-3" class="sb-pill text-left rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-[10px] font-semibold text-slate-700 transition truncate">
+            04 · FAA, AS9100 & DFARS Lockouts
+          </button>
+          <button onclick="selectStoryboard(4)" id="sb-pill-4" class="sb-pill text-left rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-[10px] font-semibold text-slate-700 transition truncate">
+            05 · 4 Eras of AI (Book 01→02→03)
+          </button>
+          <button onclick="selectStoryboard(5)" id="sb-pill-5" class="sb-pill text-left rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-[10px] font-semibold text-slate-700 transition truncate">
+            06 · Skills vs Projects vs MCP
+          </button>
+          <button onclick="selectStoryboard(6)" id="sb-pill-6" class="sb-pill text-left rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-[10px] font-semibold text-slate-700 transition truncate">
+            07 · Book 01: Charleston & Titanium
+          </button>
+          <button onclick="selectStoryboard(7)" id="sb-pill-7" class="sb-pill text-left rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-[10px] font-semibold text-slate-700 transition truncate">
+            08 · Book 01: SteerCo & BGS Hub
+          </button>
+          <button onclick="selectStoryboard(8)" id="sb-pill-8" class="sb-pill text-left rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-[10px] font-semibold text-slate-700 transition truncate">
+            09 · Book 02: Doc2Skill & 10-Q Excel
+          </button>
+          <button onclick="selectStoryboard(9)" id="sb-pill-9" class="sb-pill text-left rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-[10px] font-semibold text-slate-700 transition truncate">
+            10 · Book 02: MFSY 4-Agent Swarm
+          </button>
+          <button onclick="selectStoryboard(10)" id="sb-pill-10" class="sb-pill text-left rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-[10px] font-semibold text-slate-700 transition truncate">
+            11 · 7-Pillar CISO & CFO Guardrails
+          </button>
+          <button onclick="selectStoryboard(11)" id="sb-pill-11" class="sb-pill text-left rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-[10px] font-semibold text-slate-700 transition truncate">
+            12 · Book 03: Vibe vs Spec-to-Ship
+          </button>
+        </div>
+      </div>
+
+      <!-- DYNAMIC STORYBOARD STAGE RENDERED BY JS -->
+      <div id="storyboard-stage" class="rounded-xl border border-slate-200 bg-white p-4 shadow-xl space-y-4">
+        <!-- Populated dynamically by renderActiveStoryboard() -->
+      </div>
+
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- TAB 1: PRE-FLIGHT HEALTH, LIVE TELEMETRY & 1-CLICK ADMIN CONTROLS  -->
+    <!-- ================================================================== -->
+    <section id="tab-preflight" class="hidden space-y-4">
+
+      <!-- 1-CLICK ADMIN COMMAND BAR -->
+      <div class="rounded-xl border border-sky-300 bg-gradient-to-r from-slate-900 via-blue-950/30 to-slate-900 p-3.5 shadow-lg">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-900">⚡ One-Click Admin Controls & Demo Reset</span>
+          <span class="text-[10px] text-slate-600">Live Telemetry Verified · Nov 5, 2026</span>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <button data-action="Run boeing_cockpit.py status and refresh the Boeing Admin Cockpit canvas with live M365, CLM, and server telemetry."
+                  class="flex items-center justify-center gap-1.5 rounded-lg bg-indigo-100 hover:bg-indigo-200 border border-indigo-300 !text-indigo-900 px-3 py-2 text-xs font-semibold text-slate-900 shadow transition active:scale-95">
+            🔄 Refresh Telemetry
+          </button>
+          <button data-action="Bake CLM demo"
+                  class="flex items-center justify-center gap-1.5 rounded-lg bg-purple-100 hover:bg-purple-200 border border-purple-300 !text-purple-900 px-3 py-2 text-xs font-semibold text-slate-900 shadow transition active:scale-95">
+            ✈️ Bake CLM Demo
+          </button>
+          <button data-action="Run the master Boeing Executive Workshop bake command (`/Users/rahulsankrut/Desktop/code/Cymbal Aerospace/.venv/bin/python /Users/rahulsankrut/Desktop/code/Cymbal/bake.py all --env boeing-exec`) to reset all 5 M365 mailboxes, SharePoint, and 3 CLM deals, then update the Cockpit."
+                  class="flex items-center justify-center gap-1.5 rounded-lg bg-emerald-100 hover:bg-emerald-200 border border-emerald-300 !text-emerald-900 px-3 py-2 text-xs font-semibold text-slate-900 shadow transition active:scale-95">
+            🔥 Master Bake All
+          </button>
+          <button data-action="Reset ONLY Rahul's M365 mailbox (rahul@boeingmsdemo.onmicrosoft.com) Inbox (19 emails), Drafts (0), and Calendar (17 events) and reset the 3 local CLM deals without touching Abhi, Swapnil, or Bryan's mailboxes."
+                  class="flex items-center justify-center gap-1.5 rounded-lg bg-amber-100 hover:bg-amber-200 border border-amber-300 !text-amber-900 px-3 py-2 text-xs font-semibold text-slate-900 shadow transition active:scale-95">
+            🧹 Reset Rahul Only
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI SUMMARY STRIP -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+        <div class="rounded-xl border border-slate-200 bg-white p-3">
+          <div class="text-[10px] font-semibold uppercase text-slate-600">M365 Active Accounts</div>
+          <div class="mt-1 flex items-baseline justify-between">
+            <span class="text-lg font-bold text-emerald-800">5 / 5 Ready</span>
+            <span class="text-[10px] text-emerald-900 bg-emerald-500/10 px-1.5 py-0.5 rounded">0 Drafts</span>
+          </div>
+          <div class="mt-1 text-[10px] text-slate-600">19 Inbox · 17 Cal Events each</div>
+        </div>
+
+        <div class="rounded-xl border border-slate-200 bg-white p-3">
+          <div class="text-[10px] font-semibold uppercase text-slate-600">Local Demo Servers</div>
+          <div class="mt-1 flex items-baseline justify-between">
+            <span class="text-lg font-bold text-emerald-800">2 / 2 Online</span>
+            <span class="text-[10px] text-indigo-900 bg-blue-500/10 px-1.5 py-0.5 rounded">Auto-Started</span>
+          </div>
+          <div class="mt-1 text-[10px] text-slate-600">Storybook :8847 · CLM :58921</div>
+        </div>
+
+        <div class="rounded-xl border border-slate-200 bg-white p-3">
+          <div class="text-[10px] font-semibold uppercase text-slate-600">3-Deal CLM Portfolio</div>
+          <div class="mt-1 flex items-baseline justify-between">
+            <span class="text-lg font-bold text-emerald-800">$135M Ready</span>
+            <span class="text-[10px] text-indigo-900 bg-indigo-500/10 px-1.5 py-0.5 rounded">Stages 1–3</span>
+          </div>
+          <div class="mt-1 text-[10px] text-slate-600">AV-8921 · TR-5510 · LG-7740</div>
+        </div>
+
+        <div class="rounded-xl border border-slate-200 bg-white p-3">
+          <div class="text-[10px] font-semibold uppercase text-slate-600">Skills & Demo Assets</div>
+          <div class="mt-1 flex items-baseline justify-between">
+            <span class="text-lg font-bold text-emerald-800">12 Skills</span>
+            <span class="text-[10px] text-emerald-900 bg-emerald-500/10 px-1.5 py-0.5 rounded">13 Files</span>
+          </div>
+          <div class="mt-1 text-[10px] text-slate-600">Synced to Spark & AGY</div>
+        </div>
+      </div>
+
+      <!-- M365 LIVE ACCOUNT MATRIX -->
+      <div class="rounded-xl border border-slate-200 bg-white overflow-hidden">
+        <div class="border-b border-slate-200 bg-indigo-50/50 px-3.5 py-2.5 flex items-center justify-between">
+          <div>
+            <h2 class="text-xs font-bold text-slate-900">📬 Microsoft 365 Live Mailbox & Calendar Matrix (<code class="text-indigo-900">boeingmsdemo.onmicrosoft.com</code>)</h2>
+            <p class="text-[10px] text-slate-600">Live Graph API probe across all executive laptops & tester accounts (`Drafts = 0` verified)</p>
+          </div>
+          <a href="https://outlook.office.com/mail/" target="_blank" class="text-[11px] font-semibold text-indigo-800 hover:underline">Open Outlook ↗</a>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-[11px]">
+            <thead>
+              <tr class="border-b border-slate-200 text-[10px] uppercase text-slate-600 bg-stone-50/90/40">
+                <th class="py-2 px-3">Executive / Role</th>
+                <th class="py-2 px-2">M365 Account</th>
+                <th class="py-2 px-2 text-center">Inbox</th>
+                <th class="py-2 px-2 text-center">Drafts</th>
+                <th class="py-2 px-2 text-center">Calendar</th>
+                <th class="py-2 px-2 text-right">Status</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="hover:bg-slate-100/40">
+                <td class="py-2 px-3 font-semibold text-slate-900">Abhi Seth <span class="block text-[10px] font-normal text-slate-600">Laptop 1 (Exec)</span></td>
+                <td class="py-2 px-2 font-mono text-[10px] text-indigo-900">abhi@boeingmsdemo.onmicrosoft.com</td>
+                <td class="py-2 px-2 text-center"><span class="rounded bg-slate-100 px-1.5 py-0.5 font-semibold text-slate-900">19</span> <span class="text-[10px] text-slate-600">(15 unread)</span></td>
+                <td class="py-2 px-2 text-center"><span class="rounded bg-emerald-100 text-emerald-900 px-1.5 py-0.5 font-bold">0</span></td>
+                <td class="py-2 px-2 text-center">17</td>
+                <td class="py-2 px-2 text-right"><span class="rounded-full bg-emerald-100 border border-emerald-300 px-2 py-0.5 text-[10px] font-semibold text-emerald-800">READY</span></td>
+              </tr>
+              <tr class="hover:bg-slate-100/40">
+                <td class="py-2 px-3 font-semibold text-slate-900">Swapnil Srivastava <span class="block text-[10px] font-normal text-slate-600">Laptop 2 (Exec)</span></td>
+                <td class="py-2 px-2 font-mono text-[10px] text-indigo-900">swapnil@boeingmsdemo.onmicrosoft.com</td>
+                <td class="py-2 px-2 text-center"><span class="rounded bg-slate-100 px-1.5 py-0.5 font-semibold text-slate-900">19</span> <span class="text-[10px] text-slate-600">(15 unread)</span></td>
+                <td class="py-2 px-2 text-center"><span class="rounded bg-emerald-100 text-emerald-900 px-1.5 py-0.5 font-bold">0</span></td>
+                <td class="py-2 px-2 text-center">17</td>
+                <td class="py-2 px-2 text-right"><span class="rounded-full bg-emerald-100 border border-emerald-300 px-2 py-0.5 text-[10px] font-semibold text-emerald-800">READY</span></td>
+              </tr>
+              <tr class="hover:bg-slate-100/40">
+                <td class="py-2 px-3 font-semibold text-slate-900">Bryan Grady <span class="block text-[10px] font-normal text-slate-600">Laptop 3 (Exec)</span></td>
+                <td class="py-2 px-2 font-mono text-[10px] text-indigo-900">bryan@boeingmsdemo.onmicrosoft.com</td>
+                <td class="py-2 px-2 text-center"><span class="rounded bg-slate-100 px-1.5 py-0.5 font-semibold text-slate-900">19</span> <span class="text-[10px] text-slate-600">(15 unread)</span></td>
+                <td class="py-2 px-2 text-center"><span class="rounded bg-emerald-100 text-emerald-900 px-1.5 py-0.5 font-bold">0</span></td>
+                <td class="py-2 px-2 text-center">17</td>
+                <td class="py-2 px-2 text-right"><span class="rounded-full bg-emerald-100 border border-emerald-300 px-2 py-0.5 text-[10px] font-semibold text-emerald-800">READY</span></td>
+              </tr>
+              <tr class="bg-blue-50 hover:bg-blue-50">
+                <td class="py-2 px-3 font-semibold text-indigo-900">Rahul Kasanagottu (You) <span class="block text-[10px] font-normal text-indigo-800">Admin / Lead Presenter</span></td>
+                <td class="py-2 px-2 font-mono text-[10px] text-indigo-900">rahul@boeingmsdemo.onmicrosoft.com</td>
+                <td class="py-2 px-2 text-center"><span class="rounded bg-slate-100 px-1.5 py-0.5 font-semibold text-slate-900">19</span> <span class="text-[10px] text-slate-600">(15 unread)</span></td>
+                <td class="py-2 px-2 text-center"><span class="rounded bg-emerald-100 text-emerald-900 px-1.5 py-0.5 font-bold">0</span></td>
+                <td class="py-2 px-2 text-center">17</td>
+                <td class="py-2 px-2 text-right"><span class="rounded-full bg-emerald-100 border border-emerald-300 px-2 py-0.5 text-[10px] font-semibold text-emerald-800">READY</span></td>
+              </tr>
+              <tr class="hover:bg-slate-100/40">
+                <td class="py-2 px-3 font-semibold text-slate-900">Jack Long <span class="block text-[10px] font-normal text-slate-600">Tester 2</span></td>
+                <td class="py-2 px-2 font-mono text-[10px] text-indigo-900">jack@boeingmsdemo.onmicrosoft.com</td>
+                <td class="py-2 px-2 text-center"><span class="rounded bg-slate-100 px-1.5 py-0.5 font-semibold text-slate-900">19</span> <span class="text-[10px] text-slate-600">(15 unread)</span></td>
+                <td class="py-2 px-2 text-center"><span class="rounded bg-emerald-100 text-emerald-900 px-1.5 py-0.5 font-bold">0</span></td>
+                <td class="py-2 px-2 text-center">17</td>
+                <td class="py-2 px-2 text-right"><span class="rounded-full bg-emerald-100 border border-emerald-300 px-2 py-0.5 text-[10px] font-semibold text-emerald-800">READY</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- TAB 2: BOOK 01 — GEMINI ENTERPRISE APP RUN-OF-SHOW & PROMPTS        -->
+    <!-- ================================================================== -->
+    <section id="tab-book1" class="hidden space-y-3.5">
+      <div class="rounded-xl border border-sky-200 bg-sky-50/85 p-3">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xs font-bold text-indigo-900">📘 Book 01 · Gemini Enterprise App (Browser AI Grounded in M365 + Web)</h2>
+          <button onclick="switchTab('storyboards'); selectStoryboard(6);" class="text-[11px] font-semibold text-sky-900 hover:underline">🎬 View Book 01 Storyboard ▶</button>
+        </div>
+      </div>
+
+      <div class="rounded-xl border border-slate-200 bg-white p-3.5 space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-900">Ch 02 · Cross-Silo Search & Canvas: Charleston 787 QRC Gate-3 Contradiction</span>
+          <button onclick="copyPrompt('b1-ch2', this)" class="rounded-lg bg-indigo-100 hover:bg-indigo-200 border border-indigo-300 !text-indigo-900 px-2.5 py-1 text-[11px] font-semibold text-slate-900 transition">📋 Copy Prompt</button>
+        </div>
+        <pre id="b1-ch2" class="prompt-box whitespace-pre-wrap rounded-lg bg-stone-50/90 p-2.5 text-[11px] text-indigo-900 border border-slate-200">Cross-check our 787_Charleston_Supplier_and_Quality_Readiness_Q4.xlsx tracker and QRC_Gate3_Conformity_and_SignOff_Charter.docx against my latest Outlook emails from Nestor Wilke and Johanna Lorenz. Identify any workstreams reported as GREEN in the spreadsheet that actually have critical shop-floor or SAP holds in email, and draft a 1-page Executive Action Memo in Canvas for Friday's Gate-3 review.</pre>
+      </div>
+
+      <div class="rounded-xl border border-slate-200 bg-white p-3.5 space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-900">Ch 03 · Memory & Deep Research: 18-Month Titanium & Rad-Hard Wafer Risk</span>
+          <button onclick="copyPrompt('b1-ch3', this)" class="rounded-lg bg-indigo-100 hover:bg-indigo-200 border border-indigo-300 !text-indigo-900 px-2.5 py-1 text-[11px] font-semibold text-slate-900 transition">📋 Copy Prompt</button>
+        </div>
+        <pre id="b1-ch3" class="prompt-box whitespace-pre-wrap rounded-lg bg-stone-50/90 p-2.5 text-[11px] text-indigo-900 border border-slate-200">Run a Deep Research brief combining our internal SharePoint sourcing briefs (Strategic_Sourcing_Brief_Titanium_Forgings_Post_Wichita_Integration.docx and BDS_and_BCA_Avionics_Microelectronics_Qualification_Risk_2026.docx) with live web market intelligence on aerospace Ti-6Al-4V heavy-press forging lead times and Section 232/301 tariff exposure over the next 18 months.</pre>
+      </div>
+
+      <div class="rounded-xl border border-slate-200 bg-white p-3.5 space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-900">Ch 04 · Skills & Projects: `/ai-steerco-business-case` ($925K BU Intake)</span>
+          <button onclick="copyPrompt('b1-ch4', this)" class="rounded-lg bg-indigo-100 hover:bg-indigo-200 border border-indigo-300 !text-indigo-900 px-2.5 py-1 text-[11px] font-semibold text-slate-900 transition">📋 Copy Prompt</button>
+        </div>
+        <pre id="b1-ch4" class="prompt-box whitespace-pre-wrap rounded-lg bg-stone-50/90 p-2.5 text-[11px] text-indigo-900 border border-slate-200">/ai-steerco-business-case Evaluate the 3 new Business-Unit AI funding proposals ($925K total ask) in This_Week_BU_AI_Intake_and_Action_Tracker_Nov04.docx against our 4-pillar SteerCo governance criteria from Last_Week_AI_SteerCo_Minutes_Oct28.docx, and flag the 3 overdue action owners from last week.</pre>
+      </div>
+
+      <div class="rounded-xl border border-slate-200 bg-white p-3.5 space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-900">Ch 05 · Gemini Notebook Enterprise: BGS Western Spares Hub & Audio Join</span>
+          <button onclick="copyPrompt('b1-ch5', this)" class="rounded-lg bg-indigo-100 hover:bg-indigo-200 border border-indigo-300 !text-indigo-900 px-2.5 py-1 text-[11px] font-semibold text-slate-900 transition">📋 Copy Prompt</button>
+        </div>
+        <pre id="b1-ch5" class="prompt-box whitespace-pre-wrap rounded-lg bg-stone-50/90 p-2.5 text-[11px] text-indigo-900 border border-slate-200">Synthesize BGS_Global_Spares_Hub_Q3_Scorecard.pdf, Western_Hub_Receiving_Hold_and_AOG_Audit.pdf, and Western_Hub_Director_Voicemail.wav. Why did Western Hub AOG fill rate drop to 81.2%, which part families stock out in 36–48 hours, and what is our financial rebuttal if Finance freezes the $3.2M expedited air-freight budget?</pre>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- TAB 3: BOOK 02 — GEMINI AGENT (4 EXECUTIVE PLAYBOOKS)              -->
+    <!-- ================================================================== -->
+    <section id="tab-book2" class="hidden space-y-3.5">
+      <div class="rounded-xl border border-indigo-200 bg-indigo-50/85 p-3">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xs font-bold text-indigo-900">🤖 Book 02 · Gemini Agent — Persistent Cloud Coworker (4 Playbooks)</h2>
+          <button onclick="switchTab('storyboards'); selectStoryboard(0);" class="text-[11px] font-semibold text-sky-900 hover:underline">🎬 View CLM Storyboard ▶</button>
+        </div>
+      </div>
+
+      <div class="rounded-xl border border-slate-200 bg-white p-3.5 space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-900">Playbook 1 (Execs) · Digital Chief of Staff (`Digital_Chief_of_Staff_Agent.docx`)</span>
+          <button onclick="copyPrompt('b2-p1', this)" class="rounded-lg bg-indigo-100 hover:bg-indigo-200 border border-indigo-300 !text-indigo-900 px-2.5 py-1 text-[11px] font-semibold text-slate-900 transition">📋 Copy Prompt</button>
+        </div>
+        <pre id="b2-p1" class="prompt-box whitespace-pre-wrap rounded-lg bg-stone-50/90 p-2.5 text-[11px] text-indigo-900 border border-slate-200">Run my Morning Chief of Staff briefing across my Outlook Inbox and Calendar. Summarize my top priorities and decision gates today, convert Joni Sherman's unclosed meeting notes from yesterday's Charleston Rate Ramp & S2P Sync into tracked action items with explicit owners and due dates, and stage the follow-up drafts in Outlook.</pre>
+      </div>
+
+      <div class="rounded-xl border border-slate-200 bg-white p-3.5 space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-900">Playbook 2 (Finance) · Earnings Analysis (`Alphabet_Q3_2026_Form_10-Q.pdf` → `.xlsx`)</span>
+          <button onclick="copyPrompt('b2-p2', this)" class="rounded-lg bg-indigo-100 hover:bg-indigo-200 border border-indigo-300 !text-indigo-900 px-2.5 py-1 text-[11px] font-semibold text-slate-900 transition">📋 Copy Prompt</button>
+        </div>
+        <pre id="b2-p2" class="prompt-box whitespace-pre-wrap rounded-lg bg-stone-50/90 p-2.5 text-[11px] text-indigo-900 border border-slate-200">Analyze the uploaded Alphabet_Q3_2026_Form_10-Q.pdf filing. Extract Q3 revenue, operating income, and YoY growth across Google Services, Google Cloud, and Other Bets, and build a formatted, formula-driven Excel model (.xlsx) with live margin and growth formulas.</pre>
+      </div>
+
+      <div class="rounded-xl border border-sky-300 bg-white p-3.5 space-y-3">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-xs font-bold text-indigo-900">Playbook 3 (S2P & Legal) · 3-Deal Aerospace CLM Suite</span>
+            <p class="text-[10px] text-slate-600">Stage 1 (`BA-2026-AV-8921`) · Stage 2 (`BA-2026-TR-5510`) · Stage 3 (`BA-2026-LG-7740`)</p>
+          </div>
+          <button data-action="Bake CLM demo" class="rounded-lg bg-indigo-50 hover:bg-indigo-100 border border-slate-600 px-2.5 py-1 text-[10px] font-semibold text-slate-700 transition">🔄 Reset CLM Only</button>
+        </div>
+
+        <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-2.5 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold text-indigo-900">Stage 1: `BA-2026-AV-8921` (Apex $45M) — Intake, Playbook Diff & SME Routing</span>
+            <div class="flex gap-1.5">
+              <button onclick="copyPrompt('clm-s1', this)" class="rounded bg-indigo-50 hover:bg-indigo-100 px-2 py-1 text-[10px] font-semibold text-indigo-900">📋 Copy</button>
+              <button data-action="Compare the vendor redlined contract for Deal BA-2026-AV-8921 against our Cymbal Playbook and historical precedents in BigQuery, and open the interactive comparison workbench."
+                      class="rounded bg-indigo-100 hover:bg-indigo-200 border border-indigo-300 !text-indigo-900 px-2 py-1 text-[10px] font-semibold text-slate-900">⚡ Run Intake</button>
+              <button data-action="Find the respective SME owners for the redlined clauses on Deal BA-2026-AV-8921, draft the review emails using our standard routing template, and send them out via Outlook."
+                      class="rounded bg-purple-100 hover:bg-purple-200 border border-purple-300 !text-purple-900 px-2 py-1 text-[10px] font-semibold text-slate-900">📧 Route 4 SMEs</button>
+            </div>
+          </div>
+          <pre id="clm-s1" class="prompt-box whitespace-pre-wrap text-[10px] text-slate-700">Compare the vendor redlined contract for Deal BA-2026-AV-8921 against our Cymbal Playbook and historical precedents in BigQuery, open the interactive comparison workbench, and route review emails to the 4 SME owners via Outlook.</pre>
+        </div>
+
+        <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-2.5 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold text-amber-900">Stage 2: `BA-2026-TR-5510` (Vanguard $38M) — Finance vs. Legal `.docx` Conflict</span>
+            <div class="flex gap-1.5">
+              <button onclick="copyPrompt('clm-s2', this)" class="rounded bg-indigo-50 hover:bg-indigo-100 px-2 py-1 text-[10px] font-semibold text-amber-900">📋 Copy</button>
+              <button data-action="Open the Playbook and working document comparison view for Deal BA-2026-TR-5510 (Vanguard Thrust Systems) so I can inspect the conflict between Finance and Legal."
+                      class="rounded bg-amber-100 hover:bg-amber-200 border border-amber-300 !text-amber-900 px-2 py-1 text-[10px] font-semibold text-slate-900">🔍 Inspect</button>
+              <button data-action="Resolve the conflict on Deal BA-2026-TR-5510 so that Legal takes precedence over Finance—enforcing Legal's minimum 1.5x ($57M) liability cap in GP1 §19 and restoring the standard $38M Firm-Fixed-Price schedule in GP1 §3.1—and send an email via Outlook to Finance and Legal confirming that Legal guardrails take precedence."
+                      class="rounded bg-rose-600 hover:bg-rose-500 px-2 py-1 text-[10px] font-semibold text-slate-900">⚖️ Resolve (Legal Wins)</button>
+            </div>
+          </div>
+          <pre id="clm-s2" class="prompt-box whitespace-pre-wrap text-[10px] text-slate-700">Open the Playbook and working document comparison view for Deal BA-2026-TR-5510 (Vanguard Thrust Systems) to inspect the Finance vs. Legal conflict, resolve it so Legal takes precedence over Finance (enforcing the 1.5x / $57M liability cap), and send the resolution email to Finance and Legal.</pre>
+        </div>
+
+        <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-2.5 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold text-emerald-900">Stage 3: `BA-2026-LG-7740` (Meridian $52M) — Final Consolidation & Vendor Dispatch</span>
+            <div class="flex gap-1.5">
+              <button onclick="copyPrompt('clm-s3', this)" class="rounded bg-indigo-50 hover:bg-indigo-100 px-2 py-1 text-[10px] font-semibold text-emerald-900">📋 Copy</button>
+              <button data-action="Accept the recommended 2.0x ($104M) Tier-1 Super-Cap position on GP1 §19 for Deal BA-2026-LG-7740, consolidate the final Counter-Proposal Word document and Deviation Matrix Excel sheet, and send the counter-proposal package back to Debra Berger / Lidia Holloway at Meridian Landing Gear via Outlook."
+                      class="rounded bg-emerald-100 hover:bg-emerald-200 border border-emerald-300 !text-emerald-900 px-2 py-1 text-[10px] font-semibold text-slate-900">📦 Consolidate & Send</button>
+            </div>
+          </div>
+          <pre id="clm-s3" class="prompt-box whitespace-pre-wrap text-[10px] text-slate-700">Accept the recommended 2.0x ($104M) Tier-1 Super-Cap position on GP1 §19 for Deal BA-2026-LG-7740, consolidate the final Counter-Proposal Word document (.docx) and Deviation Matrix Excel sheet (.xlsx), and send the counter-proposal package back to Meridian Landing Gear via Outlook.</pre>
+        </div>
+      </div>
+
+      <div class="rounded-xl border border-slate-200 bg-white p-3.5 space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-900">Playbook 4 (Supplier Forensics) · MFSY 4-Subagent Swarm & Excel Row 37 Repair</span>
+          <button onclick="copyPrompt('b2-p4', this)" class="rounded-lg bg-indigo-100 hover:bg-indigo-200 border border-indigo-300 !text-indigo-900 px-2.5 py-1 text-[11px] font-semibold text-slate-900 transition">📋 Copy Prompt</button>
+        </div>
+        <pre id="b2-p4" class="prompt-box whitespace-pre-wrap rounded-lg bg-stone-50/90 p-2.5 text-[11px] text-indigo-900 border border-slate-200">Launch a 4-subagent forensic due-diligence swarm on MicroFastener Systems (MFSY) across SharePoint, OneDrive, Outlook, and BigQuery (`explore-ai-16f45b99.cymbal_capital`): (1) check our total cross-fund exposure, (2) audit working-capital DSO and factoring anomalies, (3) audit MFSY-model-v14.xlsx for formula errors and repair the valuation, and (4) run a compliance restricted-list pre-check before any action.</pre>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- TAB 4: BOOK 03 — GOOGLE ANTIGRAVITY & 7-PILLAR AGENT PLATFORM       -->
+    <!-- ================================================================== -->
+    <section id="tab-book3" class="hidden space-y-3.5">
+      <div class="rounded-xl border border-purple-200 bg-purple-50/85 p-3">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xs font-bold text-purple-900">🚀 Book 03 · Google Antigravity IDE/CLI/SDK & 7-Pillar Agent Platform</h2>
+          <button onclick="switchTab('storyboards'); selectStoryboard(11);" class="text-[11px] font-semibold text-sky-900 hover:underline">🎬 View Book 03 Storyboard ▶</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="rounded-xl border border-slate-200 bg-white p-3.5 space-y-2">
+          <div class="text-xs font-bold text-slate-900">🎨 Track A · Vibe Coding Slash Commands</div>
+          <div class="space-y-1.5 text-[11px]">
+            <div class="rounded bg-stone-50/90 p-2 border border-slate-200"><code class="text-purple-900 font-bold">/grill-me</code> — Interactive Socratic architecture interview before writing code</div>
+            <div class="rounded bg-stone-50/90 p-2 border border-slate-200"><code class="text-indigo-900 font-bold">/teamwork</code> — Parallel specialist subagents (Backend, Frontend, Adversarial Reviewer)</div>
+            <div class="rounded bg-stone-50/90 p-2 border border-slate-200"><code class="text-emerald-900 font-bold">/browser</code> — Autonomous webview subagent clicking & verifying live UI flows</div>
+            <div class="rounded bg-stone-50/90 p-2 border border-slate-200"><code class="text-amber-900 font-bold">/goal</code> — Autonomous long-running execution until all verification gates pass</div>
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-slate-200 bg-white p-3.5 space-y-2">
+          <div class="text-xs font-bold text-slate-900">📐 Track B · Spec-Driven Development (`Spec to Ship`)</div>
+          <div class="rounded-lg bg-stone-50/90 p-2.5 border border-slate-200 text-[11px] text-slate-700 space-y-1">
+            <div>1. Client Brief → 2. Grill Session → 3. Destination PRD (`issues/prd.md`)</div>
+            <div>4. Vertical Tracer-Bullet Slicing (`issues/NNN-*.md`) → 5. Red-Green-Refactor TDD Loop</div>
+            <div>6. Deep Module Refactor → 7. Adversarial Design Audit → 8. Cloud Run Ship</div>
+          </div>
+          <button data-action="Show me the current status of our Spec to Ship workflow tracker and surface the Spec to Ship sidecar pill."
+                  class="w-full rounded-lg bg-fuchsia-100 hover:bg-fuchsia-200 border border-fuchsia-300 !text-fuchsia-900 px-3 py-2 text-xs font-semibold text-slate-900 transition">
+            🧭 Surface Spec-to-Ship Sidecar Pill
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- TAB 5: LAPTOPS, CREDENTIALS & BOOKMARK BAR MATRIX                  -->
+    <!-- ================================================================== -->
+    <section id="tab-laptops" class="hidden space-y-3.5">
+      <div class="rounded-xl border border-amber-200 bg-amber-50/85 p-3">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xs font-bold text-amber-900">💻 3 Executive Laptops + 2 Tester Accounts Reference</h2>
+          <button onclick="copyText('BoeingExplore$', this)" class="rounded bg-amber-100 border border-amber-300 px-2.5 py-1 text-[11px] font-bold text-amber-900 hover:bg-amber-500/30">
+            🔑 Copy M365 Password: BoeingExplore$
+          </button>
+        </div>
+      </div>
+
+      <div class="rounded-xl border border-slate-200 bg-white p-3.5 space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-900">⚡ One-Command Laptop Provisioning (`Boeing_Exec_Laptop_Kit.zip`)</span>
+          <button onclick="copyPrompt('laptop-cmd', this)" class="rounded-lg bg-indigo-100 hover:bg-indigo-200 border border-indigo-300 !text-indigo-900 px-2.5 py-1 text-[11px] font-semibold text-slate-900 transition">📋 Copy Installer</button>
+        </div>
+        <pre id="laptop-cmd" class="prompt-box whitespace-pre-wrap rounded-lg bg-stone-50/90 p-2.5 text-[11px] text-emerald-900 border border-slate-200">cd ~/Desktop && unzip -q Boeing_Exec_Laptop_Kit.zip -d Boeing_Exec_Laptop_Kit && cd Boeing_Exec_Laptop_Kit
+./install_laptop_skills.sh abhi      # Laptop 1: Abhi Seth (abhi@boeingmsdemo.onmicrosoft.com)
+./install_laptop_skills.sh swapnil   # Laptop 2: Swapnil Srivastava (swapnil@boeingmsdemo.onmicrosoft.com)
+./install_laptop_skills.sh bryan     # Laptop 3: Bryan Grady (bryan@boeingmsdemo.onmicrosoft.com)</pre>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- STICKY BOTTOM DISPATCHER & MULTIMODAL VOICE COMMAND DOCK -->
+  <footer class="fixed bottom-0 inset-x-0 z-40 border-t border-slate-200 bg-white/95 backdrop-blur-md px-4 py-2.5">
+    <div class="flex items-center gap-2">
+      <div data-dispatcher class="flex flex-1 items-center gap-2">
+        <input
+          type="text"
+          data-field-name="Boeing Admin Cockpit"
+          placeholder="Ask Cockpit Agent (e.g., 'Explain SP3 vs GP1', 'Run Stage 2 conflict resolution', 'Bake CLM demo')..."
+          class="flex-1 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none">
+        <button data-dispatcher-send
+                class="rounded-lg bg-indigo-100 hover:bg-indigo-200 border border-indigo-300 !text-indigo-900 px-3 py-1.5 text-xs font-semibold text-slate-900 transition">
+          Send
+        </button>
+      </div>
+      <button
+        data-record-audio
+        data-field-name="Cockpit Voice Command"
+        class="rounded-lg bg-rose-600 hover:bg-rose-500 px-3 py-1.5 text-xs font-semibold text-slate-900 transition shrink-0">
+        🎤 Voice
+      </button>
+    </div>
+  </footer>
+
+  <script>
+    const STORYBOARDS = [
+      {
+        badge: "KNOWLEDGE GAP #1 · AEROSPACE S2P & LEGAL DOMAIN",
+        title: "01. How Aerospace Contract Lifecycle Management (CLM) Actually Works",
+        subtitle: "Bridging the gap for non-procurement executives: What is a GP1/SP3/SP5 proforma stack, and why does generic 'chat-with-PDF' fail on Tier-1 aerospace contracts?",
+        jumpTab: "book2",
+        jumpLabel: "Open Book 02 CLM Playbook ▶",
+        talkTrack: "When a Tier-1 supplier like Apex AeroSystems sends back a redlined contract, a standard chatbot treats it as flat text. In aerospace, a contract is a hierarchical legal stack (GP1 + SP3 + SP5 + SOW Schedule A). Our CLM agent parses native Word OOXML Track Changes, checks our 3-tier Legal Playbook and 64 historical deals in BigQuery, catches cross-clause conflicts across Tax, Finance, and Legal, and outputs an execution-ready Word counter-proposal.",
+        qa: [
+          ["Why can't we just paste the PDF into a standard LLM?", "Standard LLMs lose Word OOXML Track Changes (<w:ins>/<w:del>) and author attribution (<w:comment w:author>), don't know our historical BigQuery precedent win rates, and evaluate clauses in isolation—missing when a tariff edit in SP3 §4.1 pierces the Firm-Fixed-Price ceiling in GP1 §3.1."],
+          ["Does the agent auto-approve redlines or email the vendor?", "Never. Domain skills have strict single-responsibility boundaries: the agent stages drafts in Outlook and records attributed comments in the Working .docx, while human SMEs and the Contract Owner hold the final sign-off gate."]
+        ],
+        frames: [
+          {
+            label: "Frame 1: The GP1 / SP3 / SP5 Stack",
+            html: `
+              <div class="space-y-2.5">
+                <div class="text-xs font-bold text-sky-900">The 4-Layer Aerospace Proforma Hierarchy & Order of Precedence (<code>GP1 §1.1</code>)</div>
+                <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-[11px]">
+                  <div class="rounded-lg border border-emerald-300 bg-emerald-50/90 p-3">
+                    <div class="text-[10px] font-bold text-emerald-900">RANK #1 · INVIOLABLE CEILING</div>
+                    <div class="mt-1 font-bold text-slate-900">GP1 §3.1 + SOW Schedule A</div>
+                    <p class="mt-1 text-slate-700">Locks the <strong>Firm-Fixed-Price (FFP) ceiling</strong> ($45M / $38M / $52M). No uncapped tariff surcharges or price/liability trade-offs allowed without a bilateral Change Order.</p>
+                  </div>
+                  <div class="rounded-lg border border-amber-300 bg-amber-50/90 p-3">
+                    <div class="text-[10px] font-bold text-amber-900">RANK #2 · SPECIAL PROVISION</div>
+                    <div class="mt-1 font-bold text-slate-900">SP3 (Customs & Tariffs)</div>
+                    <p class="mt-1 text-slate-700">Governs DDP Incoterms, Importer of Record, and <code>SP3 §4.1</code> Section 232/301 titanium & wafer tariffs. Overrides GP1 <em>except</em> it cannot breach <code>GP1 §3.1</code>!</p>
+                  </div>
+                  <div class="rounded-lg border border-purple-300 bg-purple-50 p-3">
+                    <div class="text-[10px] font-bold text-purple-900">RANK #2 · SPECIAL PROVISION</div>
+                    <div class="mt-1 font-bold text-slate-900">SP5 (Cyber & DFARS)</div>
+                    <p class="mt-1 text-slate-700">Governs <code>SP5 §3.2</code> DoD <code>DFARS 252.204-7012</code> mandatory 72-hour cyber breach reporting & 90-day forensic log preservation.</p>
+                  </div>
+                  <div class="rounded-lg border border-sky-300 bg-blue-50 p-3">
+                    <div class="text-[10px] font-bold text-indigo-900">RANK #3 · MASTER TERMS</div>
+                    <div class="mt-1 font-bold text-slate-900">GP1 (12 Baseline Clauses)</div>
+                    <p class="mt-1 text-slate-700">Includes <code>GP1 §12.2</code> (36-mo Warranty & unannounced FAA MIDO source inspection) and <code>GP1 §19 & §24</code> (Liability Cap & IP Indemnity).</p>
+                  </div>
+                </div>
+              </div>`
+          },
+          {
+            label: "Frame 2: 5-Stage Agentic CLM Pipeline",
+            html: `
+              <div class="space-y-2.5">
+                <div class="text-xs font-bold text-sky-900">Step-by-Step Flow: From Vendor Redline Email to Consolidated Counter-Proposal</div>
+                <div class="grid grid-cols-1 sm:grid-cols-5 gap-2 text-[11px]">
+                  <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-2.5">
+                    <div class="font-bold text-indigo-800">① OOXML Diff</div>
+                    <p class="mt-1 text-slate-700">Parses native Word <code>&lt;w:ins&gt;</code> &amp; <code>&lt;w:del&gt;</code>. Auto-clears <strong>8 untouched clauses</strong>; highlights <strong>4 redlined clauses</strong>.</p>
+                  </div>
+                  <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-2.5">
+                    <div class="font-bold text-indigo-800">② Playbook + BQ</div>
+                    <p class="mt-1 text-slate-700">Evaluates 3-tier Playbook + queries <strong>64 historical deals in BigQuery</strong> (<code>n=16</code> per clause) for empirical win rates.</p>
+                  </div>
+                  <div class="rounded-lg border border-amber-300 bg-stone-50/90 p-2.5">
+                    <div class="font-bold text-amber-800">③ Conflict Graph</div>
+                    <p class="mt-1 text-slate-700">Flags cross-clause collisions (<code>SP3 §4.1</code> vs <code>GP1 §3.1</code> FFP cap; Finance discount vs Legal floor).</p>
+                  </div>
+                  <div class="rounded-lg border border-purple-300 bg-stone-50/90 p-2.5">
+                    <div class="font-bold text-purple-800">④ SME Routing</div>
+                    <p class="mt-1 text-slate-700">Dispatches targeted Outlook emails to Eng, Legal, Tax &amp; Cyber SMEs + runs <code>/schedule</code> Inbox poller.</p>
+                  </div>
+                  <div class="rounded-lg border border-emerald-300 bg-stone-50/90 p-2.5">
+                    <div class="font-bold text-emerald-800">⑤ Consolidation</div>
+                    <p class="mt-1 text-slate-700">Generates Track-Changes Counter-Proposal <code>.docx</code> + 4-Tab SharePoint Deviation Matrix <code>.xlsx</code>.</p>
+                  </div>
+                </div>
+              </div>`
+          },
+          {
+            label: "Frame 3: Legacy AI vs. True CLM Engine",
+            html: `
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[11px]">
+                <div class="rounded-lg border border-rose-300 bg-rose-50/90 p-3">
+                  <div class="font-bold text-rose-900 mb-1">❌ Legacy "Chat-With-PDF" AI</div>
+                  <ul class="list-disc pl-4 space-y-1 text-slate-700">
+                    <li>Flattens document to plain text—destroys Word Track Changes and margin comments.</li>
+                    <li>Evaluates each clause in a vacuum—misses cross-clause financial &amp; legal traps.</li>
+                    <li>Guesses "market standard" from public internet training data instead of Boeing's signed precedents.</li>
+                    <li>Outputs plain text in chat that lawyers have to manually re-type into Word.</li>
+                  </ul>
+                </div>
+                <div class="rounded-lg border border-emerald-300 bg-emerald-50/90 p-3">
+                  <div class="font-bold text-emerald-900 mb-1">✅ Our OOXML + Playbook + BigQuery CLM Engine</div>
+                  <ul class="list-disc pl-4 space-y-1 text-slate-700">
+                    <li>Reads and writes true Word OOXML (<code>&lt;w:ins&gt;</code>, <code>&lt;w:del&gt;</code>, <code>w:author</code> comments).</li>
+                    <li>Runs deterministic cross-clause dependency checks across Pricing, Tax, and Liability.</li>
+                    <li>Grounds every recommendation in <strong>64 signed Tier-1 precedents in BigQuery</strong>.</li>
+                    <li>Produces an execution-ready <code>.docx</code> and 4-Tab <code>.xlsx</code> Deviation Matrix directly.</li>
+                  </ul>
+                </div>
+              </div>`
+          }
+        ]
+      },
+      {
+        badge: "KNOWLEDGE GAP #2 · 3-DEAL PORTFOLIO CHOREOGRAPHY",
+        title: "02. The 'Cooking Show' 3-Deal CLM Portfolio ($135M Across Stages 1, 2 & 3)",
+        subtitle: "How we demonstrate a multi-day, multi-persona aerospace negotiation lifecycle in 10 minutes without faking state transitions.",
+        jumpTab: "book2",
+        jumpLabel: "Trigger Deals 1–3 Live ▶",
+        talkTrack: "In the real world, routing 4 clauses to Engineering, Legal, Tax, and Cyber SMEs and waiting for them to edit the working Word document takes 24 to 48 hours. Instead of faking instant replies on a single contract, our portfolio has 3 active Tier-1 supplier deals pre-staged at Stage 1 (Fresh Intake), Stage 2 (Mid-Review SME Conflict), and Stage 3 (Final Consolidation).",
+        qa: [
+          ["Are all 3 deals backed by real Word .docx files in SharePoint and Outlook?", "Yes—every deal has its own real OOXML .docx in SharePoint (CymbalAerospace/<Deal-ID>/) and attached to today's seeded emails in Outlook Inbox."],
+          ["Can we also show a live SME review in a second window?", "Yes! On Stage 1 (BA-2026-AV-8921), we can open Window 2 as Tax SME Pradeep Gupta to harmonize SP3 §4.1 with GP1 §3.1 live."]
+        ],
+        frames: [
+          {
+            label: "Frame 1: The 3-Stage Portfolio Map",
+            html: `
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-[11px]">
+                <div class="rounded-lg border border-sky-300 bg-stone-50/90 p-3 space-y-1.5">
+                  <div class="flex justify-between items-center"><span class="rounded bg-sky-100 px-1.5 py-0.5 text-[10px] font-bold text-indigo-900">STAGE 1 · INTAKE</span><span class="font-bold text-slate-900">$45M</span></div>
+                  <div class="font-bold text-slate-900">BA-2026-AV-8921 · Apex AeroSystems</div>
+                  <div class="text-slate-600"><code>FCC-900</code> Flight Control Computers</div>
+                  <p class="text-slate-700 pt-1 border-t border-slate-200"><strong>Demo Action:</strong> Review Adele Vance's email → Upload to SharePoint → Open Progressive-Disclosure Workbench → Route 4 SME emails → Set <code>/schedule</code> Inbox monitor.</p>
+                </div>
+                <div class="rounded-lg border border-amber-300 bg-stone-50/90 p-3 space-y-1.5">
+                  <div class="flex justify-between items-center"><span class="rounded bg-amber-100 px-1.5 py-0.5 text-[10px] font-bold text-amber-900">STAGE 2 · CONFLICT</span><span class="font-bold text-slate-900">$38M</span></div>
+                  <div class="font-bold text-slate-900">BA-2026-TR-5510 · Vanguard Thrust</div>
+                  <div class="text-slate-600"><code>TRA-500</code> Thrust Reverser Actuators</div>
+                  <p class="text-slate-700 pt-1 border-t border-slate-200"><strong>Demo Action:</strong> Inspect Finance (3.5% discount) vs. Legal (1.5x / $57M min cap) war in <code>BA-2026-TR-5510_Working_Review.docx</code> → Resolve so <strong>Legal Wins</strong> → Email Finance &amp; Legal.</p>
+                </div>
+                <div class="rounded-lg border border-emerald-300 bg-stone-50/90 p-3 space-y-1.5">
+                  <div class="flex justify-between items-center"><span class="rounded bg-emerald-100 px-1.5 py-0.5 text-[10px] font-bold text-emerald-900">STAGE 3 · CONSOLIDATE</span><span class="font-bold text-slate-900">$52M</span></div>
+                  <div class="font-bold text-slate-900">BA-2026-LG-7740 · Meridian Gear</div>
+                  <div class="text-slate-600"><code>TLG-800</code> Titanium Main Landing Gear</div>
+                  <p class="text-slate-700 pt-1 border-t border-slate-200"><strong>Demo Action:</strong> Eng, Tax &amp; Cyber SMEs are <code>APPROVED</code>. Accept final 2.0x ($104M) Super-Cap on <code>GP1 §19</code> → Consolidate Counter-Proposal <code>.docx</code> &amp; <code>.xlsx</code> → Send to Vendor.</p>
+                </div>
+              </div>`
+          },
+          {
+            label: "Frame 2: Progressive-Disclosure Workbench UI",
+            html: `
+              <div class="space-y-2 text-[11px]">
+                <div class="text-xs font-bold text-sky-900">Why Our CLM Workbench Uses Minimum-Viable Progressive Disclosure</div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                  <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-3">
+                    <div class="font-bold text-slate-900">Layer 0 · Exception-First View</div>
+                    <p class="mt-1 text-slate-700">Tucks the <strong>8 unmodified Playbook clauses</strong> into a 1-line auto-cleared banner and surfaces <strong>only the 4 redlined statements</strong> needing human judgment.</p>
+                  </div>
+                  <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-3">
+                    <div class="font-bold text-slate-900">Layers 1 &amp; 2 · On-Demand Drawers</div>
+                    <p class="mt-1 text-slate-700">Each clause has 3 independent toggles: <code>📘 Playbook Guidance</code>, <code>📊 Historical Intelligence (n=16)</code>, and <code>⚡ Route / Approve / Counter</code>.</p>
+                  </div>
+                  <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-3">
+                    <div class="font-bold text-slate-900">4 Live Selectable Layouts (A–D)</div>
+                    <p class="mt-1 text-slate-700">Switch live between <strong>Option A</strong> (PR Cards), <strong>Option B</strong> (Clean Doc + Slide-Over), <strong>Option C</strong> (Triage Matrix), and <strong>Option D</strong> (Single-Clause Spotlight).</p>
+                  </div>
+                </div>
+              </div>`
+          }
+        ]
+      },
+      {
+        badge: "KNOWLEDGE GAP #3 · CROSS-CLAUSE CONFLICT ENGINE",
+        title: "03. Cross-Clause Conflict Detection: Tax vs. FFP & Finance vs. Legal",
+        subtitle: "How an edit in one section of an aerospace contract silently breaks a guardrail in another section—and how the agent harmonizes both.",
+        jumpTab: "book2",
+        jumpLabel: "Run Stage 2 Conflict Resolution ▶",
+        talkTrack: "The most expensive mistakes in aerospace procurement happen between clauses, not inside a single clause. When Tax reviews SP3 §4.1 or Finance negotiates a discount in GP1 §3.1, they rarely check whether their edit violates the Firm-Fixed-Price ceiling or Corporate Legal's minimum liability floor. Our engine models the cross-clause dependency graph across the entire document.",
+        qa: [
+          ["How does the Tax harmonization work mathematically on Deal 1 ($45M)?", "Apex wanted 100% pass-through on tariffs >5%. We counter with a 50/50 split above 5%, strictly capped at a maximum aggregate adjustment of +2.0% ($900,000) of the $45M GP1 §3.1 Firm-Fixed-Price ceiling."],
+          ["Why does Legal override Finance on Deal 2 ($38M)?", "On DAL-A flight-critical actuators (TRA-500), Corporate Legal mandates a 1.5x PO ($57M) minimum general liability cap. Trading away $19M of liability protection for a $1.33M (3.5%) unit-price discount is a hard Playbook violation."]
+        ],
+        frames: [
+          {
+            label: "Frame 1: Conflict A (Tax vs. FFP Ceiling)",
+            html: `
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-[11px]">
+                <div class="rounded-lg border border-rose-300 bg-rose-50/90 p-3">
+                  <div class="font-bold text-rose-900">1. Vendor Edit in <code>SP3 §4.1</code></div>
+                  <p class="mt-1 text-slate-700">Apex inserts a <strong>100% uncapped pass-through to Buyer</strong> for any Section 232/301 titanium or wafer tariffs exceeding 5.0%.</p>
+                </div>
+                <div class="rounded-lg border border-amber-300 bg-amber-50/90 p-3">
+                  <div class="font-bold text-amber-900">2. Collision With <code>GP1 §3.1</code></div>
+                  <p class="mt-1 text-slate-700"><code>GP1 §3.1</code> locks SOW Schedule A at a <strong>$45,000,000 Firm-Fixed-Price (FFP) ceiling</strong> and prohibits uncapped tariff surcharges.</p>
+                </div>
+                <div class="rounded-lg border border-emerald-300 bg-emerald-50/90 p-3">
+                  <div class="font-bold text-emerald-900">3. Harmonized Counter (<code>75% Precedent</code>)</div>
+                  <p class="mt-1 text-slate-700"><strong>50/50 shared tariff band</strong> above 5.0%, strictly capped at <strong>+2.0% ($900,000 max)</strong> of the <code>GP1 §3.1</code> FFP ceiling.</p>
+                </div>
+              </div>`
+          },
+          {
+            label: "Frame 2: Conflict B (Finance vs. Legal War)",
+            html: `
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-[11px]">
+                <div class="rounded-lg border border-amber-300 bg-amber-50/90 p-3">
+                  <div class="font-bold text-amber-900">Finance Edit (<code>Diego Siciliani</code>)</div>
+                  <p class="mt-1 text-slate-700">In <code>GP1 §3.1</code> of <code>BA-2026-TR-5510_Working_Review.docx</code>, Finance accepts a <strong>3.5% ($1,330,000) discount</strong> (PO → $36.67M) in exchange for a <strong>1.0x ($38M) Liability Cap</strong>.</p>
+                </div>
+                <div class="rounded-lg border border-rose-300 bg-rose-50/90 p-3">
+                  <div class="font-bold text-rose-900">Legal Edit (<code>Miriam Graham</code>)</div>
+                  <p class="mt-1 text-slate-700">In <code>GP1 §19.1</code>, Corporate Legal enforces the mandatory <strong>1.5x PO ($57,000,000) minimum Liability Cap</strong> (with 2.5x / $95M Super-Cap) and forbids commercial discount trade-offs.</p>
+                </div>
+                <div class="rounded-lg border border-emerald-300 bg-emerald-50/90 p-3">
+                  <div class="font-bold text-emerald-900">Owner Resolution: Legal Wins</div>
+                  <p class="mt-1 text-slate-700">Restores <code>GP1 §3.1</code> to $38.0M FFP, enforces Legal's <strong>1.5x ($57M) cap</strong> in <code>GP1 §19.1</code>, updates Working <code>.docx</code>, and emails both VPs.</p>
+                </div>
+              </div>`
+          }
+        ]
+      },
+      {
+        badge: "KNOWLEDGE GAP #4 · AEROSPACE REGULATIONS",
+        title: "04. Aerospace Regulatory & Airworthiness Lockouts Cheat-Sheet",
+        subtitle: "Quick explainer of the 5 aerospace standards referenced across Book 01 and Book 02 (`14 CFR 21.140`, `PC-700`, `AS9100`, `Form 8130-3`, `DO-254 DAL-A`, `DFARS`).",
+        jumpTab: "book1",
+        jumpLabel: "Go to Book 01 ▶",
+        talkTrack: "Every redline and operational alert in our demo is anchored in real aviation regulations. We don't hold firm on source inspections or 72-hour cyber reporting out of stubbornness—we hold firm because waiving 14 CFR Part 21.140 jeopardizes our FAA Production Certificate PC-700, and waiving DFARS 252.204-7012 violates federal defense contracting law.",
+        qa: [
+          ["What is FAA Form 8130-3 in the BGS Western Hub notebook?", "It is the official FAA Authorized Release Certificate ('Airworthiness Approval Tag') attached to aircraft spare parts. Mismatched heat-lot numbers on paper 8130-3 tags caused ERP to quarantine $14.8M of spares on the Western Hub dock."],
+          ["What does DO-254 DAL-A mean?", "Design Assurance Level A is the highest hardware safety criticality in aviation (where a failure of the FCC-900 Flight Control Computer could cause a catastrophic loss of aircraft)."]
+        ],
+        frames: [
+          {
+            label: "Frame 1: FAA & Airworthiness Rules",
+            html: `
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[11px]">
+                <div class="rounded-lg border border-rose-300 bg-stone-50/90 p-3">
+                  <div class="font-bold text-rose-900">1. <code>14 CFR Part 21.140</code> &amp; FAA <code>PC-700</code> (88% Held Firm)</div>
+                  <p class="mt-1 text-slate-700">Requires <strong>unannounced FAA MIDO &amp; Buyer source inspection access</strong> at Tier-1 suppliers. Apex's request for "30 days' prior written notice" in <code>GP1 §12.2</code> would trigger an immediate FAA Level-1 audit finding.</p>
+                </div>
+                <div class="rounded-lg border border-amber-300 bg-stone-50/90 p-3">
+                  <div class="font-bold text-amber-900">2. <code>AS9100 Rev D</code> &amp; <code>FAA Form 8130-3</code> Tags</div>
+                  <p class="mt-1 text-slate-700">Mandates end-to-end metallurgical heat-lot traceability and ultrasonic non-destructive testing (NDT). Powers both the <strong>Charleston 787 AV-7840 21-day quarantine</strong> and the <strong>BGS Western Hub $14.8M dock hold</strong>.</p>
+                </div>
+              </div>`
+          },
+          {
+            label: "Frame 2: Defense Cyber & Sub-Tier Lead Times",
+            html: `
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[11px]">
+                <div class="rounded-lg border border-purple-300 bg-stone-50/90 p-3">
+                  <div class="font-bold text-purple-900">3. <code>DoD DFARS 252.204-7012</code> (94% Held Firm)</div>
+                  <p class="mt-1 text-slate-700">Mandates <strong>72-hour cyber incident reporting</strong> and 90-day forensic log preservation in <code>SP5 §3.2</code>. Vendor's redline ("10 business days + executive summary only") is a hard federal lockout.</p>
+                </div>
+                <div class="rounded-lg border border-sky-300 bg-stone-50/90 p-3">
+                  <div class="font-bold text-sky-900">4. <code>DO-254 DAL-A</code> &amp; <code>BMS7-323</code> Titanium Qualification</div>
+                  <p class="mt-1 text-slate-700">Switching a 65nm rad-hard SOI wafer foundry takes <strong>9–12 months</strong> of DO-254 regression testing; qualifying a secondary titanium melt source under BMS7-323 takes <strong>14 months</strong> (heavy-press lead times: <strong>52–68 weeks</strong>).</p>
+                </div>
+              </div>`
+          }
+        ]
+      },
+      {
+        badge: "CORE PLAYBOOK CONCEPT · THE 3-BOOK PROGRESSION",
+        title: "05. The 4 Eras of Enterprise AI (Why Book 01 vs. Book 02 vs. Book 03)",
+        subtitle: "How to frame the entire day's workshop around the shift from reactive browser chat to a persistent cloud coworker to an agentic software factory.",
+        jumpTab: "book1",
+        jumpLabel: "Start Book 01 ▶",
+        talkTrack: "Think of today's three books as three distinct eras of how AI works with you. Book 01 (Gemini Enterprise App) is your governed browser assistant—instant search, synthesis, and audio notebooks over M365. Book 02 (Gemini Agent) gives the AI its own cloud computer, terminal, and reusable Skills so it can execute multi-step work asynchronously. Book 03 (Google Antigravity) is where your teams build and ship new agentic software.",
+        qa: [
+          ["When should an employee use Gemini Enterprise App (Book 01) vs. Gemini Agent (Book 02)?", "Use Book 01 in the browser when you need fast answers, research, or a 1-page memo across your emails and SharePoint. Use Book 02 when the AI needs to run Python scripts, audit/build Excel formulas, edit Word OOXML Track Changes, or run background /schedule jobs."],
+          ["Do all three share the same Google Cloud security and M365 permissions?", "Yes—all three run inside explore-ai-16f45b99 and respect your boeingmsdemo.onmicrosoft.com OAuth identity."]
+        ],
+        frames: [
+          {
+            label: "Frame 1: The 4-Era Evolution Matrix",
+            html: `
+              <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-[11px]">
+                <div class="rounded-lg border border-slate-200 bg-indigo-50/50 p-2.5 opacity-75">
+                  <div class="text-[10px] font-bold text-slate-600">ERA 1 · 2023</div>
+                  <div class="font-bold text-slate-700 mt-0.5">Stateless Chatbot</div>
+                  <p class="mt-1 text-slate-600">Manual copy-paste text box. Zero M365 access, no code execution, dies when you close the tab.</p>
+                </div>
+                <div class="rounded-lg border border-sky-300 bg-blue-50 p-2.5">
+                  <div class="text-[10px] font-bold text-indigo-900">ERA 2 · BOOK 01</div>
+                  <div class="font-bold text-slate-900 mt-0.5">Gemini Enterprise App</div>
+                  <p class="mt-1 text-slate-700"><strong>Governed Browser AI:</strong> Live M365 search, Canvas, Deep Research, Audio Notebooks, and <code>@ADK</code> agents.</p>
+                </div>
+                <div class="rounded-lg border border-indigo-300 bg-indigo-50 p-2.5">
+                  <div class="text-[10px] font-bold text-indigo-900">ERA 3 · BOOK 02</div>
+                  <div class="font-bold text-slate-900 mt-0.5">Gemini Agent ("Spark")</div>
+                  <p class="mt-1 text-slate-700"><strong>Coworker With a Computer:</strong> Persistent VM, Python/bash, Skills, 4-subagent swarms, and 24/7 <code>/schedule</code>.</p>
+                </div>
+                <div class="rounded-lg border border-purple-300 bg-purple-50/90 p-2.5">
+                  <div class="text-[10px] font-bold text-purple-900">ERA 4 · BOOK 03</div>
+                  <div class="font-bold text-slate-900 mt-0.5">Google Antigravity</div>
+                  <p class="mt-1 text-slate-700"><strong>Agentic Software Studio:</strong> IDE + CLI + SDK with <code>/grill-me</code>, <code>/teamwork</code>, <code>/browser</code>, and <code>Spec to Ship</code>.</p>
+                </div>
+              </div>`
+          },
+          {
+            label: "Frame 2: Browser vs. Cloud Computer VM",
+            html: `
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[11px]">
+                <div class="rounded-lg border border-sky-300 bg-stone-50/90 p-3">
+                  <div class="font-bold text-indigo-900">📘 Book 01: What Happens in the Browser</div>
+                  <p class="mt-1 text-slate-700">• Instant federated retrieval across Outlook, SharePoint, OneDrive &amp; Google Search.<br>• Side-by-side <strong>Canvas</strong> document drafting.<br>• Multimodal <strong>Enterprise Notebooks</strong> with interactive live voice <em>Join</em>.<br>• Synchronous: works while you are in the tab.</p>
+                </div>
+                <div class="rounded-lg border border-indigo-300 bg-stone-50/90 p-3">
+                  <div class="font-bold text-indigo-900">🤖 Book 02: What the Cloud Computer Unlocks</div>
+                  <p class="mt-1 text-slate-700">• Full Linux container with Python (<code>openpyxl</code>, <code>python-docx</code>, <code>google-cloud-bigquery</code>).<br>• Writes &amp; verifies real Office binaries (<code>.docx</code> Track Changes, <code>.xlsx</code> formulas).<br>• Spawns parallel subagent swarms &amp; runs 24/7 background <code>/schedule</code> jobs even when your laptop is closed.</p>
+                </div>
+              </div>`
+          }
+        ]
+      },
+      {
+        badge: "KNOWLEDGE GAP #5 · AI ARCHITECTURE PRIMITIVES",
+        title: "06. Prompts vs. Memory vs. Skills vs. Projects vs. Subagents vs. MCP",
+        subtitle: "De-confusing the 6 enterprise AI building blocks so executives understand how deterministic code + LLM reasoning fit together.",
+        jumpTab: "book1",
+        jumpLabel: "See Skills in Book 01 ▶",
+        talkTrack: "A prompt is what you type once. Memory is your personal standing preference. A Skill is a packaged SOP (`SKILL.md`) bundled with deterministic Python scripts so the agent doesn't hallucinate math or XML. A Project binds your team's SharePoint folder to those Skills for a recurring meeting. Subagents let you run 4 Skills in parallel without context pollution. And MCP Connectors are the governed pipes into Outlook, SharePoint, and BigQuery.",
+        qa: [
+          ["What is inside a Skill .zip file?", "A SKILL.md instruction manifest plus a scripts/ folder containing real Python utilities (e.g., openpyxl for Excel formula auditing or python-docx for OOXML Track Changes)."],
+          ["Why use Subagents instead of one big prompt?", "When auditing 85 files across 4 silos, a single context window suffers 'attention dilution'. Spawning 4 specialized subagents keeps each worker focused and 4x faster."]
+        ],
+        frames: [
+          {
+            label: "Frame 1: The 6 Primitives Cheat-Sheet",
+            html: `
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-[11px]">
+                <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-2.5"><strong class="text-sky-900">1. Prompt:</strong> One-off instruction in the active chat turn.</div>
+                <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-2.5"><strong class="text-indigo-900">2. Memory:</strong> Standing executive style preferences (e.g. BLUF + FAR/DFARS citations).</div>
+                <div class="rounded-lg border border-emerald-300 bg-stone-50/90 p-2.5"><strong class="text-emerald-900">3. Skill (<code>SKILL.md</code>):</strong> Reusable SOP + deterministic Python scripts (zero math/XML hallucination).</div>
+                <div class="rounded-lg border border-amber-300 bg-stone-50/90 p-2.5"><strong class="text-amber-900">4. Project:</strong> Shared team room binding SharePoint folders + Skills (e.g. Friday AI SteerCo).</div>
+                <div class="rounded-lg border border-purple-300 bg-stone-50/90 p-2.5"><strong class="text-purple-900">5. Subagents:</strong> Parallel isolated workers orchestrated for cross-silo swarms (e.g. MFSY).</div>
+                <div class="rounded-lg border border-indigo-300 bg-stone-50/90 p-2.5"><strong class="text-indigo-900">6. MCP / Connectors:</strong> OAuth ACL-governed pipes to Outlook, SharePoint, OneDrive &amp; BigQuery.</div>
+              </div>`
+          },
+          {
+            label: "Frame 2: Anatomy of a Skill (.zip)",
+            html: `
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-[11px]">
+                <div class="rounded-lg border border-emerald-300 bg-stone-50/90 p-3">
+                  <div class="font-bold text-emerald-900">1. <code>SKILL.md</code> (The Brain)</div>
+                  <p class="mt-1 text-slate-700">YAML frontmatter (<code>name</code>, <code>description</code>) + step-by-step domain rules telling the agent <em>when</em> and <em>how</em> to run its tools.</p>
+                </div>
+                <div class="rounded-lg border border-sky-300 bg-stone-50/90 p-3">
+                  <div class="font-bold text-indigo-900">2. <code>scripts/*.py</code> (The Hands)</div>
+                  <p class="mt-1 text-slate-700">Deterministic Python code (e.g. <code>intake.py</code>, <code>tax_review.py</code>, <code>consolidate.py</code>) that executes exact XML, SQL, and Excel math.</p>
+                </div>
+                <div class="rounded-lg border border-amber-300 bg-stone-50/90 p-3">
+                  <div class="font-bold text-amber-900">3. Portable Across Surfaces</div>
+                  <p class="mt-1 text-slate-700">The exact same Skill package runs in <strong>Gemini Enterprise App</strong>, <strong>Gemini Agent Desktop</strong>, and <strong>Google Antigravity IDE</strong>.</p>
+                </div>
+              </div>`
+          }
+        ]
+      },
+      {
+        badge: "BOOK 01 CH 02 & 03 STORYBOARD · CROSS-SILO SYNTHESIS",
+        title: "07. Book 01 Ch 02 & 03: Charleston 787 Gate-3 Trap & Titanium Deep Research",
+        subtitle: "Visualizing the 'Green Tracker vs. Red Email' contradiction in Charleston and the 18-month Wichita titanium & rad-hard wafer bottleneck.",
+        jumpTab: "book1",
+        jumpLabel: "Copy Book 01 Ch 02–03 Prompts ▶",
+        talkTrack: "In Chapter 02, every executive recognizes the 'Watermelon Status Report'—green on the outside in the SharePoint Excel tracker, red on the inside in unread Outlook emails. Gemini cross-checks the Excel sheet against Nestor Wilke's and Johanna Lorenz's emails and flags two Friday Gate-3 blockers in seconds.",
+        qa: [
+          ["Why was the Charleston Excel tracker still showing GREEN?", "Because Action Item ACTION-01 assigned to Nestor Wilke at last week's AI SteerCo (connecting the automated ultrasonic NDT feed to the tracker) is 3 days overdue!"],
+          ["What are the two exact Charleston Gate-3 blockers?", "(1) AV-7840 Fastener Lot #44-B failed ultrasonic NDT causing a mandatory 21-day quarantine, and (2) 320 of 480 shop-floor OCR tablets are blocked on SAP PO-884920 ($185K), leaving coverage at 33% vs. the 95% (456-station) charter requirement."]
+        ],
+        frames: [
+          {
+            label: "Frame 1: Charleston 'Watermelon' Trap",
+            html: `
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[11px]">
+                <div class="rounded-lg border border-emerald-300 bg-emerald-50/90 p-3">
+                  <div class="font-bold text-emerald-900">📊 SharePoint Tracker (<code>787_Charleston...xlsx</code>)</div>
+                  <p class="mt-1 text-slate-700">• <code>CHS-787-QRC-01</code> (AV-7840 Fasteners): <strong>GREEN — 0 Days Variance</strong><br>• <code>CHS-787-QRC-02</code> (480 OCR Tablets): <strong>GREEN — 100% Provisioned</strong></p>
+                </div>
+                <div class="rounded-lg border border-rose-300 bg-rose-50/90 p-3">
+                  <div class="font-bold text-rose-900">📬 Live Outlook Emails (<code>Nestor</code> &amp; <code>Johanna</code>)</div>
+                  <p class="mt-1 text-slate-700">• <strong>Lot #44-B failed ultrasonic NDT</strong> → mandatory <strong>21-day slip</strong> (must swap to backup Lot #42-A).<br>• <strong>320 of 480 tablets blocked</strong> on SAP <code>PO-884920</code> ($185K) → only 33% live vs. mandatory 95% threshold.</p>
+                </div>
+              </div>`
+          },
+          {
+            label: "Frame 2: Ch 03 Titanium & Wafer Deep Research",
+            html: `
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-[11px]">
+                <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-3">
+                  <div class="font-bold text-sky-900">+28% Titanium Demand</div>
+                  <p class="mt-1 text-slate-700">Post-Wichita aerostructures integration drives +28% internal Ti-6Al-4V closed-die forging demand across 737, 787 &amp; 777X.</p>
+                </div>
+                <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-3">
+                  <div class="font-bold text-amber-900">52–68 Wk Heavy Press</div>
+                  <p class="mt-1 text-slate-700">50,000-ton hydraulic press slots constrained through Q2 2028; <code>BMS7-323</code> melt qualification takes <strong>14 months</strong>.</p>
+                </div>
+                <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-3">
+                  <div class="font-bold text-purple-900">36-Wk Rad-Hard SOI Wafers</div>
+                  <p class="mt-1 text-slate-700"><code>FCC-900</code> relies on single-source 65nm rad-hard SOI ASICs; <code>DO-254 DAL-A</code> re-qualification takes <strong>9–12 months</strong>.</p>
+                </div>
+              </div>`
+          }
+        ]
+      },
+      {
+        badge: "BOOK 01 CH 04, 05 & 06 STORYBOARD",
+        title: "08. Book 01 Ch 04–06: AI SteerCo Gate ($925K), BGS Audio Notebook & @ADK Agents",
+        subtitle: "How the AI SteerCo Skill filters $925K of BU proposals, how the BGS Notebook joins PDFs + Voicemail audio, and how @ADK agents inspect 3D CAD.",
+        jumpTab: "book1",
+        jumpLabel: "Copy Book 01 Ch 04–05 Prompts ▶",
+        talkTrack: "In Chapters 04 to 06, we show how executives govern AI investments using the /ai-steerco-business-case Skill (approving the $420K Shop-Floor OCR project with $3.8M ROI while rejecting two rogue point-tool pilots), then jump into an interactive Audio Notebook on the BGS Western Spares Hub where a voicemail reveals why $14.8M of spares are stuck on the receiving dock.",
+        qa: [
+          ["What is the financial punchline in the BGS Western Spares Hub notebook?", "Continuing the $3.2M expedited air-freight bridge while 6 DER engineers clear the $14.8M dock quarantine avoids $19.4M in mandatory airline AOG penalties—a net protection of +$16.2M (6.1x ROI)."],
+          ["Which part families stock out first at Western Hub?", "737 MAX Thrust Reverser Actuators (TRA-500) in 36 hours, followed by 787 Flight Control LRU housings (AV-7840) in 48 hours."]
+        ],
+        frames: [
+          {
+            label: "Frame 1: Ch 04 AI SteerCo ($925K Intake)",
+            html: `
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-[11px]">
+                <div class="rounded-lg border border-emerald-300 bg-emerald-50/90 p-2.5">
+                  <div class="font-bold text-emerald-900">✅ APPROVE: PROP-2026-Q4-01 ($420K)</div>
+                  <p class="mt-1 text-slate-700"><strong>Shop-Floor &amp; BGS Receiving OCR:</strong> 480 daily mechanics, clears $14.8M BGS hold, <strong>$3.8M 90-day ROI</strong>, Steward: <code>Johanna Lorenz</code>.</p>
+                </div>
+                <div class="rounded-lg border border-rose-300 bg-rose-50/90 p-2.5">
+                  <div class="font-bold text-rose-900">❌ REJECT: PROP-2026-Q4-02 ($310K)</div>
+                  <p class="mt-1 text-slate-700"><strong>Supplier Portal FAQ Bot #9:</strong> Rogue 3P vector DB point tool, duplicates S2P CLM, zero safety impact, no Data Steward.</p>
+                </div>
+                <div class="rounded-lg border border-rose-300 bg-rose-50/90 p-2.5">
+                  <div class="font-bold text-rose-900">❌ REJECT: PROP-2026-Q4-03 ($195K)</div>
+                  <p class="mt-1 text-slate-700"><strong>Read-Only KPI Dashboard #14:</strong> &lt;15 passive viewers, duplicates Gemini Canvas, no operational loop, no Data Steward.</p>
+                </div>
+              </div>`
+          },
+          {
+            label: "Frame 2: Ch 05 BGS Western Spares Hub",
+            html: `
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-[11px]">
+                <div class="rounded-lg border border-rose-300 bg-stone-50/90 p-2.5">
+                  <div class="font-bold text-rose-900">1. The 81.2% Fill-Rate Drop</div>
+                  <p class="mt-1 text-slate-700">Dallas (98.6%), Atlanta (98.2%), Frankfurt (97.9%) vs. <strong>Western Hub at 81.2%</strong> with <strong>$14.8M (112 pallets)</strong> locked on the dock.</p>
+                </div>
+                <div class="rounded-lg border border-amber-300 bg-stone-50/90 p-2.5">
+                  <div class="font-bold text-amber-900">2. Voicemail Root Cause</div>
+                  <p class="mt-1 text-slate-700">3 Tier-2 suppliers shipped paper <code>Form 8130-3</code> certs with mismatched heat-lot tags after ERP upgrade. <code>TRA-500</code> stocks out in <strong>36 hrs</strong>; <code>AV-7840</code> in <strong>48 hrs</strong>.</p>
+                </div>
+                <div class="rounded-lg border border-emerald-300 bg-stone-50/90 p-2.5">
+                  <div class="font-bold text-emerald-900">3. CFO Trade-Off (+$16.2M Net)</div>
+                  <p class="mt-1 text-slate-700"><strong>$3.2M</strong> expedited air-freight bridge prevents <strong>$19.4M</strong> in airline AOG SLA penalties across 14 grounded tails (<strong>6.1x ROI</strong>).</p>
+                </div>
+              </div>`
+          }
+        ]
+      },
+      {
+        badge: "BOOK 02 PLAYBOOKS 1 & 2 STORYBOARD",
+        title: "09. Book 02 Playbooks 1 & 2: Doc-to-Skill Compilation & Deterministic Excel",
+        subtitle: "How uploading a Word SOP compiles a reusable Chief of Staff skill, and how Gemini Agent writes native Excel formulas from a 10-Q PDF.",
+        jumpTab: "book2",
+        jumpLabel: "Go to Book 02 Playbooks 1–2 ▶",
+        talkTrack: "In Book 02 Playbook 1, an executive doesn't write code to build a Skill—they upload a 2-page Word document describing how they want their Chief of Staff to triage their morning. Gemini Agent compiles that Word doc into a reusable Skill, catches Joni Sherman's unclosed meeting notes from yesterday, and stages follow-up drafts in Outlook. In Playbook 2, it reads a 10-Q PDF and writes a real Python openpyxl script to output an Excel workbook with live formulas.",
+        qa: [
+          ["What are the 3 unclosed verbal commitments in Joni Sherman's meeting notes email?", "(1) Diego Siciliani & Johanna Lorenz releasing SAP PO-884920 ($185K) for the 320 Charleston OCR tablets, (2) Lee Gu & Megan Bowen holding firm on GP1 §12.2 while offering the 2.0x ($90M) Super-Cap on BA-2026-AV-8921 before 1:30 PM, and (3) Diego retiring 4 legacy S2P contract tools for $1.4M/yr savings."],
+          ["Are the cells in the exported 10-Q Excel sheet real formulas?", "Yes—every sum, YoY growth percentage, and operating margin cell is a live Excel formula (=SUM, =(C5-B5)/B5), never hardcoded text."]
+        ],
+        frames: [
+          {
+            label: "Frame 1: Word SOP → Reusable Skill",
+            html: `
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-[11px]">
+                <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-3">
+                  <div class="font-bold text-indigo-900">① Upload Word Spec</div>
+                  <p class="mt-1 text-slate-700">Upload <code>Digital_Chief_of_Staff_Agent.docx</code> → Agent compiles reusable <code>SKILL.md</code> in workspace.</p>
+                </div>
+                <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-3">
+                  <div class="font-bold text-indigo-900">② Audit Inbox + Calendar</div>
+                  <p class="mt-1 text-slate-700">Synthesizes today's 1:30 PM &amp; 4:00 PM gates + spots Joni Sherman's unclosed meeting notes from yesterday.</p>
+                </div>
+                <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-3">
+                  <div class="font-bold text-emerald-900">③ Assign Owners &amp; Stage Drafts</div>
+                  <p class="mt-1 text-slate-700">Logs 3 action items with explicit owners/dates and creates real follow-up drafts in Outlook <code>Drafts</code>.</p>
+                </div>
+              </div>`
+          },
+          {
+            label: "Frame 2: 10-Q PDF → Live Formula .xlsx",
+            html: `
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[11px]">
+                <div class="rounded-lg border border-rose-300 bg-rose-50/90 p-3">
+                  <div class="font-bold text-rose-900">❌ Why Chatbots Fail at Financial Modeling</div>
+                  <p class="mt-1 text-slate-700">Standard chatbots output markdown tables with dead, rounded text numbers. If an analyst changes one assumption, nothing updates.</p>
+                </div>
+                <div class="rounded-lg border border-emerald-300 bg-emerald-50/90 p-3">
+                  <div class="font-bold text-emerald-900">✅ How Gemini Agent Builds Real Models</div>
+                  <p class="mt-1 text-slate-700">Extracts segment tables from <code>Alphabet_Q3_2026_Form_10-Q.pdf</code> and executes Python <code>openpyxl</code> on its cloud computer to write live <code>=SUM()</code> and margin formulas.</p>
+                </div>
+              </div>`
+          }
+        ]
+      },
+      {
+        badge: "BOOK 02 PLAYBOOK 4 STORYBOARD · PARALLEL SWARM",
+        title: "10. Book 02 Playbook 4: The 4-Subagent `MFSY` Supplier Forensic Swarm",
+        subtitle: "How 4 parallel subagents join BigQuery ($144.17M exposure), credit DSO (+7.81 Z-score), OneDrive Excel Row 37 (+$15M bug), and MNPI compliance.",
+        jumpTab: "book2",
+        jumpLabel: "Go to MFSY Swarm Prompt ▶",
+        talkTrack: "When evaluating a critical fastener supplier like MicroFastener Systems (MFSY), the warning signs are scattered across four silos: BigQuery exposure tables, credit footnotes, shipping logs, and an analyst's Excel model in OneDrive. Our orchestrator spawns 4 parallel subagents, catches a +$15M formula error on Row 37 of MFSY-model-v14.xlsx, repairs the target price to $46/sh, and then halts execution at the Legal Compliance Gate because MNPI_AFFILIATE_ENGAGEMENT is active.",
+        qa: [
+          ["What is the exact formula error planted in MFSY-model-v14.xlsx?", "On Row 37 of the Valuation tab, Junior Analyst Alex Wilber wrote =E35+E36 instead of subtracting the $7.5M adjustment (creating a +$15.0M valuation swing). The subagent fixes the formula and recalculates $46/share."],
+          ["Why does the agent refuse to execute the trade at the end?", "Because Subagent 4 queries the Compliance Restricted List and detects an active MNPI_AFFILIATE_ENGAGEMENT block—proving the agent enforces hard governance gates."]
+        ],
+        frames: [
+          {
+            label: "Frame 1: The 4 Parallel Subagents",
+            html: `
+              <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-[11px]">
+                <div class="rounded-lg border border-sky-300 bg-stone-50/90 p-2.5">
+                  <div class="font-bold text-indigo-900">Subagent 1 · BigQuery</div>
+                  <p class="mt-1 text-slate-700">Queries <code>cymbal_capital</code> → reveals <strong>$144.17M total exposure</strong> across Core Equity &amp; Opportunities funds.</p>
+                </div>
+                <div class="rounded-lg border border-amber-300 bg-stone-50/90 p-2.5">
+                  <div class="font-bold text-amber-900">Subagent 2 · Credit &amp; Port</div>
+                  <p class="mt-1 text-slate-700">Spots <strong><code>+7.81</code> DSO Z-score anomaly</strong> (off-balance-sheet factoring) + Maersk customs shipment drop.</p>
+                </div>
+                <div class="rounded-lg border border-emerald-300 bg-stone-50/90 p-2.5">
+                  <div class="font-bold text-emerald-900">Subagent 3 · Excel Audit</div>
+                  <p class="mt-1 text-slate-700">Audits <code>MFSY-model-v14.xlsx</code> → fixes <strong>Row 37 <code>=E35+E36</code> (+$15M error)</strong> → repairs price to <strong>$46/sh</strong>.</p>
+                </div>
+                <div class="rounded-lg border border-rose-300 bg-stone-50/90 p-2.5">
+                  <div class="font-bold text-rose-900">Subagent 4 · Compliance</div>
+                  <p class="mt-1 text-slate-700">Triggers hard <strong><code>MNPI_AFFILIATE_ENGAGEMENT</code></strong> block, halting trade &amp; escalating to Legal Counsel Joni Sherman.</p>
+                </div>
+              </div>`
+          },
+          {
+            label: "Frame 2: Row 37 Formula Bug & MNPI Gate",
+            html: `
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[11px]">
+                <div class="rounded-lg border border-amber-300 bg-amber-50/90 p-3">
+                  <div class="font-bold text-amber-900">🔬 Forensic Catch: Row 37 in <code>MFSY-model-v14.xlsx</code></div>
+                  <p class="mt-1 text-slate-700">• <strong>Planted Bug:</strong> Cell <code>E37</code> uses <code>=E35+E36</code> instead of subtracting the $7.5M factoring liability, overstating equity value by <strong>+$15.0M</strong>.<br>• <strong>Live Repair:</strong> Subagent 3 rewrites the formula, recalculates via Python, and lowers implied value to <strong>$46.00/sh</strong>.</p>
+                </div>
+                <div class="rounded-lg border border-rose-300 bg-rose-50/90 p-3">
+                  <div class="font-bold text-rose-900">🛑 Enterprise Governance Gate: <code>MNPI_AFFILIATE_ENGAGEMENT</code></div>
+                  <p class="mt-1 text-slate-700">• Even when financial forensics say "Sell/De-risk immediately", Subagent 4 checks Joni Sherman's Restricted List first.<br>• Automatically blocks order staging due to active affiliate advisory MNPI.</p>
+                </div>
+              </div>`
+          }
+        ]
+      },
+      {
+        badge: "KNOWLEDGE GAP #6 · CISO & CFO ENTERPRISE GUARDRAILS",
+        title: "11. The 7-Pillar GCP Agent Platform Security & CFO Control Plane",
+        subtitle: "How to answer every Boeing CISO, Legal, and CFO question on identity attestation, ACL pass-through, Model Armor, DLP, and spend caps.",
+        jumpTab: "book3",
+        jumpLabel: "Open 7-Pillar Console Links ▶",
+        talkTrack: "No agent goes to production at Boeing unless the CISO and CFO sign off. Our 7-Pillar architecture in explore-ai-16f45b99 enforces: (1) Agent Registry inventory, (2) Entra ID OAuth ACL pass-through so the agent only sees what you can see, (3) IAP + CEL tool-parameter guardrails, (4) Model Armor & Cloud DLP inline redaction, (5) gVisor sandbox isolation, (6) OTLP Dual Audit Trails, and (7) CFO token budgets & multi-model routing.",
+        qa: [
+          ["Can an agent read a SharePoint file that the logged-in user doesn't have permission to view?", "No. The M365 connectors use per-user OAuth token pass-through—Microsoft Graph enforces the exact same SharePoint and Outlook ACLs as if the user clicked the file in Chrome."],
+          ["How do we prevent prompt injection from an external vendor email?", "Model Armor and Cloud DLP inspect both incoming untrusted content (like external emails/PDFs) and outgoing tool calls before execution."]
+        ],
+        frames: [
+          {
+            label: "Frame 1: The 7 Defense-in-Depth Pillars",
+            html: `
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px]">
+                <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-2.5"><strong class="text-sky-900">1. Agent Registry:</strong> Verified <code>TOOL_SPEC</code> catalog in Vertex AI.</div>
+                <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-2.5"><strong class="text-indigo-900">2. OAuth Pass-Through:</strong> Enforces user's Entra ID ACLs in M365.</div>
+                <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-2.5"><strong class="text-indigo-900">3. IAP + CEL Guards:</strong> Fine-grained tool &amp; parameter conditions.</div>
+                <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-2.5"><strong class="text-rose-900">4. Model Armor + DLP:</strong> Inline prompt-injection &amp; ITAR/PII shield.</div>
+                <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-2.5"><strong class="text-emerald-900">5. gVisor Sandbox:</strong> Isolated cloud VM with governed egress.</div>
+                <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-2.5"><strong class="text-amber-900">6. OTLP Audit Trail:</strong> Every prompt, tool call &amp; token logged.</div>
+                <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-2.5 col-span-2"><strong class="text-purple-900">7. CFO Spend Caps &amp; Evals:</strong> Per-project budgets, Flash/Pro routing &amp; continuous golden-set EvaluationRuns.</div>
+              </div>`
+          },
+          {
+            label: "Frame 2: CISO vs. CFO Control Guarantees",
+            html: `
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[11px]">
+                <div class="rounded-lg border border-sky-300 bg-stone-50/90 p-3">
+                  <div class="font-bold text-sky-900">🔒 For the CISO (Zero Trust &amp; Data Sovereignty)</div>
+                  <p class="mt-1 text-slate-700">• Customer data never trains foundation models.<br>• Attested Agent Identity + user OAuth pass-through prevents privilege escalation.<br>• Model Armor Floor Settings block jailbreaks &amp; sensitive data exfiltration.</p>
+                </div>
+                <div class="rounded-lg border border-emerald-300 bg-stone-50/90 p-3">
+                  <div class="font-bold text-emerald-900">💰 For the CFO (Predictable Unit Economics)</div>
+                  <p class="mt-1 text-slate-700">• Hard per-department token &amp; spend quotas.<br>• Dynamic model routing: <code>Gemini 2.5 Flash</code> for high-volume extraction, <code>Gemini 2.5 Pro</code> for deep multi-clause reasoning.</p>
+                </div>
+              </div>`
+          }
+        ]
+      },
+      {
+        badge: "BOOK 03 STORYBOARD · AGENTIC SOFTWARE ENGINEERING",
+        title: "12. Book 03: Google Antigravity — Vibe Coding vs. `Spec to Ship` (8 Phases)",
+        subtitle: "How teams go from rapid 0-to-1 Vibe Coding (`/grill-me`, `/teamwork`, `/browser`, `/goal`) to rigorous 8-phase Spec-Driven Development.",
+        jumpTab: "book3",
+        jumpLabel: "Open Book 03 Controls ▶",
+        talkTrack: "In Book 03, we show how Google Antigravity transforms software and agent engineering. When exploring a new idea or iterating V1 to V2, you can Vibe Code with /grill-me, /teamwork, and /browser. When building mission-critical production systems, the Spec-to-Ship plugin enforces an 8-phase engineering runway: locking the PRD first, slicing into vertical tracer-bullet Kanban tickets, running a strict Red-Green-Refactor TDD loop, deepening modules, and auditing UI compliance before shipping to Cloud Run.",
+        qa: [
+          ["What is the difference between horizontal slicing and vertical tracer-bullet slicing in Phase 4?", "Horizontal slicing builds all DB tables first, then all APIs, then UI—so nothing works until the end. Vertical tracer-bullet slicing cuts narrow end-to-end features (DB + API + UI + test) so every ticket produces a working, verifiable increment."],
+          ["How does /browser verify the app?", "Antigravity spawns a sandboxed browser subagent that opens localhost, clicks through the live UI, inspects DOM/console state, and verifies visual rendering."]
+        ],
+        frames: [
+          {
+            label: "Frame 1: Two Velocities (Vibe vs. Spec-to-Ship)",
+            html: `
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[11px]">
+                <div class="rounded-lg border border-purple-300 bg-purple-50/90 p-3">
+                  <div class="font-bold text-purple-900">⚡ Track A: Vibe Coding (Rapid Exploration)</div>
+                  <p class="mt-1 text-slate-700">• <code>/grill-me</code>: Socratic interview to resolve ambiguities.<br>• <code>/teamwork</code>: Parallel subagents building UI &amp; backend.<br>• <code>/browser</code>: Live webview agent clicking &amp; testing the app.<br>• <code>/goal</code>: Autonomous loop until all checks pass.</p>
+                </div>
+                <div class="rounded-lg border border-sky-300 bg-blue-50 p-3">
+                  <div class="font-bold text-indigo-900">📐 Track B: <code>Spec to Ship</code> (8-Phase Production Runway)</div>
+                  <p class="mt-1 text-slate-700">① Client Brief → ② Grill Session → ③ Locked PRD (<code>issues/prd.md</code>) → ④ Vertical Tracer-Bullet Kanban (<code>issues/NNN-*.md</code>) → ⑤ Red-Green-Refactor TDD → ⑥ Deep Module Refactor → ⑦ Adversarial M3 Design Audit → ⑧ Cloud Run Ship.</p>
+                </div>
+              </div>`
+          },
+          {
+            label: "Frame 2: Deep Modules & Adversarial QA",
+            html: `
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-[11px]">
+                <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-3">
+                  <div class="font-bold text-sky-900">1. Vertical Tracer-Bullets</div>
+                  <p class="mt-1 text-slate-700">Every Kanban ticket in <code>issues/</code> cuts end-to-end through schema, backend logic, UI, and integration test.</p>
+                </div>
+                <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-3">
+                  <div class="font-bold text-emerald-900">2. Deep Modules (Ousterhout)</div>
+                  <p class="mt-1 text-slate-700">Simple, narrow public interfaces hiding rich domain logic so boundary tests stay resilient to internal refactors.</p>
+                </div>
+                <div class="rounded-lg border border-slate-200 bg-stone-50/90 p-3">
+                  <div class="font-bold text-amber-900">3. Adversarial Design Auditor</div>
+                  <p class="mt-1 text-slate-700">Starts at 10/10 and deducts points for layout, contrast, or padding flaws in the live browser before shipping.</p>
+                </div>
+              </div>`
+          }
+        ]
+      }
+    ];
+
+    let currentSbIndex = 0;
+    let currentFrameIndex = 0;
+
+    function renderActiveStoryboard() {
+      const sb = STORYBOARDS[currentSbIndex];
+      const stage = document.getElementById('storyboard-stage');
+      if (!stage || !sb) return;
+
+      const frameButtonsHtml = sb.frames.map((f, idx) => `
+        <button onclick="selectFrame(${idx})" class="frame-btn ${idx === currentFrameIndex ? 'active' : ''} rounded-lg border border-slate-200 bg-stone-50/90 px-2.5 py-1 text-[11px] font-semibold text-slate-700 transition">
+          ${f.label}
+        </button>
+      `).join('');
+
+      const activeFrame = sb.frames[currentFrameIndex] || sb.frames[0];
+
+      const qaHtml = sb.qa.map(([q, a]) => `
+        <div class="rounded-lg border border-slate-200 bg-amber-50/50 p-2.5">
+          <div class="font-bold text-amber-900 text-[11px]">❓ Q: "${q}"</div>
+          <div class="mt-1 text-slate-700 text-[11px]"><strong class="text-emerald-900">A:</strong> ${a}</div>
+        </div>
+      `).join('');
+
+      stage.innerHTML = `
+        <div class="flex flex-wrap items-start justify-between gap-2 border-b border-slate-200 pb-3">
+          <div>
+            <span class="rounded bg-sky-100 border border-sky-300 px-2 py-0.5 text-[10px] font-bold text-sky-900">${sb.badge}</span>
+            <h3 class="mt-1 text-base font-bold text-slate-900">${sb.title}</h3>
+            <p class="text-xs text-slate-600">${sb.subtitle}</p>
+          </div>
+          <button onclick="switchTab('${sb.jumpTab}')" class="rounded-lg bg-indigo-100 hover:bg-indigo-200 border border-indigo-300 !text-indigo-900 px-3 py-1.5 text-xs font-semibold text-slate-900 transition shrink-0">
+            ${sb.jumpLabel}
+          </button>
+        </div>
+
+        <!-- FRAME STEPPER BAR -->
+        <div class="flex flex-wrap items-center justify-between gap-2 bg-indigo-50/50 rounded-lg p-2 border border-slate-200">
+          <div class="flex flex-wrap gap-1.5">
+            ${frameButtonsHtml}
+          </div>
+          <span class="text-[10px] text-slate-600 font-mono">Frame ${currentFrameIndex + 1} of ${sb.frames.length}</span>
+        </div>
+
+        <!-- ACTIVE VISUAL STORYBOARD FRAME -->
+        <div class="py-1">
+          ${activeFrame.html}
+        </div>
+
+        <!-- PRESENTER TALK TRACK & EXEC Q&A DEFENSE -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-200">
+          <div class="rounded-xl border border-sky-200 bg-sky-50/85 p-3">
+            <div class="text-xs font-bold text-indigo-900 mb-1">🎙️ Rahul's 30-Second Executive Talk Track</div>
+            <p class="text-[11px] text-slate-700 leading-relaxed">"${sb.talkTrack}"</p>
+          </div>
+          <div class="space-y-2">
+            ${qaHtml}
+          </div>
+        </div>
+      `;
+
+      // Update pills & counter
+      for (let i = 0; i < STORYBOARDS.length; i++) {
+        const pill = document.getElementById('sb-pill-' + i);
+        if (pill) pill.classList.toggle('active', i === currentSbIndex);
+      }
+      const counter = document.getElementById('sb-counter');
+      if (counter) {
+        counter.innerText = String(currentSbIndex + 1).padStart(2, '0') + ' / ' + String(STORYBOARDS.length).padStart(2, '0');
+      }
+    }
+
+    function selectStoryboard(idx) {
+      currentSbIndex = (idx + STORYBOARDS.length) % STORYBOARDS.length;
+      currentFrameIndex = 0;
+      renderActiveStoryboard();
+    }
+
+    function selectFrame(fIdx) {
+      currentFrameIndex = fIdx;
+      renderActiveStoryboard();
+    }
+
+    function nextStoryboard() {
+      selectStoryboard(currentSbIndex + 1);
+    }
+
+    function prevStoryboard() {
+      selectStoryboard(currentSbIndex - 1);
+    }
+
+    function switchTab(tabId) {
+      const tabs = ['preflight', 'storyboards', 'book1', 'book2', 'book3', 'laptops'];
+      tabs.forEach(t => {
+        const sec = document.getElementById('tab-' + t);
+        const btn = document.getElementById('tab-btn-' + t);
+        if (sec) sec.classList.toggle('hidden', t !== tabId);
+        if (btn) btn.classList.toggle('active', t === tabId);
+      });
+    }
+
+    function copyPrompt(preId, btn) {
+      const el = document.getElementById(preId);
+      if (!el) return;
+      navigator.clipboard.writeText(el.innerText.trim());
+      const orig = btn.innerText;
+      btn.innerText = '✓ Copied!';
+      setTimeout(() => { btn.innerText = orig; }, 1600);
+    }
+
+    function copyText(txt, btn) {
+      navigator.clipboard.writeText(txt);
+      const orig = btn.innerText;
+      btn.innerText = '✓ Copied: ' + txt;
+      setTimeout(() => { btn.innerText = orig; }, 1600);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      const sb = STORYBOARDS[currentSbIndex];
+      if (e.key === 'ArrowRight') {
+        if (sb && currentFrameIndex < sb.frames.length - 1) selectFrame(currentFrameIndex + 1);
+        else nextStoryboard();
+      } else if (e.key === 'ArrowLeft') {
+        if (currentFrameIndex > 0) selectFrame(currentFrameIndex - 1);
+        else prevStoryboard();
+      }
+    });
+
+    function openClmWorkbench() {
+      const u = new URL(window.location.href);
+      if (u.port === '8847') {
+        window.open('http://127.0.0.1:58921/workbench?view=clm', '_blank');
+      } else {
+        u.pathname = '/workbench';
+        u.searchParams.set('view', 'clm');
+        window.location.href = u.toString();
+      }
+    }
+
+    async function dispatchToAgent(messageText, el) {
+      if (el) el.setAttribute('data-pending-state', 'processing');
+      try {
+        if (window.sidecar && window.sidecar.agent && typeof window.sidecar.agent.sendMessage === 'function') {
+          await window.sidecar.agent.sendMessage(messageText);
+        } else {
+          await fetch('http://127.0.0.1:58921/_sidecar/send-message', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: messageText })
+          });
+        }
+      } catch (err) {
+        console.warn('Agent dispatch notice:', err);
+      } finally {
+        setTimeout(() => {
+          if (el) el.removeAttribute('data-pending-state');
+        }, 1200);
+      }
+    }
+
+    // Bind [data-action] and [data-dispatcher-send] elements for Sidecar + Browser mode
+    document.querySelectorAll('[data-action]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (window.__antigravityCanvas) return; // handled by native canvas if present
+        const id = btn.id || 'action';
+        const label = btn.innerText.trim();
+        dispatchToAgent(`[Cockpit Action: ${id}] ${label}`, btn);
+      });
+    });
+
+    document.querySelectorAll('[data-dispatcher-send]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (window.__antigravityCanvas) return;
+        const container = btn.closest('[data-dispatcher]');
+        if (!container) return;
+        const input = container.querySelector('[data-dispatcher-input]');
+        if (!input || !input.value.trim()) return;
+        const id = container.id || 'dispatcher';
+        const val = input.value.trim();
+        input.value = '';
+        dispatchToAgent(`[Cockpit Dispatcher: ${id}] ${val}`, container);
+      });
+    });
+
+    // Initialize on load
+    renderActiveStoryboard();
+  </script>
+</body>
+</html>

@@ -341,6 +341,10 @@ class StorybookHandler(http.server.BaseHTTPRequestHandler):
             self._send_html_file(ROOT / "index.html", 200)
             return
 
+        if route in ("/cockpit", "/cockpit.html"):
+            self._send_html_file(ROOT / "cockpit.html", 200)
+            return
+
         if route == "/feedback":
             if not self._is_authenticated():
                 self.send_response(302)
