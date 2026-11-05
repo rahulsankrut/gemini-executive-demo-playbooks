@@ -1,0 +1,62 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 1466 >>
+stream
+BT
+/F1 14 Tf
+50 750 Td
+(Western Spares Hub Receiving Hold Root-Cause & Voicemail Transcript Audit) Tj
+/F1 10 Tf
+0 -24 Td
+(Audit ID: BGS-WEST-2026-AOG | Source: Western Hub Director Voicemail & Receiving Dock Inspection) Tj
+0 -15 Td
+(1. Root Cause of the $14.8M Western Hub Receiving Hold \(Voicemail Timestamp 00:42 - 01:35\):) Tj
+0 -15 Td
+(   - Physical spares inventory IS sitting on the Western Hub receiving dock \($14.8M across 112 pallets\).) Tj
+0 -15 Td
+(   - However, ERP receiving locked the lots in quarantine because 3 Tier-2 sub-suppliers shipped paper) Tj
+0 -15 Td
+(     AS9100 Form 8130-3 airworthiness tags with mismatched heat-lot numbers after the ERP schema upgrade.) Tj
+0 -15 Td
+(2. Voicemail Timestamp 01:36 - 02:18 \(Buffer Stock Exhaustion Order\):) Tj
+0 -15 Td
+(   - 737 Thrust Reverser Actuators \(TRA-500\) exhaust buffer stock in 36 hours \(first to stock out\).) Tj
+0 -15 Td
+(   - 787 Flight Control LRU housings \(AV-7840\) exhaust buffer stock in 48 hours \(second to stock out\).) Tj
+0 -15 Td
+(3. COO Rebuttal if Finance Proposes Freezing the $3.2M Expedited Air-Freight Budget:) Tj
+0 -15 Td
+(   - Freezing the $3.2M air-freight bridge while $14.8M of dock inventory is cleared will trigger $19.4M) Tj
+0 -15 Td
+(     in mandatory airline AOG penalties within 72 hours. Deploy 6 DER quality engineers + OCR cert) Tj
+0 -15 Td
+(     validation this weekend to release the $14.8M dock hold and sunset air-freight in 10 days.) Tj
+0 -15 Td
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000311 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1829
+%%EOF

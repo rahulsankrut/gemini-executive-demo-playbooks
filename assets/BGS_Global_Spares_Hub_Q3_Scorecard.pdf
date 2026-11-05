@@ -1,0 +1,64 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 1456 >>
+stream
+BT
+/F1 14 Tf
+50 750 Td
+(BGS Global Spares Hub Q3 Operational Scorecard) Tj
+/F1 10 Tf
+0 -24 Td
+(Prepared by: Boeing Global Services \(BGS\) Supply Chain & Spares Operations) Tj
+0 -15 Td
+(1. Regional Spares Fill-Rate Comparison \(Q3 Actuals\):) Tj
+0 -15 Td
+(   - Central Spares Hub \(Dallas\): 98.6% AOG Fill Rate | Avg Dispatch: 3.8 hrs | Receiving Hold: $0.9M) Tj
+0 -15 Td
+(   - Eastern Spares Hub \(Atlanta\): 98.2% AOG Fill Rate | Avg Dispatch: 4.1 hrs | Receiving Hold: $1.1M) Tj
+0 -15 Td
+(   - European Spares Hub \(Frankfurt\): 97.9% AOG Fill Rate | Avg Dispatch: 4.4 hrs | Receiving Hold: $1.3M) Tj
+0 -15 Td
+(   - Western Spares Hub \(Los Angeles / Seattle\): 81.2% AOG Fill Rate \(CRITICAL DROP\) | Receiving Hold: $14.8M) Tj
+0 -15 Td
+(2. Part Families Running Out of Buffer Stock First at Western Hub:) Tj
+0 -15 Td
+(   - 737 MAX Thrust Reverser Electro-Hydraulic Actuators \(Part Family TRA-500\): 1.5 days buffer remaining) Tj
+0 -15 Td
+(   - 787 Triple-Redundant Flight Control Computer Line-Replaceable Units \(AV-7840 / FCC-900\): 2.0 days buffer) Tj
+0 -15 Td
+(3. Financial Trade-Off for COO Call:) Tj
+0 -15 Td
+(   - Expedited Air-Freight & Weekend DER Cert Clearance Cost: $3.2M this quarter) Tj
+0 -15 Td
+(   - Contractual Airline AOG SLA Penalty Exposure if Frozen: $19.4M across 14 grounded airline tail numbers) Tj
+0 -15 Td
+(   - Net Financial Protection of Continuing Expedited Air-Freight: +$16.2M net savings \(6.1x ROI\).) Tj
+0 -15 Td
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000311 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1819
+%%EOF

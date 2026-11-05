@@ -60,7 +60,16 @@ ALLOWED_ASSETS = {
     "Digital_Chief_of_Staff_Agent.docx": (
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     ),
+    "Last_Week_AI_SteerCo_Minutes_Oct28.docx": (
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    ),
+    "This_Week_BU_AI_Intake_and_Action_Tracker_Nov04.docx": (
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    ),
     "Alphabet_Q3_2026_Form_10-Q.pdf": "application/pdf",
+    "BGS_Global_Spares_Hub_Q3_Scorecard.pdf": "application/pdf",
+    "Western_Hub_Receiving_Hold_and_AOG_Audit.pdf": "application/pdf",
+    "Western_Hub_Director_Voicemail.wav": "audio/wav",
 }
 
 DEFAULT_ROSTER = [
