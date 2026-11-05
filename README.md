@@ -6,14 +6,15 @@ An interactive, three-volume executive workshop rack built for hands-on sessions
 
 1. **Book 01 · Gemini Enterprise App (`6 Chapters`)**
    - Governed browser AI grounded across live Web Search, Microsoft 365 (`Outlook`, `SharePoint`, `OneDrive`), and Google Workspace.
-   - Hands-on chapters for **Search & Canvas**, **Personalizations & Deep Research**, **Skills & Projects**, **Gemini Notebook Enterprise** (with live voice *Join*), and **ADK & 3P Agent Invocation** (`@Ask HR`, `@3D Rendering`, `@Workday`, `@SAP`, `@ServiceNow`).
-2. **Book 02 · Gemini Agent (`6 Chapters`)**
+   - Hands-on chapters for **Search & Canvas**, **Personalizations & Deep Research**, **Skills & Projects** (`Create with Gemini` → `/Skill` in chat → `Skill` inside a Project), **Gemini Notebook Enterprise** (with live voice *Join*), and **Custom ADK Agent Invocation** (`@Ask HR` and `@3D Rendering`).
+2. **Book 02 · Gemini Agent (`7 Chapters`)**
    - **The Core Shift & Four Eras of AI Work**: Moving from reactive chat boxes to a persistent, 24/7 cloud coworker with its own isolated computer and workspace.
    - **Enterprise Controls & Guardrails**: CISO & CFO controls (Attested Identity, RBAC & ethical walls, Dual Audit Trail, Agent Sandbox & Gateway, per-project spend caps, and multi-model routing).
-   - **Three Knowledge-Worker Playbooks**:
+   - **Four Knowledge-Worker Playbooks**:
      - **Execs — Chief of Staff**: Upload [`assets/Digital_Chief_of_Staff_Agent.docx`](assets/Digital_Chief_of_Staff_Agent.docx) to compile and invoke a reusable M365 Chief of Staff skill.
      - **Finance — Earnings Analysis**: Upload [`assets/Alphabet_Q3_2026_Form_10-Q.pdf`](assets/Alphabet_Q3_2026_Form_10-Q.pdf), analyze segment performance, and export live-formula Excel (`.xlsx`) models.
-     - **Legal — CLM Skills**: Run a 4-skill Contract Lifecycle Management suite across Playbook guardrails, BigQuery precedents, cross-clause Tariff/FFP checks, and Word OOXML Track Changes (`.docx`).
+     - **S2P & Legal — CLM Skills**: Run a 4-skill Aerospace Contract Lifecycle Management suite across `BA-2026-AV-8921`, `BA-2026-TR-5510`, and `BA-2026-LG-7740` (Playbook guardrails, BigQuery precedents, cross-clause Tariff/FFP checks, and Word OOXML Track Changes `.docx`).
+     - **Supplier Forensics — MFSY Swarm**: Run a 4-subagent swarm across M365 SharePoint, OneDrive, and BigQuery (`$144.17M` cross-division exposure) and repair hardcoded Excel models (`Row 37` formula fix).
 3. **Book 03 · Google Antigravity (`7 Chapters`)**
    - Platform overview (Command Center UI, Dynamic Subagents, Rich Artifacts, Scheduled Tasks, and Plugin Marketplace).
    - Guided hands-on build tracks for **Something from Scratch** and **Evolving V1 → V2** across **Vibe Coding** (`/grill-me`, `/teamwork`, `/browser`, `/goal`) and **Spec-Driven Development** (**Spec to Ship** 8-phase plugin).
