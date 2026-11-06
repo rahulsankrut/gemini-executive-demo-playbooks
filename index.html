@@ -3078,13 +3078,13 @@
                     </div>
                     <div class="pipe-stage" style="grid-template-columns:42px 155px 1fr;padding:13px 16px;border-left-color:var(--cobalt);">
                       <span class="runway-num" style="color:var(--cobalt);">03</span>
-                      <strong style="font-family:var(--font-serif);font-size:18.5px;" data-editable>Human Gate</strong>
-                      <span style="font-size:14px;color:var(--ink-soft);" data-editable>Enforces authority boundaries—AI recommends; humans approve</span>
+                      <strong style="font-family:var(--font-serif);font-size:18.5px;" data-editable>Morning Triage</strong>
+                      <span style="font-size:14px;color:var(--ink-soft);" data-editable>Ranks top priorities, flags calendar conflicts &amp; preps 1:30 PM gate</span>
                     </div>
                     <div class="pipe-stage" style="grid-template-columns:42px 155px 1fr;padding:13px 16px;border-left-color:var(--plum);">
                       <span class="runway-num" style="color:var(--plum);">04</span>
-                      <strong style="font-family:var(--font-serif);font-size:18.5px;" data-editable>Use It Live</strong>
-                      <span style="font-size:14px;color:var(--ink-soft);" data-editable>Runs Morning Brief, meeting pre-reads &amp; Discussion-to-Closure</span>
+                      <strong style="font-family:var(--font-serif);font-size:18.5px;" data-editable>Action Closure</strong>
+                      <span style="font-size:14px;color:var(--ink-soft);" data-editable>Turns raw meeting notes into tracked owners &amp; staged Outlook drafts</span>
                     </div>
                   </div>
                 </div>
@@ -3103,30 +3103,37 @@
                   <span>PAGE 08</span>
                 </div>
 
-                <div style="display:flex;flex-direction:column;gap:16px;margin:auto 0;">
-                  <p style="font-size:15px;color:var(--ink-soft);" class="reveal d1" data-editable>
-                    Download the spec <code>.docx</code> on the left, upload it to <strong>Gemini Agent</strong> to create your Skill, then invoke it:
-                  </p>
-
-                  <div class="level-card reveal d2" style="padding:16px 18px;">
+                <div style="display:flex;flex-direction:column;gap:11px;margin:auto 0;">
+                  <div class="level-card reveal d1" style="padding:12px 16px;">
                     <div class="level-top">
                       <span class="level-pill">🛠️ STEP 1 · UPLOAD SPEC .DOCX &amp; CREATE SKILL · APPROVALS: ALWAYS ASK</span>
                       <button class="copy-prompt-btn" data-copy="Read the attached Digital_Chief_of_Staff_Agent.docx specification and build me a reusable digital-chief-of-staff skill that enforces its 5-stage operating loop and human-approval guardrails.">📋 Copy Prompt</button>
                     </div>
-                    <h3 class="card-heading" style="font-size:20px;" data-editable>Turn the Spec Doc into a Reusable Skill</h3>
-                    <div class="prompt-quote" data-editable>
-                      &ldquo;Read the attached Digital_Chief_of_Staff_Agent.docx specification and build me a reusable digital-chief-of-staff skill that enforces its 5-stage operating loop and human-approval guardrails.&rdquo;
+                    <h3 class="card-heading" style="font-size:18px;" data-editable>1. Turn the Spec Doc into a Reusable Skill</h3>
+                    <div class="prompt-quote" style="font-size:13px;" data-editable>
+                      &ldquo;Read the attached <code>Digital_Chief_of_Staff_Agent.docx</code> specification and build me a reusable <code>digital-chief-of-staff</code> skill that enforces its 5-stage operating loop and human-approval guardrails.&rdquo;
                     </div>
                   </div>
 
-                  <div class="level-card accent-terra reveal d3" style="padding:16px 18px;">
+                  <div class="level-card accent-cobalt reveal d2" style="padding:12px 16px;">
                     <div class="level-top">
-                      <span class="level-pill terra">👔 STEP 2 · INVOKE &amp; USE THE SKILL LIVE · APPROVALS: ASK WHEN NEEDED</span>
-                      <button class="copy-prompt-btn" data-copy="Run my digital-chief-of-staff skill across my Outlook inbox, Calendar, and SharePoint. Give me my morning triage brief, flag any double-booked calendar conflicts or low-priority meetings I should delegate, prep me for today's 1:30 PM and 4:00 PM supplier decision gates, turn yesterday's unclosed meeting notes into tracked action items with owners, and stage BLUF reply drafts in Outlook for my review.">📋 Copy Prompt</button>
+                      <span class="level-pill cobalt">📅 STEP 2 · MORNING TRIAGE &amp; CALENDAR CONFLICTS · APPROVALS: ASK WHEN NEEDED</span>
+                      <button class="copy-prompt-btn" data-copy="Run my digital-chief-of-staff skill across my Outlook Inbox and Calendar. Give me a concise morning briefing: my top 3 priorities today, any double-booked calendar conflicts or low-value meetings I should delegate, and a quick pre-read for my 1:30 PM supplier gate.">📋 Copy Prompt</button>
                     </div>
-                    <h3 class="card-heading" style="font-size:20px;" data-editable>Run Your New <em>Chief of Staff</em> Skill</h3>
-                    <div class="prompt-quote" data-editable>
-                      &ldquo;Run my digital-chief-of-staff skill across my Outlook inbox, Calendar, and SharePoint. Give me my morning triage brief, flag any double-booked calendar conflicts or low-priority meetings I should delegate, prep me for today&rsquo;s 1:30 PM and 4:00 PM supplier decision gates, turn yesterday&rsquo;s unclosed meeting notes into tracked action items with owners, and stage BLUF reply drafts in Outlook for my review.&rdquo;
+                    <h3 class="card-heading" style="font-size:18px;" data-editable>2. Run Morning Briefing &amp; Calendar Conflict Check</h3>
+                    <div class="prompt-quote" style="font-size:13px;" data-editable>
+                      &ldquo;Run my <code>digital-chief-of-staff</code> skill across my Outlook Inbox and Calendar. Give me a concise morning briefing: my top 3 priorities today, any double-booked calendar conflicts or low-value meetings I should delegate, and a quick pre-read for my 1:30 PM supplier gate.&rdquo;
+                    </div>
+                  </div>
+
+                  <div class="level-card accent-terra reveal d3" style="padding:12px 16px;">
+                    <div class="level-top">
+                      <span class="level-pill terra">✉️ STEP 3 · MEETING NOTES TO ACTION OWNERS &amp; DRAFTS · APPROVALS: ASK WHEN NEEDED</span>
+                      <button class="copy-prompt-btn" data-copy="Find yesterday's unclosed Charleston & S2P meeting notes in my Outlook Inbox, convert the discussion into an action table with owners and due dates, and stage a follow-up reply draft in my Outlook Drafts for review.">📋 Copy Prompt</button>
+                    </div>
+                    <h3 class="card-heading" style="font-size:18px;" data-editable>3. Convert Yesterday&rsquo;s Notes into Owners &amp; Outlook Draft</h3>
+                    <div class="prompt-quote" style="font-size:13px;" data-editable>
+                      &ldquo;Find yesterday&rsquo;s unclosed Charleston &amp; S2P meeting notes in my Outlook Inbox, convert the discussion into an action table with owners and due dates, and stage a follow-up reply draft in my Outlook Drafts for review.&rdquo;
                     </div>
                   </div>
                 </div>
